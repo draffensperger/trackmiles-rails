@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails'
 gem 'figaro'
+gem 'rest-client'
 
 group :production do
   gem 'pg'
@@ -16,7 +17,9 @@ group :production do
 end
 
 group :development, :test do  
-  gem 'sqlite3'  
+  gem 'sqlite3'
+  
+  gem 'webmock'
     
   gem 'libv8', :platforms => :ruby
   gem 'therubyracer', :platforms => :ruby
