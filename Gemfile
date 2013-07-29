@@ -25,7 +25,7 @@ group :development, :test do
   gem 'therubyracer', :platforms => :ruby
   gem 'execjs', :platforms => :ruby
   
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
   gem 'simplecov'
   gem 'rspec-rails'
   

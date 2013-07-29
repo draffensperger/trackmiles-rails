@@ -26,8 +26,30 @@ class User < ActiveRecord::Base
     user
   end
   
-  # See http://stackoverflow.com/questions/12183300/stored-android-accounts-for-authentication-of-rails-devise-accounts
-  def self.get_info_for_auth_token(provider, uid, token)
+  def self.find_or_create_for_auth_token(provider, uid, token)
+    userinfo = get_userinfo_for_auth_token(provider, uid, token)
+    find_or_create_for_userinfo(provider, uid, userinfo)
+  end
+  
+  def self.find_or_create_for_userinfo(provider, uid, userinfo)
+    if userinfo.nil? 
+      return nil
+    end
+    
+    user = User.where(:uid => uid).first
+    unless user
+      user = User.create(
+        name: userinfo["name"], 
+        email: userinfo["email"],
+        provider: provider,
+        uid: uid,
+        password: Devise.friendly_token[0,20]
+        )
+    end
+    user
+  end
+  
+  def self.get_userinfo_for_auth_token(provider, uid, token)
     if provider == "google"
       userinfo_url = "https://www.googleapis.com/oauth2/v1/userinfo"
       
