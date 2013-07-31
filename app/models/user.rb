@@ -27,8 +27,7 @@ class User < ActiveRecord::Base
   end
   
   def self.find_or_create_for_google_token(token)
-    userinfo = get_userinfo_for_auth_token(provider, uid, token)
-    find_or_create_for_userinfo(provider, uid, userinfo)
+    find_or_create_for_google_userinfo(get_userinfo_for_google_token(token))
   end
   
   def self.find_or_create_for_google_userinfo(userinfo)
@@ -48,7 +47,7 @@ class User < ActiveRecord::Base
     user
   end
   
-  def self.get_google_userinfo_for_token(token)  
+  def self.get_userinfo_for_google_token(token)  
     userinfo_url = "https://www.googleapis.com/oauth2/v1/userinfo"
     
     begin

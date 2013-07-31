@@ -36,10 +36,14 @@ describe User do
   end
   
   describe "finding or creating a user from an auth token" do
-    it "should get the userinfo and then find or create a user with it" do
-      # Will need to user stubs to test that the right functions get called
-      # and that the right return values are returned 
-      #User.find_or_create_for_userinfo.stub
+    it "should get the userinfo and then find or create a user with it" do                   
+      User.should_receive(:get_userinfo_for_google_token)
+        .with(@token).and_return(@userinfo_valid)
+        
+      User.should_receive(:find_or_create_for_google_userinfo)
+        .with(@userinfo_valid).and_return(@user)
+      
+      User.find_or_create_for_google_token(@token).should eq(@user)
     end
   end
   
@@ -92,22 +96,22 @@ describe User do
     
     it "handles invalid credentials" do           
       stub = stub_auth_request 401, @userinfo_invalid      
-      User.get_google_userinfo_for_token(@token).should eq(nil)      
+      User.get_userinfo_for_google_token(@token).should eq(nil)      
       stub.should have_been_requested
     end
     
     it "handles valid credentials" do    
       stub = stub_auth_request 200, @userinfo_valid               
-      User.get_google_userinfo_for_token(@token).should eq(@userinfo_valid)     
+      User.get_userinfo_for_google_token(@token).should eq(@userinfo_valid)     
       stub.should have_been_requested
     end
     
     it "returns nil on timeout and exception" do
       stub_request(:any, @auth_host).to_timeout      
-      User.get_google_userinfo_for_token(@token).should eq(nil)
+      User.get_userinfo_for_google_token(@token).should eq(nil)
       
       stub_request(:any, @auth_host).to_raise(StandardError)      
-      User.get_google_userinfo_for_token(@token).should eq(nil)
+      User.get_userinfo_for_google_token(@token).should eq(nil)
     end
   end 
 end
