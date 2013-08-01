@@ -10,6 +10,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'figaro'
 gem 'rest-client'
+gem 'versionist'
 
 group :production do
   gem 'pg'
