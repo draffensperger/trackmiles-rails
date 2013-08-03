@@ -1,4 +1,4 @@
-require 'spec_helper'
+require File.expand_path("../../../../spec_helper", __FILE__)
 
 # Adapted from:
 # See http://pivotallabs.com/adding-routes-for-tests-specs-with-rails-3/
@@ -9,10 +9,10 @@ class Api::V1::InheritsFromBaseController < Api::V1::BaseController
   end
 end
 
-describe Api::V1::InheritsFromBaseController do
-  before(:all) do
+describe Api::V1::InheritsFromBaseController, :type => :controller do
+  before do
     @token = "token"
-    @user = build_stubbed(:user)
+    @user = create(:user)
     
     Rails.application.routes.draw do
       namespace :api do
@@ -23,15 +23,14 @@ describe Api::V1::InheritsFromBaseController do
     end
   end
   
-  after(:all) do
+  after do
     Rails.application.reload_routes!
   end
-  
+      
   it "should return http unauthorized without google auth token" do      
     get :index
     response.response_code.should == 401    
-    response.body.should == 
-      {error: {code: 401, message: "Login Required"}}.to_json    
+    response.body.should == {errors: ['Missing access token']}.to_json    
   end
   
   it "should return http unauthorized with invalid google token" do    
@@ -39,8 +38,7 @@ describe Api::V1::InheritsFromBaseController do
       .with(@token).and_return(nil)
     get :index, google_token: @token
     response.response_code.should == 401
-    response.body.should == 
-      {error: {code: 401, message: "Invalid Credentials"}}.to_json    
+    response.body.should == {errors: ['Invalid access token']}.to_json    
   end
   
   it "should succeed with valid google token" do    
@@ -49,6 +47,6 @@ describe Api::V1::InheritsFromBaseController do
     get :index, google_token: @token
     response.should be_success
     response.body.should == "Test"
-    current_user.should == @user
-  end  
+    subject.current_user.should == @user
+  end
 end

@@ -43,11 +43,10 @@ class User < ActiveRecord::Base
     
     begin
       RestClient.get userinfo_url, :params => {:access_token => token}
+    rescue RestClient::Unauthorized
+      nil
     rescue => e
-      # RestClient throws an exception for any status code besides 200
-      # so if the token was invalid, the response code, e.g. 401 Unauthorized
-      # will tigger this funcation to return nil. Other exceptions e.g.
-      # network problems will also cause to return nil.
+      # Other exceptions e.g. network problems will also cause a return of nil.
       nil
     end        
   end

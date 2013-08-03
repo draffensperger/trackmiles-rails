@@ -1,7 +1,7 @@
 require File.expand_path("../../spec_helper", __FILE__)
 
 describe User do
-  before(:all) do
+  before(:each) do
     @user = build_stubbed(:user)       
     @token = "TOKEN"
     
