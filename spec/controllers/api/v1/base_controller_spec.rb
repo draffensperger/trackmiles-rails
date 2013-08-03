@@ -10,10 +10,7 @@ class Api::V1::InheritsFromBaseController < Api::V1::BaseController
 end
 
 describe Api::V1::InheritsFromBaseController, :type => :controller do
-  before do
-    @token = "token"
-    @user = create(:user)
-    
+  before do    
     Rails.application.routes.draw do
       namespace :api do
         namespace :v1 do
@@ -34,19 +31,15 @@ describe Api::V1::InheritsFromBaseController, :type => :controller do
   end
   
   it "should return http unauthorized with invalid google token" do    
-    User.should_receive(:find_or_create_for_google_token)
-      .with(@token).and_return(nil)
-    get :index, google_token: @token
+    get :index, google_token: stub_invalid_google_token
     response.response_code.should == 401
     response.body.should == {errors: ['Invalid access token']}.to_json    
   end
   
-  it "should succeed with valid google token" do    
-    User.should_receive(:find_or_create_for_google_token)
-      .with(@token).and_return(@user)
-    get :index, google_token: @token
+  it "should succeed with valid google token" do
+    get :index, google_token: stub_google_token
     response.should be_success
     response.body.should == "Test"
-    subject.current_user.should == @user
+    subject.current_user.should == stubbed_login_user
   end
 end

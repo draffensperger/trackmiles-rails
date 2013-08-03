@@ -2,11 +2,14 @@ require File.expand_path("../../../../spec_helper", __FILE__)
 
 describe Api::V1::LocationsController do
   before do
-    @token = "TOKEN"
     @request_json = {
-      google_auth_token: @token,
+      google_auth_token: "TOKEN",
       locations: [attributes_for(:loc_no_user1), attributes_for(:loc_no_user2)]
     }
+  end
+  
+  it "should create locations based on passed attributes" do
+    
   end
 end
 

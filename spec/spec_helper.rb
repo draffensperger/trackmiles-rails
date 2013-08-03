@@ -30,7 +30,7 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
-  # If true, the base class of anonymous controllers will be inferred
+  # If true, the base class of anonymous controllersu will be inferred
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
@@ -40,4 +40,23 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+end
+
+def stub_invalid_google_token
+  stub_token_for_user "INVALID_GOOGLE_TOKEN", nil
+end
+
+def stub_google_token(user = nil)
+  stub_token_for_user "GOOGLE_TOKEN", user || create(:user)
+end
+
+def stub_token_for_user(token, user)
+  User.should_receive(:find_or_create_for_google_token)
+    .with(token).and_return(user)
+  $user = user
+  token
+end  
+
+def stubbed_login_user
+  $user
 end
