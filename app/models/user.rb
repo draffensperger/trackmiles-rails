@@ -24,7 +24,9 @@ class User < ActiveRecord::Base
   end
   
   def self.find_or_create_for_google_userinfo(userinfo)
-    if userinfo.nil? 
+    if userinfo.nil? or not userinfo.has_key?("email") or 
+      userinfo["email"].nil? or userinfo["email"] == "" 
+      
       return nil
     end
     

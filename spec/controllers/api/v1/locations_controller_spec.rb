@@ -23,6 +23,18 @@ describe Api::V1::LocationsController, :type => :controller do
     response.body.should == {num_created_locations: expected_locs.length}.to_json
   end
   
+  it "should not create locations for empty array" do
+    token = stub_google_token   
+    user_for_stubbed_login.locations << create(:loc_no_user1)    
+    user_for_stubbed_login.save
+    
+    post :bulk_create, google_token: token, locations: []
+    response.body.should == {num_created_locations: 0}.to_json  
+    
+    post :bulk_create, google_token: token, locations: nil
+    response.body.should == {num_created_locations: 0}.to_json
+  end
+  
   it "should not count unsaved locations" do
     Location.any_instance.stub(:save).and_return(nil)
     post :bulk_create, google_token: stub_google_token,

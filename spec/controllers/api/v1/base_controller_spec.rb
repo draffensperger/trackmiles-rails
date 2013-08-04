@@ -40,6 +40,6 @@ describe Api::V1::InheritsFromBaseController, :type => :controller do
     get :index, google_token: stub_google_token
     response.should be_success
     response.body.should == "Test"
-    subject.current_user.should == stubbed_login_user
+    subject.current_user.should == user_for_stubbed_login
   end
 end

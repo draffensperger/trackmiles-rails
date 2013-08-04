@@ -52,11 +52,11 @@ end
 
 def stub_token_for_user(token, user)
   User.should_receive(:find_or_create_for_google_token)
-    .with(token).and_return(user)
+    .at_least(1).times.with(token).and_return(user)
   $user = user
   token
 end  
 
-def stubbed_login_user
+def user_for_stubbed_login
   $user
 end

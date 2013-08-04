@@ -74,6 +74,15 @@ describe User do
     it "returns nil if the userinfo is nil" do
       User.find_or_create_for_google_userinfo(nil).should eq(nil)
     end
+    
+    it "returns nil if the userinfo lacks an email" do
+      User.find_or_create_for_google_userinfo({name: 'name only'})
+        .should eq(nil)
+      User.find_or_create_for_google_userinfo({name: 'n', email: nil})
+        .should eq(nil)
+      User.find_or_create_for_google_userinfo({name: 'n', email: ""})
+        .should eq(nil)
+    end
   end
   
   describe "get google userinfo for an auth token" do    
