@@ -19,8 +19,6 @@ end
 
 group :development, :test do  
   gem 'sqlite3'
-  
-  gem 'webmock'
     
   gem 'libv8', :platforms => :ruby
   gem 'therubyracer', :platforms => :ruby
@@ -34,6 +32,10 @@ group :development, :test do
   gem 'spork-rails'
   #gem 'spork-rails', :platforms => :ruby
   #gem 'spork-testunit', :platforms => :ruby
+end
+
+group :test do
+  gem 'webmock'
 end
 
 group :assets do

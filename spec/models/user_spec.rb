@@ -1,7 +1,7 @@
 require File.expand_path("../../spec_helper", __FILE__)
 
 describe User do
-  before(:each) do
+  before do
     @user = build_stubbed(:user)       
     @token = "TOKEN"
     
@@ -77,21 +77,21 @@ describe User do
   end
   
   describe "get google userinfo for an auth token" do    
-    before(:all) do
+    before do
       @auth_host = "www.googleapis.com"
       @auth_url = "https://" + @auth_host + "/oauth2/v1/userinfo"       
       
       WebMock.disable_net_connect!
     end
     
-    after(:all) do
+    after do
       WebMock.allow_net_connect!
     end
     
-    def stub_auth_request(status, response)    
+    def stub_auth_request(status, response_json_hash)    
       stub_request(:get, @auth_url)
         .with(:query => {"access_token" => @token})
-        .to_return(:body => response, :status => status)
+        .to_return(:body => response_json_hash.to_json, :status => status)
     end
     
     it "handles invalid credentials" do           

@@ -1,4 +1,8 @@
 class Api::V1::BaseController < ApplicationController
+  # We are not going to use the CSRF security token for API requests as those
+  # use the google_token to verify authenticity instead.
+  skip_before_filter :verify_authenticity_token
+  
   def ensure_login
     google_token = params[:google_token]
     unless google_token

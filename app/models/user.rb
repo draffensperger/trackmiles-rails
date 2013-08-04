@@ -41,10 +41,10 @@ class User < ActiveRecord::Base
   end
   
   def self.get_userinfo_for_google_token(token)  
-    userinfo_url = "https://www.googleapis.com/oauth2/v1/userinfo"
+    url = "https://www.googleapis.com/oauth2/v1/userinfo"
     
     begin
-      RestClient.get userinfo_url, :params => {:access_token => token}
+      JSON.parse RestClient.get url, :params => {:access_token => token}      
     rescue RestClient::Unauthorized
       nil
     rescue => e
