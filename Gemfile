@@ -11,6 +11,7 @@ gem 'haml-rails'
 gem 'figaro'
 gem 'rest-client'
 gem 'versionist'
+gem 'twitter-bootstrap-rails'
 
 group :production do
   gem 'pg'
@@ -20,8 +21,7 @@ end
 group :development, :test do  
   gem 'sqlite3'
     
-  gem 'libv8', :platforms => :ruby
-  gem 'therubyracer', :platforms => :ruby
+  gem 'libv8', :platforms => :ruby 
   gem 'execjs', :platforms => :ruby
   
   gem 'factory_girl_rails'
@@ -34,6 +34,10 @@ group :development, :test do
   #gem 'spork-testunit', :platforms => :ruby
 end
 
+group :development, :test, :assets do
+  gem 'therubyracer', :platforms => :ruby
+end
+
 group :test do
   gem 'webmock'
 end
@@ -42,4 +46,5 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'less-rails'
 end
