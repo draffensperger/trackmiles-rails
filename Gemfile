@@ -11,7 +11,6 @@ gem 'haml-rails'
 gem 'figaro'
 gem 'rest-client'
 gem 'versionist'
-gem 'twitter-bootstrap-rails'
 
 group :production do
   gem 'pg'
