@@ -19,28 +19,11 @@
         .nav-collapse.collapse
           %ul.nav.navbar-nav
             %li.active
-              %a{:href => "#"} Home
+              %a{:href => "/"} Home
             %li
-              %a{:href => "#about"} About
+              %a{:href => "about"} About
             %li
-              %a{:href => "#contact"} Contact
-            %li.dropdown
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                Dropdown
-                %b.caret
-              %ul.dropdown-menu
-                %li
-                  %a{:href => "#"} Action
-                %li
-                  %a{:href => "#"} Another action
-                %li
-                  %a{:href => "#"} Something else here
-                %li.divider
-                %li.dropdown-header Nav header
-                %li
-                  %a{:href => "#"} Separated link
-                %li
-                  %a{:href => "#"} One more separated link
+              %a{:href => "apps"} Apps        
           .pull-right.navbar-text
             - if current_user
               #{current_user.email}              
@@ -55,7 +38,10 @@
       %hr/        
       %footer
         %span &copy; Track Miles 2013
-        %span.pull-right Terms of Service | Privacy Policy
+        %span.pull-right 
+          %a{:href => "terms"} Terms of Service 
+          |
+          %a{:href => "privacy"} Privacy Policy
     / /container
     / %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"}
     / <script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>        
