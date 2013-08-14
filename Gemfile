@@ -24,16 +24,14 @@ group :development, :test do
   
   gem 'factory_girl_rails'
   gem 'simplecov'
-  gem 'rspec-rails'
+  gem 'rspec-rails' 
   
   gem 'test-unit'
   gem 'spork-rails'
   #gem 'spork-rails', :platforms => :ruby
   #gem 'spork-testunit', :platforms => :ruby
-end
-
-group :development, :test, :assets do
-  gem 'libv8', :platforms => :ruby 
+  
+  gem 'libv8', :platforms => :ruby  
   gem 'therubyracer', :platforms => :ruby
 end
 
@@ -46,5 +44,4 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.2'
   gem 'coffee-script-source', '1.5.0'
   gem 'uglifier', '>= 1.0.3'
-  gem 'less-rails'
 end
