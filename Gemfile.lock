@@ -1,32 +1,32 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (3.2.11)
-      actionpack (= 3.2.11)
-      mail (~> 2.4.4)
-    actionpack (3.2.11)
-      activemodel (= 3.2.11)
-      activesupport (= 3.2.11)
+    actionmailer (3.2.14)
+      actionpack (= 3.2.14)
+      mail (~> 2.5.4)
+    actionpack (3.2.14)
+      activemodel (= 3.2.14)
+      activesupport (= 3.2.14)
       builder (~> 3.0.0)
       erubis (~> 2.7.0)
       journey (~> 1.0.4)
-      rack (~> 1.4.0)
+      rack (~> 1.4.5)
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    activemodel (3.2.11)
-      activesupport (= 3.2.11)
+    activemodel (3.2.14)
+      activesupport (= 3.2.14)
       builder (~> 3.0.0)
-    activerecord (3.2.11)
-      activemodel (= 3.2.11)
-      activesupport (= 3.2.11)
+    activerecord (3.2.14)
+      activemodel (= 3.2.14)
+      activesupport (= 3.2.14)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activeresource (3.2.11)
-      activemodel (= 3.2.11)
-      activesupport (= 3.2.11)
-    activesupport (3.2.11)
-      i18n (~> 0.6)
+    activeresource (3.2.14)
+      activemodel (= 3.2.14)
+      activesupport (= 3.2.14)
+    activesupport (3.2.14)
+      i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     addressable (2.3.5)
     arel (3.0.2)
@@ -72,7 +72,7 @@ GEM
     hashie (2.0.5)
     hike (1.2.3)
     httpauth (0.2.0)
-    i18n (0.6.4)
+    i18n (0.6.5)
     journey (1.0.4)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
@@ -81,8 +81,7 @@ GEM
     jwt (0.1.8)
       multi_json (>= 1.5)
     libv8 (3.16.14.1)
-    mail (2.4.4)
-      i18n (>= 0.4.0)
+    mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.23)
@@ -113,17 +112,17 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (3.2.11)
-      actionmailer (= 3.2.11)
-      actionpack (= 3.2.11)
-      activerecord (= 3.2.11)
-      activeresource (= 3.2.11)
-      activesupport (= 3.2.11)
+    rails (3.2.14)
+      actionmailer (= 3.2.14)
+      actionpack (= 3.2.14)
+      activerecord (= 3.2.14)
+      activeresource (= 3.2.14)
+      activesupport (= 3.2.14)
       bundler (~> 1.0)
-      railties (= 3.2.11)
-    railties (3.2.11)
-      actionpack (= 3.2.11)
-      activesupport (= 3.2.11)
+      railties (= 3.2.14)
+    railties (3.2.14)
+      actionpack (= 3.2.14)
+      activesupport (= 3.2.14)
       rack-ssl (~> 1.3.2)
       rake (>= 0.8.7)
       rdoc (~> 3.4)
@@ -134,7 +133,7 @@ GEM
     ref (1.0.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    rspec-core (2.14.4)
+    rspec-core (2.14.5)
     rspec-expectations (2.14.1)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.14.3)
@@ -195,7 +194,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  coffee-rails (~> 3.2.2)
+  coffee-rails
   coffee-script-source (= 1.5.0)
   devise
   execjs
@@ -207,16 +206,16 @@ DEPENDENCIES
   libv8
   omniauth-google-oauth2
   pg
-  rails (= 3.2.11)
+  rails (~> 3.2.14)
   rest-client
   rspec-rails
-  sass-rails (~> 3.2.3)
+  sass-rails
   simplecov
   spork-rails
   sqlite3
   test-unit
   therubyracer
   thin
-  uglifier (>= 1.0.3)
+  uglifier
   versionist
   webmock
