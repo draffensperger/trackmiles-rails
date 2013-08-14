@@ -39,7 +39,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.5.0)
-    commonjs (0.2.6)
     crack (0.4.1)
       safe_yaml (~> 0.9.0)
     daemons (1.1.9)
@@ -81,11 +80,6 @@ GEM
     json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
-    less (2.3.2)
-      commonjs (~> 0.2.6)
-    less-rails (2.3.3)
-      actionpack (>= 3.1)
-      less (~> 2.3.1)
     libv8 (3.16.14.1)
     mail (2.4.4)
       i18n (>= 0.4.0)
@@ -210,7 +204,6 @@ DEPENDENCIES
   haml
   haml-rails
   jquery-rails
-  less-rails
   libv8
   omniauth-google-oauth2
   pg
