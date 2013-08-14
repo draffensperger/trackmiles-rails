@@ -19,8 +19,7 @@ end
 
 group :development, :test do  
   gem 'sqlite3'
-    
-  gem 'libv8', :platforms => :ruby 
+  
   gem 'execjs', :platforms => :ruby
   
   gem 'factory_girl_rails'
@@ -34,6 +33,7 @@ group :development, :test do
 end
 
 group :development, :test, :assets do
+  gem 'libv8', :platforms => :ruby 
   gem 'therubyracer', :platforms => :ruby
 end
 
