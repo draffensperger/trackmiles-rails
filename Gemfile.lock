@@ -130,6 +130,7 @@ GEM
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    redcarpet (3.0.0)
     ref (1.0.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -207,6 +208,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   pg
   rails (~> 3.2.14)
+  redcarpet
   rest-client
   rspec-rails
   sass-rails

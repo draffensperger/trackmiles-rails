@@ -11,6 +11,7 @@ gem 'haml-rails'
 gem 'figaro'
 gem 'rest-client'
 gem 'versionist'
+gem 'redcarpet'
 
 group :production do
   gem 'pg'
