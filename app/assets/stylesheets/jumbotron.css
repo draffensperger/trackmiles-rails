@@ -13,6 +13,7 @@ body {
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
+  padding-top: 15px;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -25,10 +26,10 @@ body {
 @media screen and (min-width: 768px) {
   /* Let the jumbotron breathe */
   .jumbotron {
-    margin-top: 20px;
   }
   /* Remove padding from wrapping element since we kick in the grid classes here */
   .body-content {
-    padding: 0;
+    padding-left : 0px;
+    padding-rght: 0px;
   }
 }

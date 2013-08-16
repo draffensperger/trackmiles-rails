@@ -19,4 +19,7 @@ Miletracker::Application.routes.draw do
   get 'privacy' => 'home#privacy'
   get 'terms' => 'home#terms'
   get 'apps' => 'home#apps'
+  get 'howitworks' => 'home#howitworks'
+  get 'feedback' => 'home#feedback'
+  get 'faq' => 'home#faq'
 end
