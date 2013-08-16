@@ -12,6 +12,8 @@ gem 'figaro'
 gem 'rest-client'
 gem 'versionist'
 gem 'redcarpet'
+gem 'tzinfo'
+gem 'tzinfo-data'
 
 group :production do
   gem 'pg'

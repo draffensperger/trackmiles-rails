@@ -11,7 +11,37 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130728215020) do
+ActiveRecord::Schema.define(:version => 20130816223855) do
+
+  create_table "calendar_users", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "calendar_id"
+    t.string   "color_id"
+    t.string   "background_color"
+    t.string   "foreground_color"
+    t.boolean  "hidden"
+    t.boolean  "selected"
+    t.string   "access_role"
+    t.boolean  "primary"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "calendar_users", ["calendar_id", "user_id"], :name => "index_calendar_users_on_calendar_id_and_user_id", :unique => true
+
+  create_table "calendars", :force => true do |t|
+    t.string   "etag",             :default => "", :null => false
+    t.string   "gcal_id",          :default => "", :null => false
+    t.string   "summary",          :default => "", :null => false
+    t.string   "description"
+    t.string   "location"
+    t.integer  "time_zone_id"
+    t.string   "summary_override"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
+  add_index "calendars", ["gcal_id"], :name => "index_calendars_on_gcal_id", :unique => true
 
   create_table "locations", :force => true do |t|
     t.integer  "user_id"
