@@ -14,6 +14,7 @@ gem 'versionist'
 gem 'redcarpet'
 gem 'tzinfo'
 gem 'tzinfo-data'
+gem 'google-api-client', '~> 0.6.4', :require => 'google/api_client'
 
 group :production do
   gem 'pg'

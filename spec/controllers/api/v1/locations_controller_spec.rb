@@ -5,7 +5,7 @@ describe Api::V1::LocationsController, :type => :controller do
     post :bulk_create, google_token: stub_google_token,
       locations: [attributes_for(:loc_no_user1), attributes_for(:loc_no_user2)]        
    
-    response.should be_success    
+    response.should be_success
         
     expected_locs = [build(:loc_no_user1), build(:loc_no_user2)]
     subject.current_user.locations.length.should == expected_locs.length

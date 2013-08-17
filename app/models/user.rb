@@ -7,11 +7,12 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:google_oauth2]
          
   has_many :locations
+  has_many :calendar_users
+  has_many :calendars, through: :calendar_users
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
   	:provider, :uid, :name
-  # attr_accessible :title, :body
   
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     find_or_create_for_google_userinfo(access_token.info)
@@ -51,5 +52,9 @@ class User < ActiveRecord::Base
       # Other exceptions e.g. network problems will also cause a return of nil.
       nil
     end        
+  end
+  
+  def google_api
+    @google_api ||= new GoogleApi(self)
   end
 end

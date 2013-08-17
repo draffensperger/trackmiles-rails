@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130816223855) do
+ActiveRecord::Schema.define(:version => 20130817173556) do
 
   create_table "calendar_users", :force => true do |t|
     t.integer  "user_id"
@@ -25,20 +25,20 @@ ActiveRecord::Schema.define(:version => 20130816223855) do
     t.boolean  "primary"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.string   "summary_override"
   end
 
   add_index "calendar_users", ["calendar_id", "user_id"], :name => "index_calendar_users_on_calendar_id_and_user_id", :unique => true
 
   create_table "calendars", :force => true do |t|
-    t.string   "etag",             :default => "", :null => false
-    t.string   "gcal_id",          :default => "", :null => false
-    t.string   "summary",          :default => "", :null => false
+    t.string   "etag",        :default => "", :null => false
+    t.string   "gcal_id",     :default => "", :null => false
+    t.string   "summary",     :default => "", :null => false
     t.string   "description"
     t.string   "location"
-    t.integer  "time_zone_id"
-    t.string   "summary_override"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.string   "time_zone"
   end
 
   add_index "calendars", ["gcal_id"], :name => "index_calendars_on_gcal_id", :unique => true
@@ -58,14 +58,14 @@ ActiveRecord::Schema.define(:version => 20130816223855) do
   end
 
   create_table "users", :force => true do |t|
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "email",                     :default => "", :null => false
+    t.string   "encrypted_password",        :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",             :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -73,6 +73,9 @@ ActiveRecord::Schema.define(:version => 20130816223855) do
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
+    t.string   "google_auth_token"
+    t.string   "google_auth_refresh_token"
+    t.datetime "google_auth_expires_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
