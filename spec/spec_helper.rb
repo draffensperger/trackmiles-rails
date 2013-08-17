@@ -53,6 +53,7 @@ end
 def stub_token_for_user(token, user)
   User.should_receive(:find_or_create_for_google_token)
     .at_least(1).times.with(token).and_return(user)
+  user.google_auth_token = token
   $user = user
   token
 end  

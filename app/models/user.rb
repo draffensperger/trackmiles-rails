@@ -55,6 +55,6 @@ class User < ActiveRecord::Base
   end
   
   def google_api
-    @google_api ||= new GoogleApi(self)
+    @google_api ||= GoogleApi.new(self)
   end
 end

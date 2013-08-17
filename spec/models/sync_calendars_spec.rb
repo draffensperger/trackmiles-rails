@@ -1,10 +1,7 @@
 require File.expand_path("../../spec_helper", __FILE__)
 
 describe SyncCalendars do
-  before do
-    WebMock.disable_net_connect!
-    
-    @calendar_list_url = 'https://www.googleapis.com/calendar/v3/users/me/calendarList'
+  before do   
     @user = create(:user)
     @token = stub_google_token(@user)
       
@@ -45,10 +42,6 @@ describe SyncCalendars do
           }
       ]
     }
-  end
-  
-  after do
-    WebMock.allow_net_connect!
   end
   
   describe "syncing google calendars for user" do

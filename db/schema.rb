@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130817173556) do
+ActiveRecord::Schema.define(:version => 20130817213709) do
 
   create_table "calendar_users", :force => true do |t|
     t.integer  "user_id"
@@ -42,6 +42,12 @@ ActiveRecord::Schema.define(:version => 20130817173556) do
   end
 
   add_index "calendars", ["gcal_id"], :name => "index_calendars_on_gcal_id", :unique => true
+
+  create_table "google_api_discovery_docs", :force => true do |t|
+    t.string "api"
+    t.string "version"
+    t.string "doc_json"
+  end
 
   create_table "locations", :force => true do |t|
     t.integer  "user_id"
