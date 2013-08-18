@@ -6,7 +6,7 @@ FactoryGirl.define do
     hidden true
   end
   
-  factory :calendar_user2, class: CalendarUser do
+  factory :calendar_user1_changed, class: CalendarUser do
     color_id "12"
     background_color "#fad165"
     foreground_color "#000000"

@@ -1,53 +1,21 @@
 class GoogleApi
-  VERSIONS = {calendar: 'v3'}
-  @@client = nil
-  @@apis = {}
+  BASE_URL = 'https://www.googleapis.com/'
+  CALENDAR_URL = BASE_URL + 'calendar/v3/'
   
   def initialize(user)    
-    @user = user    
-    unless @@client
-      @@client = Google::APIClient.new      
-    end
+    @user = user      
   end
   
-  def authorize_client_for_user
-    @@client.authorization.refresh_token = @user.google_auth_refresh_token
-    @@client.authorization.access_token = @user.google_auth_token
-    if @@client.authorization.refresh_token && client.authorization.expired?
-      @@client.authorization.fetch_access_token!
-    end
+  def call_api(url, params={})
+    params[:access_token] = @user.google_auth_token
+    JSON.parse(RestClient.get url, :params => params).underscore_keys_recursive
   end
   
-  def find_api(api, version)
-    @@apis["#{api}:#{versions}"] ||= begin
-      doc = GoogleApiDiscoveryDoc.where(api: api, version: version).first
-      if doc 
-        @@client.register_discovery_document(api, version, doc.doc_json)
-      else
-        GoogleApiDiscoveryDoc.create api: api, version: version, 
-          doc_json: @@client.discovery_document(api, version)
-      end
-      @@client.discovered_api(api, version)      
-    end
+  def calendar_list
+    call_api CALENDAR_URL + 'users/me/calendarList'
   end
   
-  # This allows a call like api.calendar.calender_list.list
-  def method_missing(api)
-    Delegate.new lambda {|resource, args_not_used| 
-      Delegate.new lambda {|method, args|
-        authorize_client_for_user
-        api_method = find_api(api, VERSIONS[api]).send(resource).send(method)         
-        @@client.execute(api_method: api_method, parameters: args)
-      }
-    }
-  end
-  
-  class Delegate
-    def initialize(proc)
-      @method_mising_proc = proc
-    end
-    def method_missing(m, *args)    
-      @method_mising_proc.call m, args     
-    end
-  end  
+  def calendar_events(gcal_id, params={})
+    call_api CALENDAR_URL + 'calendars/' + gcal_id + '/events', params
+  end     
 end
