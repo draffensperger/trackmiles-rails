@@ -124,6 +124,8 @@ describe SyncCalendars do
   end
   
   describe "sync calendar events" do
-    
-  end   
+    before do
+      
+    end
+  end
 end

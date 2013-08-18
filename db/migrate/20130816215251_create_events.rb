@@ -1,6 +1,6 @@
 # Adapted from https://developers.google.com/google-apps/calendar/v3/reference/events#resource
 class CreateEvents < ActiveRecord::Migration
-  def changed 
+  def change
     create_table :events do |t|
       t.references :calendar, index: true
       t.string :etag

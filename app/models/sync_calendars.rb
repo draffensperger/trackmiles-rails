@@ -13,6 +13,11 @@ class SyncCalendars
     
   end
   
+  def sync_calendar_event(item)
+    
+    
+  end
+  
   def sync_calendar_user_info(item)
     cal = sync_calendar_info item
     
