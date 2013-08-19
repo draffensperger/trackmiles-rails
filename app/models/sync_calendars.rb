@@ -20,7 +20,7 @@ class SyncCalendars
   def sync_calendar_user_info(item)
     cal = sync_calendar_info item
     
-    item.slice! CalendarUser.accessible_attributes
+    item.slice! CalendarUser.accessible_attributes.keys
         
     cal_user = CalendarUser.find_by_user_id_and_calendar_id @user.id, cal.id 
     
@@ -39,7 +39,8 @@ class SyncCalendars
   def sync_calendar_info(item)
     item[:gcal_id] = item[:id]
     item.delete :id
-    item.slice! Calendar.accessible_attributes
+    #todo need to fix this
+    item.slice! Calendar.accessible_attributes.keys
     
     cal = Calendar.find_by_gcal_id item[:gcal_id]
     if cal

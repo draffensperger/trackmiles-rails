@@ -33,17 +33,19 @@ FactoryGirl.define do
     organizer_display_name 'Organized Tester'
     organizer_self false    
     start_datetime 7.hour.ago
-    start_timezone_id 'America/New_York'    
+    start_timezone 'America/New_York'    
     end_datetime 1.hour.ago
-    end_timezone_id 'America/Chicago'
-    recurrence 
-    recurringEventId
-    original_start_date
-    original_start_datetime
-    original_start_timezone
+    end_timezone 'America/Chicago'
+    recurrence([
+        "RRULE:FREQ=MONTHLY;COUNT=6;INTERVAL=1;BYMONTHDAY=1"
+      ])
+    recurring_event_id 1
+    original_start_date 3.days.ago
+    original_start_datetime 4.days.ago
+    original_start_timezone 'America/Anchorage'
     transparency 'transparent'
     visibility 'public'
-    ical_uid 'a1@google.com'
+    i_cal_uid 'a1@google.com'
     sequence 1
     end_time_unspecified false
     locked false
@@ -51,9 +53,57 @@ FactoryGirl.define do
     private_copy true
     source_url 'https://google.com/some/source/url'
     source_title 'Some Source'
+        
+    anyone_can_add_self true
+    guests_can_invite_others false
+    guests_can_modify true
+    guests_can_see_other_guests false
     
-    # These are calculated
-    #start_datetime_utc
-    #end_datetime_utc 
+    attendees([
+        {
+          id: '1',
+          email: 'rando@gmail.com',
+          display_name: 'Random attendee',
+          organizer: true,
+          self: false,
+          resource: false,
+          optional: true,
+          response_status: 'tentative',
+          comment: 'Hello comment',
+          additional_guests: 50
+        }
+      ])
+        
+    extended_properties({
+        private: {
+          k1: 'v1'
+        },
+        shared: {
+          k2: 'v2'
+        }
+      })
+    
+    gadget({
+          type: 'some gadget',
+          title: 'Hello gadget',
+          link: 'https://google.com/gadget/for/cal',
+          icon_link: 'https://google.com/icon/for/cal',
+          width: 10,
+          height: 10,
+          display: 'chip',
+          preferences: {
+            a: '1'
+          }
+        })
+   
+    reminders({
+          use_default: false,
+          overrides: [
+            {
+              method: 'some method',
+              minutes: 55
+            }
+          ]
+        })
   end
 end

@@ -135,22 +135,21 @@ describe SyncCalendars do
       
       @item = {
         kind: "calendar#event",
-        etag: @event.etag
-        id: @event.gcal_event_id
-        status: @event.status
-        html_link: @event.html_link
-        created: @event.created
-        updated: @event.updated
-        summary: : @event.summary
+        etag: @event.etag,
+        id: @event.gcal_event_id,
+        status: @event.status,
+        html_link: @event.html_link,
+        created: @event.created,
+        updated: @event.updated,
+        summary: @event.summary,
         start: {
           date: @event.start_date
-        }
+        },
         end: {
           date: @event.end_date 
         }        
       }
       
-      # Need to fill in parameters
       @item_changed = {
         kind: 'calendar#event',
         etag: @cal_changed.etag,
@@ -184,73 +183,32 @@ describe SyncCalendars do
           time_zone: @cal_changed.start_time_zone
         },
         end_time_unspecified: @cal_changed.end_time_unspecified,
-        recurrence: [
-          "RRULE:FREQ=MONTHLY;COUNT=6;INTERVAL=1;BYMONTHDAY=1"
-        ],
-        recurring_event_id: @cal_changed.recurring_event_id:,
-        originalStartTime: {
-          date: @cal_changed.date,
-          dateTime: @cal_changed.datetime,
-          timeZone: @cal_changed.string
+        recurrence: @cal_changed.recurrence,
+        recurring_event_id: @cal_changed.recurring_event_id,
+        original_start_time: {
+          date: @cal_changed.original_start_time_date,
+          date_time: @cal_changed.original_start_time_date_time,
+          time_zone: @cal_changed.original_start_time_time_zone
         },
-        transparency: @cal_changed.transparency:,
-        visibility: @cal_changed.visibility:,
+        transparency: @cal_changed.transparency,
+        visibility: @cal_changed.visibility,
         i_cal_uid: @cal_changed.i_cal_uid,
         sequence: @cal_changed.sequence,
-        attendees: [
-          {
-            id: '1',
-            email: 'rando@gmail.com',
-            display_name: 'Random attendee',
-            organizer: true,
-            self: false,
-            resource: false,
-            optional: true,
-            response_status: 'tentative',
-            comment: 'Hello comment',
-            additional_guests: 50
-          }
-        ],
+        attendees: @cal_changed.attendees,
         attendees_omitted: @cal_changed.attendees_omitted,
-        extended_properties: {
-          private: {
-            k1: 'v1'
-          },
-          shared: {
-            k2: 'v2'
-          }
-        },
-        hangout_link: @cal_changed.hangout_link:,
-        gadget: {
-          type: 'some gadget',
-          title: 'Hello gadget',
-          link: 'https://google.com/gadget/for/cal',
-          icon_link: 'https://google.com/icon/for/cal',
-          width: 10,
-          height: 10,
-          display: 'chip',
-          preferences: {
-            a: '1'
-          }
-        },
-        anyoneCanAddSelf: @cal_changed.boolean,
-        guestsCanInviteOthers: @cal_changed.boolean,
-        guestsCanModify: @cal_changed.boolean,
-        guestsCanSeeOtherGuests: @cal_changed.boolean,
-        privateCopy: @cal_changed.boolean,
+        extended_properties: @cal_changed.extended_properties,
+        hangout_link: @cal_changed.hangout_link,
+        gadget: @cal_changed.gadget,
+        anyone_can_add_self: @cal_changed.anyone_can_add_self,
+        guests_can_invite_others: @cal_changed.guests_can_invite_others,
+        guests_can_modify: @cal_changed.guests_can_modify,
+        guests_can_see_other_guests: @cal_changed.guests_can_see_other_guests,
+        private_copy: @cal_changed.private_copy,
         locked: @cal_changed.boolean,
-        reminders: {
-          useDefault: boolean,
-          overrides: [
-            {
-              method: string,
-              minutes: integer
-            }
-          ]
-        },
+        reminders: @cal_changed.reminders,
         source: {
-          url: @cal_changed.string,
-          title: @cal_changed.string
+          url: @cal_changed.source_url,
+          title: @cal_changed.source_title
         }
       }
     end
