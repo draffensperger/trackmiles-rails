@@ -1,12 +1,12 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :calendar_user1, class: CalendarUser do
+  factory :calendar_user do
     access_role "freeBusyReader"
     hidden true
   end
   
-  factory :calendar_user1_changed, class: CalendarUser do
+  factory :calendar_user_changed, class: CalendarUser do
     color_id "12"
     background_color "#fad165"
     foreground_color "#000000"

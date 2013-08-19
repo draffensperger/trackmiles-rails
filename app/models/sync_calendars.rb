@@ -13,16 +13,14 @@ class SyncCalendars
     
   end
   
-  def sync_calendar_event(item)
-    
-    
+  def sync_calendar_event(item, cal)
+        
   end
   
   def sync_calendar_user_info(item)
     cal = sync_calendar_info item
     
-    item.slice! :color_id, :background_color, :foreground_color, :hidden, 
-      :selected, :access_role, :primary, :summary_override
+    item.slice! CalendarUser.accessible_attributes
         
     cal_user = CalendarUser.find_by_user_id_and_calendar_id @user.id, cal.id 
     
@@ -41,7 +39,7 @@ class SyncCalendars
   def sync_calendar_info(item)
     item[:gcal_id] = item[:id]
     item.delete :id
-    item.slice! :etag, :gcal_id, :summary, :description, :location, :time_zone
+    item.slice! Calendar.accessible_attributes
     
     cal = Calendar.find_by_gcal_id item[:gcal_id]
     if cal
