@@ -150,6 +150,7 @@ describe SyncCalendars do
         }        
       }
       
+      # Adapted from https://developers.google.com/google-apps/calendar/v3/reference/events
       @item_changed = {
         kind: 'calendar#event',
         etag: @event_changed.etag,
@@ -161,7 +162,10 @@ describe SyncCalendars do
         summary: @event_changed.summary,
         description: @event_changed.description,
         location: @event_changed.location,
-        #color_id: @event_changed.color_id,
+        # We don't currently support color_id but it's included here to match
+        # the Google event specification
+        # color_id: @event_changed.color_id,
+        color_id: '1',
         creator: {
           id: @event_changed.creator_id,
           email: @event_changed.creator_email,
@@ -175,27 +179,27 @@ describe SyncCalendars do
           self: @event_changed.organizer_self
         },
         start: {
-          #date_time: @event_changed.start_date_time,
-          #time_zone: @event_changed.start_time_zone
+          date_time: @event_changed.start_date_time,
+          time_zone: @event_changed.start_time_zone
         },
         end: {
-          #date_time: @event_changed.end_date_time,
-          #time_zone: @event_changed.end_time_zone
+          date_time: @event_changed.end_date_time,
+          time_zone: @event_changed.end_time_zone
         },
         end_time_unspecified: @event_changed.end_time_unspecified,
         recurrence: @event_changed.recurrence,
         recurring_event_id: @event_changed.recurring_event_id,
         original_start_time: {
-          #date: @event_changed.original_start_time_date,
-          #date_time: @event_changed.original_start_time_date_time,
-          #time_zone: @event_changed.original_start_time_time_zone
+          date: @event_changed.original_start_time_date,
+          date_time: @event_changed.original_start_time_date_time,
+          time_zone: @event_changed.original_start_time_time_zone
         },
         transparency: @event_changed.transparency,
         visibility: @event_changed.visibility,
         i_cal_uid: @event_changed.i_cal_uid,
         sequence: @event_changed.sequence,
         attendees: @event_changed.attendees,
-        #attendees_omitted: @event_changed.attendees_omitted,
+        attendees_omitted: @event_changed.attendees_omitted,
         extended_properties: @event_changed.extended_properties,
         hangout_link: @event_changed.hangout_link,
         gadget: @event_changed.gadget,
@@ -216,7 +220,12 @@ describe SyncCalendars do
     describe "sync event" do
       it "should create a new event for an item" do
         @sync.sync_calendar_event @item, @cal
-      end 
+        # need to check this
+      end
+      
+      it "should update an existing event for an item" do
+        # need to put code in for this
+      end     
     end
   end
 end
