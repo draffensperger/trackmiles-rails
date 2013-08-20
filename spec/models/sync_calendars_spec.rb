@@ -138,6 +138,8 @@ describe SyncCalendars do
       @event = build(:event)
       @event_changed = build(:event_changed)
       
+      @event_attrs = *Event.accessible_attributes.to_a.map { |a| a.to_sym }
+      
       @item = {
         kind: "calendar#event",
         etag: @event.etag,
@@ -223,14 +225,26 @@ describe SyncCalendars do
     
     describe "sync event" do
       it "should create a new event for an item" do
+        @cal.save        
         event = @sync.sync_calendar_event @item, @cal
-        #event.new_record?.should eq false
-        
+        event.new_record?.should eq false
+        event.calendar.should eq @cal
+        event.attributes.slice(@event_attrs)
+          .should eq @event.attributes.slice(@event_attrs)  
         # need to check this
       end
       
       it "should update an existing event for an item" do
         # need to put code in for this
+        @cal.save
+        @event.calendar = @cal
+        @event.save
+        
+        event = @sync.sync_calendar_event @item_changed, @cal
+        event.new_record?.should eq false
+        event.calendar.should eq @cal
+        event.attributes.slice(@event_attrs)
+          .should eq @event_changed.attributes.slice(@event_attrs)  
       end     
     end
   end

@@ -14,7 +14,27 @@ class SyncCalendars
   end
   
   def sync_calendar_event(item, cal)
-        
+    item[:gcal_event_id] = item[:id]
+    item.delete :id
+    item.slice! *Event.accessible_attributes.to_a.map { |a| a.to_sym }
+    
+    event = Event.find_by_gcal_event_id_and_calendar_id(
+      item[:gcal_event_id], cal.id)
+    
+    if event
+      puts 'event'
+    end
+    
+    if event
+      event.assign_attributes item
+      event.save
+      event
+    else
+      event = Event.new item
+      event.calendar = cal
+      event.save
+      event
+    end    
   end
   
   def sync_calendar_user_info(item)
@@ -38,7 +58,7 @@ class SyncCalendars
   
   def sync_calendar_info(item)
     item[:gcal_id] = item[:id]
-    item.delete :idt 
+    item.delete :id 
     
     item.slice! *Calendar.accessible_attributes.to_a.map { |a| a.to_sym }
     

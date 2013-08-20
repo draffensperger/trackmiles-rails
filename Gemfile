@@ -40,7 +40,7 @@ end
 
 group :test do
   gem 'webmock'
-  gem 'autotest'
+  gem 'autotest-rails'
   gem 'spork-rails'
   gem 'guard-spork' 
 end

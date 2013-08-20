@@ -1,7 +1,11 @@
 require 'spork'
 
 # Not sure why this is necessary to work with spork, but it seems to be.
-require 'hash_ext'
+# It raises an error if I run it in the debugger though.
+begin
+  require 'hash_ext'
+rescue LoadError
+end
 
 Spork.prefork do
   # This file is copied to spec/ when you run 'rails generate rspec:install'
