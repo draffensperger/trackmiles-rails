@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130819170143) do
+ActiveRecord::Schema.define(:version => 20130820014247) do
 
   create_table "calendar_users", :force => true do |t|
     t.integer  "user_id"
@@ -46,12 +46,12 @@ ActiveRecord::Schema.define(:version => 20130819170143) do
   create_table "events", :force => true do |t|
     t.integer  "calendar_id"
     t.string   "etag"
-    t.string   "gcal_event_id",               :default => "",                    :null => false
-    t.string   "status",                      :default => "",                    :null => false
-    t.string   "html_link",                   :default => "",                    :null => false
-    t.datetime "created",                     :default => '2013-08-18 22:38:32', :null => false
-    t.datetime "updated",                     :default => '2013-08-18 22:38:32', :null => false
-    t.string   "summary",                     :default => "",                    :null => false
+    t.string   "gcal_event_id",                 :default => "",                    :null => false
+    t.string   "status",                        :default => "",                    :null => false
+    t.string   "html_link",                     :default => "",                    :null => false
+    t.datetime "created",                       :default => '2013-08-18 22:38:32', :null => false
+    t.datetime "updated",                       :default => '2013-08-18 22:38:32', :null => false
+    t.string   "summary",                       :default => "",                    :null => false
     t.string   "description"
     t.string   "location"
     t.string   "creator_id"
@@ -63,16 +63,16 @@ ActiveRecord::Schema.define(:version => 20130819170143) do
     t.string   "organizer_display_name"
     t.boolean  "organizer_self"
     t.date     "start_date"
-    t.datetime "start_datetime"
-    t.string   "start_timezone"
+    t.datetime "start_date_time"
+    t.string   "start_time_zone"
     t.date     "end_date"
-    t.datetime "end_datetime"
-    t.string   "end_timezone"
+    t.datetime "end_date_time"
+    t.string   "end_time_zone"
     t.string   "recurrence"
     t.string   "recurring_event_id"
-    t.date     "original_start_date"
-    t.datetime "original_start_datetime"
-    t.string   "original_start_timezone"
+    t.date     "original_start_time_date"
+    t.datetime "original_start_time_date_time"
+    t.string   "original_start_time_time_zone"
     t.string   "transparency"
     t.string   "visibility"
     t.string   "i_cal_uid"
@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(:version => 20130819170143) do
     t.string   "hangout_link"
     t.datetime "start_datetime_utc"
     t.datetime "end_datetime_utc"
-    t.datetime "created_at",                                                     :null => false
-    t.datetime "updated_at",                                                     :null => false
+    t.datetime "created_at",                                                       :null => false
+    t.datetime "updated_at",                                                       :null => false
     t.boolean  "private_copy"
     t.boolean  "locked"
     t.string   "source_url"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20130819170143) do
     t.boolean  "guests_can_invite_others"
     t.boolean  "guests_can_modify"
     t.boolean  "guests_can_see_other_guests"
+    t.boolean  "attendees_omitted"
   end
 
   add_index "events", ["calendar_id", "gcal_event_id"], :name => "index_events_on_calendar_id_and_gcal_event_id", :unique => true

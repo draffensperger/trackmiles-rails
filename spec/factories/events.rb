@@ -32,21 +32,21 @@ FactoryGirl.define do
     organizer_email 'organized@gmail.com'
     organizer_display_name 'Organized Tester'
     organizer_self false    
-    start_datetime 7.hour.ago
-    start_timezone 'America/New_York'    
-    end_datetime 1.hour.ago
-    end_timezone 'America/Chicago'
+    start_date_time 7.hours.ago
+    start_time_zone 'America/New_York'    
+    end_date_time 1.hour.ago
+    end_time_zone 'America/Chicago'
     recurrence([
         "RRULE:FREQ=MONTHLY;COUNT=6;INTERVAL=1;BYMONTHDAY=1"
       ])
-    recurring_event_id 1
-    original_start_date 3.days.ago
-    original_start_datetime 4.days.ago
-    original_start_timezone 'America/Anchorage'
+    recurring_event_id 9
+    original_start_time_date 3.days.ago
+    original_start_time_date_time 4.days.ago
+    original_start_time_time_zone 'America/Anchorage'
     transparency 'transparent'
     visibility 'public'
     i_cal_uid 'a1@google.com'
-    sequence 1
+    add_attribute :sequence, 22 #needed because sequence is a method in factory
     end_time_unspecified false
     locked false
     hangout_link 'https://google.com/hangout/somewhere?'
@@ -58,6 +58,8 @@ FactoryGirl.define do
     guests_can_invite_others false
     guests_can_modify true
     guests_can_see_other_guests false
+    
+    attendees_omitted false
     
     attendees([
         {

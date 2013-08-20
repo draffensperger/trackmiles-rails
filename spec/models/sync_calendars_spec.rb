@@ -152,63 +152,63 @@ describe SyncCalendars do
       
       @item_changed = {
         kind: 'calendar#event',
-        etag: @cal_changed.etag,
-        id: @cal_changed.gcal_event_id,
-        status: @cal_changed.status,
-        html_link: @cal_changed.html_link,
-        created: @cal_changed.created,
-        updated: @cal_changed.datetime,
-        summary: @cal_changed.summary,
-        description: @cal_changed.description,
-        location: @cal_changed.location,
-        color_id: @cal_changed.color_id,
+        etag: @event_changed.etag,
+        id: @event_changed.gcal_event_id,
+        status: @event_changed.status,
+        html_link: @event_changed.html_link,
+        created: @event_changed.created,
+        updated: @event_changed.updated,
+        summary: @event_changed.summary,
+        description: @event_changed.description,
+        location: @event_changed.location,
+        #color_id: @event_changed.color_id,
         creator: {
-          id: @cal_changed.creator_id,
-          email: @cal_changed.creator_email,
-          display_name: @cal_changed.creator_display_name,
-          self: @cal_changed.creator_self
+          id: @event_changed.creator_id,
+          email: @event_changed.creator_email,
+          display_name: @event_changed.creator_display_name,
+          self: @event_changed.creator_self
         },
         organizer: {
-          id: @cal_changed.organizer_id,
-          email: @cal_changed.organizer_email,
-          display_name: @cal_changed.organizer_display_name,
-          self: @cal_changed.boolean
+          id: @event_changed.organizer_id,
+          email: @event_changed.organizer_email,
+          display_name: @event_changed.organizer_display_name,
+          self: @event_changed.organizer_self
         },
         start: {
-          date_time: @cal_changed.start_date_time,
-          time_zone: @cal_changed.start_time_zone
+          #date_time: @event_changed.start_date_time,
+          #time_zone: @event_changed.start_time_zone
         },
         end: {
-          date_time: @cal_changed.start_date_time,
-          time_zone: @cal_changed.start_time_zone
+          #date_time: @event_changed.end_date_time,
+          #time_zone: @event_changed.end_time_zone
         },
-        end_time_unspecified: @cal_changed.end_time_unspecified,
-        recurrence: @cal_changed.recurrence,
-        recurring_event_id: @cal_changed.recurring_event_id,
+        end_time_unspecified: @event_changed.end_time_unspecified,
+        recurrence: @event_changed.recurrence,
+        recurring_event_id: @event_changed.recurring_event_id,
         original_start_time: {
-          date: @cal_changed.original_start_time_date,
-          date_time: @cal_changed.original_start_time_date_time,
-          time_zone: @cal_changed.original_start_time_time_zone
+          #date: @event_changed.original_start_time_date,
+          #date_time: @event_changed.original_start_time_date_time,
+          #time_zone: @event_changed.original_start_time_time_zone
         },
-        transparency: @cal_changed.transparency,
-        visibility: @cal_changed.visibility,
-        i_cal_uid: @cal_changed.i_cal_uid,
-        sequence: @cal_changed.sequence,
-        attendees: @cal_changed.attendees,
-        attendees_omitted: @cal_changed.attendees_omitted,
-        extended_properties: @cal_changed.extended_properties,
-        hangout_link: @cal_changed.hangout_link,
-        gadget: @cal_changed.gadget,
-        anyone_can_add_self: @cal_changed.anyone_can_add_self,
-        guests_can_invite_others: @cal_changed.guests_can_invite_others,
-        guests_can_modify: @cal_changed.guests_can_modify,
-        guests_can_see_other_guests: @cal_changed.guests_can_see_other_guests,
-        private_copy: @cal_changed.private_copy,
-        locked: @cal_changed.boolean,
-        reminders: @cal_changed.reminders,
+        transparency: @event_changed.transparency,
+        visibility: @event_changed.visibility,
+        i_cal_uid: @event_changed.i_cal_uid,
+        sequence: @event_changed.sequence,
+        attendees: @event_changed.attendees,
+        #attendees_omitted: @event_changed.attendees_omitted,
+        extended_properties: @event_changed.extended_properties,
+        hangout_link: @event_changed.hangout_link,
+        gadget: @event_changed.gadget,
+        anyone_can_add_self: @event_changed.anyone_can_add_self,
+        guests_can_invite_others: @event_changed.guests_can_invite_others,
+        guests_can_modify: @event_changed.guests_can_modify,
+        guests_can_see_other_guests: @event_changed.guests_can_see_other_guests,
+        private_copy: @event_changed.private_copy,
+        locked: @event_changed.locked,
+        reminders: @event_changed.reminders,
         source: {
-          url: @cal_changed.source_url,
-          title: @cal_changed.source_title
+          url: @event_changed.source_url,
+          title: @event_changed.source_title
         }
       }
     end

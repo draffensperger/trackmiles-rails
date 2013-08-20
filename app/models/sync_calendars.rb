@@ -7,7 +7,7 @@ class SyncCalendars
     @user.google_api.calendar_list[:items].each do |item|
       sync_calendar_user_info item
     end
-  end
+  end  
   
   def sync_calendar_events(cal)
     
@@ -20,7 +20,7 @@ class SyncCalendars
   def sync_calendar_user_info(item)
     cal = sync_calendar_info item
     
-    item.slice! CalendarUser.accessible_attributes.keys
+    item.slice! *CalendarUser.accessible_attributes.to_a.map { |a| a.to_sym }
         
     cal_user = CalendarUser.find_by_user_id_and_calendar_id @user.id, cal.id 
     
@@ -38,9 +38,9 @@ class SyncCalendars
   
   def sync_calendar_info(item)
     item[:gcal_id] = item[:id]
-    item.delete :id
-    #todo need to fix this
-    item.slice! Calendar.accessible_attributes.keys
+    item.delete :idt 
+    
+    item.slice! *Calendar.accessible_attributes.to_a.map { |a| a.to_sym }
     
     cal = Calendar.find_by_gcal_id item[:gcal_id]
     if cal
