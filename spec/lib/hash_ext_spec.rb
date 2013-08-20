@@ -6,8 +6,4 @@ describe Hash do
     e = {case_changes: [{a_b: []}, {test_case: 11}], small_big: "string"}
     h.underscore_keys_recursive.should eq e
   end
-  
-  class HashTestModel < ActiveRecord::Base
-    attr_accessible :a
-  end  
 end

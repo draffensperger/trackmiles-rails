@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3'
+ruby '2.0.0'
 
-gem 'rails', '~> 3.2.14'
+#gem 'rails', '~> 3.2.14'
+gem 'rails', '~>4.0.0'
 gem 'devise'
 gem 'omniauth-google-oauth2'
 gem 'jquery-rails'
@@ -12,8 +13,13 @@ gem 'figaro'
 gem 'rest-client'
 gem 'versionist'
 gem 'redcarpet'
-gem 'tzinfo'
-gem 'tzinfo-data'
+#gem 'tzinfo'
+#gem 'tzinfo-data'
+
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'coffee-script-source', '1.5.0'
+gem 'uglifier'
 
 group :production do
   gem 'pg'
@@ -29,25 +35,17 @@ group :development, :test do
   gem 'simplecov'
   gem 'rspec-rails' 
   
-  gem 'test-unit'
-  gem 'spork-rails'
+  gem 'test-unit'  
   #gem 'spork-rails', :platforms => :ruby
   #gem 'spork-testunit', :platforms => :ruby
   
   gem 'libv8', :platforms => :ruby  
-  gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', :platforms => :ruby 
 end
 
 group :test do
   gem 'webmock'
   gem 'autotest-rails'
-  gem 'spork-rails'
+  gem 'spork-rails', :git => 'git://github.com/sporkrb/spork-rails.git'
   gem 'guard-spork' 
-end
-
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'coffee-script-source', '1.5.0'
-  gem 'uglifier'
 end

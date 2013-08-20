@@ -1,7 +1,4 @@
 class User < ActiveRecord::Base  
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:google_oauth2]
@@ -9,10 +6,6 @@ class User < ActiveRecord::Base
   has_many :locations
   has_many :calendar_users
   has_many :calendars, through: :calendar_users
-
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me,
-  	:provider, :uid, :name
   
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     find_or_create_for_google_userinfo(access_token.info)
