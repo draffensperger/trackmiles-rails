@@ -1,8 +1,7 @@
 class FixEventColumns < ActiveRecord::Migration
   def change
     change_column :events, :start_timezone_id, :string
-    rename_column :events, :start_timezone_id, :start_timezone
-    remove_column :events, :end_date_utc
+    rename_column :events, :start_timezone_id, :start_timezone    
     change_column :events, :end_timezone_id, :string
     rename_column :events, :end_timezone_id, :end_timezone
           
