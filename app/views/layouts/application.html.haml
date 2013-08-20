@@ -15,21 +15,20 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        %a.navbar-brand{:href => "#"} Track Miles
-        .nav-collapse.collapse
-          %ul.nav.navbar-nav
-            %li.active
-              %a{:href => "/"} Home
-            %li
-              %a{:href => "about"} About
-            %li
-              %a{:href => "apps"} Apps        
-          .pull-right.navbar-text
-            - if current_user
-              #{current_user.email}              
-              = link_to "Sign out", destroy_user_session_path 
-            - else
-              = link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)
+        %a.navbar-brand{:href => "#"} Track Miles        
+        %ul.nav.navbar-nav
+          %li.active
+            %a{:href => "/"} Home
+          %li
+            %a{:href => "about"} About
+          %li
+            %a{:href => "apps"} Apps        
+        .navbar-text.pull-right
+          - if current_user
+            #{current_user.email}              
+            = link_to "Sign out", destroy_user_session_path 
+          - else
+            = link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)
         / /.nav-collapse
     .container
       = render :partial => "shared/flash_messages", flash: flash 
