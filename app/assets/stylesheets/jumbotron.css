@@ -18,7 +18,11 @@ body {
   padding-right: 15px;
 }
 
+.container {  
+}
+
 .flash_alerts {
+  padding-top: 15px;	
 }
 
 /* Responsive: Portrait tablets and up */

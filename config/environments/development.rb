@@ -7,15 +7,17 @@ Miletracker::Application.configure do
   config.active_support.deprecation = :log
   config.action_dispatch.best_standards_support = :builtin
   
-  config.assets.compress = false
+  config.assets.prefix = '/assets_dev'
+  
+  #config.assets.compress = false
   #config.assets.compile = false
-  config.assets.compile = true
+  #config.assets.compile = false
   #config.assets.debug = false
   config.assets.debug = true
-  config.assets.digest = true
+  #config.assets.digest = false
   #config.assets.digest = false
   
   config.serve_static_assets = true
   config.assets.compress = true
-  config.assets.compile = false  
+  config.assets.compile = true  
 end

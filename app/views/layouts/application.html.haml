@@ -30,9 +30,9 @@
           - else
             = link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)
         / /.nav-collapse
-    .container
+    .container     
       = render :partial => "shared/flash_messages", flash: flash 
-      .body-content
+      .body-content        
         = yield
       %hr/        
       %footer
