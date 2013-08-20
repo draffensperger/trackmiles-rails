@@ -21,10 +21,11 @@ gem 'coffee-rails'
 gem 'coffee-script-source', '1.5.0'
 gem 'uglifier'
 
+gem 'rails_12factor'
+
 group :production do
   gem 'pg'
-  gem 'thin'
-  gem 'rails_12factor'
+  gem 'thin'  
 end
 
 group :development, :test do  
