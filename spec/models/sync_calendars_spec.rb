@@ -1,5 +1,10 @@
 require File.expand_path("../../spec_helper", __FILE__)
 
+# This uses the Google Apis as documented at:
+#https://developers.google.com/google-apps/calendar/v3/reference/calendarList#resource
+#https://developers.google.com/google-apps/calendar/v3/reference/events#resource
+#https://developers.google.com/google-apps/calendar/v3/reference/events/list
+
 describe SyncCalendars do  
   describe "sync calendar info" do
     before do
@@ -163,8 +168,7 @@ describe SyncCalendars do
         description: @event_changed.description,
         location: @event_changed.location,
         # We don't currently support color_id but it's included here to match
-        # the Google event specification
-        # color_id: @event_changed.color_id,
+        # the Google event specification. It would vary by user most likely.
         color_id: '1',
         creator: {
           id: @event_changed.creator_id,
@@ -219,7 +223,9 @@ describe SyncCalendars do
     
     describe "sync event" do
       it "should create a new event for an item" do
-        @sync.sync_calendar_event @item, @cal
+        event = @sync.sync_calendar_event @item, @cal
+        #event.new_record?.should eq false
+        
         # need to check this
       end
       
