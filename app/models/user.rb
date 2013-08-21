@@ -47,6 +47,11 @@ class User < ActiveRecord::Base
     end        
   end
   
+  def sync_calendars
+    @sync_calendars ||= SyncCalendars.new(self)
+    @sync_calendars.sync_calendars
+  end
+  
   def google_api
     @google_api ||= GoogleApi.new(self)
   end

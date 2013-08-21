@@ -14,6 +14,8 @@ Miletracker::Application.routes.draw do
     end
   end
   
+  resources :trips, only: :index
+  
   root :to => 'home#index'
   get 'about' => 'home#about'
   get 'privacy' => 'home#privacy'

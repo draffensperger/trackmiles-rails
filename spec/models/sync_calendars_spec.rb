@@ -296,10 +296,11 @@ describe SyncCalendars do
         @sync.sync_events @cal
         @cal.last_synced.should eq time_now        
         @cal.last_synced_user_email.should eq @user.email
+        @cal.changed?.should eq false        
         
         # Give a 30 second gap for possible clock skew between Google and 
         # our server
-        updated_min_should_be = time_now - 30.seconds
+        updated_min_should_be = (time_now - 30.seconds).to_datetime.rfc3339
         
         @user.google_api.should_receive(:calendar_events)
           .with(@cal.gcal_id, updatedMin: updated_min_should_be)
