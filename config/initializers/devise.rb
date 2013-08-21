@@ -211,7 +211,8 @@ Devise.setup do |config|
 	config.omniauth :google_oauth2,  ENV['OAUTH_CLIENT_ID'],
     ENV['OAUTH_CLIENT_SECRET'],
 		{ scope: "userinfo.email,userinfo.profile,calendar.readonly", 
-		  access_type: "offline", approval_prompt: "" }
+		  access_type: "offline", approval_prompt: "",
+		  prompt: 'select_account consent' }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
