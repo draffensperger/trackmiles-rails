@@ -9,11 +9,11 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130820014247) do
+ActiveRecord::Schema.define(version: 20130821192401) do
 
-  create_table "calendar_users", :force => true do |t|
+  create_table "calendar_users", force: true do |t|
     t.integer  "user_id"
     t.integer  "calendar_id"
     t.string   "color_id"
@@ -23,35 +23,37 @@ ActiveRecord::Schema.define(:version => 20130820014247) do
     t.boolean  "selected"
     t.string   "access_role"
     t.boolean  "primary"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "summary_override"
   end
 
-  add_index "calendar_users", ["calendar_id", "user_id"], :name => "index_calendar_users_on_calendar_id_and_user_id", :unique => true
+  add_index "calendar_users", ["calendar_id", "user_id"], name: "index_calendar_users_on_calendar_id_and_user_id", unique: true
 
-  create_table "calendars", :force => true do |t|
-    t.string   "etag",        :default => "", :null => false
-    t.string   "gcal_id",     :default => "", :null => false
-    t.string   "summary",     :default => "", :null => false
+  create_table "calendars", force: true do |t|
+    t.string   "etag",                   default: "", null: false
+    t.string   "gcal_id",                default: "", null: false
+    t.string   "summary",                default: "", null: false
     t.string   "description"
     t.string   "location"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "time_zone"
+    t.datetime "last_synced"
+    t.string   "last_synced_user_email"
   end
 
-  add_index "calendars", ["gcal_id"], :name => "index_calendars_on_gcal_id", :unique => true
+  add_index "calendars", ["gcal_id"], name: "index_calendars_on_gcal_id", unique: true
 
-  create_table "events", :force => true do |t|
+  create_table "events", force: true do |t|
     t.integer  "calendar_id"
     t.string   "etag"
-    t.string   "gcal_event_id",                 :default => "",                    :null => false
-    t.string   "status",                        :default => "",                    :null => false
-    t.string   "html_link",                     :default => "",                    :null => false
-    t.datetime "created",                       :default => '2013-08-18 22:38:32', :null => false
-    t.datetime "updated",                       :default => '2013-08-18 22:38:32', :null => false
-    t.string   "summary",                       :default => "",                    :null => false
+    t.string   "gcal_event_id",                 default: "",                    null: false
+    t.string   "status",                        default: "",                    null: false
+    t.string   "html_link",                     default: "",                    null: false
+    t.datetime "created",                       default: '2013-08-18 22:38:32', null: false
+    t.datetime "updated",                       default: '2013-08-18 22:38:32', null: false
+    t.string   "summary",                       default: "",                    null: false
     t.string   "description"
     t.string   "location"
     t.string   "creator_id"
@@ -81,8 +83,8 @@ ActiveRecord::Schema.define(:version => 20130820014247) do
     t.string   "hangout_link"
     t.datetime "start_datetime_utc"
     t.datetime "end_datetime_utc"
-    t.datetime "created_at",                                                       :null => false
-    t.datetime "updated_at",                                                       :null => false
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
     t.boolean  "private_copy"
     t.boolean  "locked"
     t.string   "source_url"
@@ -98,9 +100,9 @@ ActiveRecord::Schema.define(:version => 20130820014247) do
     t.boolean  "attendees_omitted"
   end
 
-  add_index "events", ["calendar_id", "gcal_event_id"], :name => "index_events_on_calendar_id_and_gcal_event_id", :unique => true
+  add_index "events", ["calendar_id", "gcal_event_id"], name: "index_events_on_calendar_id_and_gcal_event_id", unique: true
 
-  create_table "locations", :force => true do |t|
+  create_table "locations", force: true do |t|
     t.integer  "user_id"
     t.datetime "recorded_time"
     t.string   "provider"
@@ -110,19 +112,19 @@ ActiveRecord::Schema.define(:version => 20130820014247) do
     t.decimal  "accuracy"
     t.decimal  "speed"
     t.decimal  "bearing"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  create_table "users", :force => true do |t|
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
-    t.string   "email",                     :default => "", :null => false
-    t.string   "encrypted_password",        :default => "", :null => false
+  create_table "users", force: true do |t|
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "email",                     default: "", null: false
+    t.string   "encrypted_password",        default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",             :default => 0
+    t.integer  "sign_in_count",             default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -135,7 +137,7 @@ ActiveRecord::Schema.define(:version => 20130820014247) do
     t.datetime "google_auth_expires_at"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

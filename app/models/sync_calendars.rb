@@ -1,16 +1,32 @@
 class SyncCalendars
   def initialize(user)
     @user = user
+    @api = @user.google_api
   end
   
-  def sync_calendar_list
-    @user.google_api.calendar_list[:items].each do |item|
-      sync_calendar_user_info item
+  def sync_calendars
+    @api.calendar_list[:items].each do |item|
+      cal_user = sync_calendar_user_info item
+      sync_events cal_user.calendar
     end
   end  
   
-  def sync_calendar_events(cal)
+  def sync_events(cal)
+    if cal.last_synced
+      # Request events last updated 30 seconds before the last synced time
+      # to account for possible clock skew 
+      events = @api.calendar_events cal.gcal_id, 
+        updatedMin: cal.last_synced - 30.seconds
+    else
+      events = @api.calendar_events cal.gcal_id
+    end
     
+    events[:items].each do |item|
+      sync_event item, cal
+    end
+    
+    cal.last_synced = Time.now
+    cal.last_synced_user_email = @user.email
   end
   
   def sync_obj(model, attrs, where)
@@ -28,7 +44,7 @@ class SyncCalendars
     end
   end
   
-  def sync_calendar_event(item, cal)
+  def sync_event(item, cal)
     item[:gcal_event_id] = item[:id]
     item.delete :id
     
@@ -42,10 +58,11 @@ class SyncCalendars
     cal = sync_calendar_info item
     
     where = {user_id: @user.id, calendar_id: cal.id}
+    
     sync_obj CalendarUser, item, where do |new_cal_user| 
       new_cal_user.user = @user
       new_cal_user.calendar = cal 
-    end    
+    end
   end
   
   def sync_calendar_info(item)

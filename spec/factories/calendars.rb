@@ -15,4 +15,10 @@ FactoryGirl.define do
     location "Added location"
     time_zone "America/New_York"
   end
+  
+  factory :calendar2, class: Calendar do
+    etag "calendar-hash2"
+    gcal_id "cal2@gmail.com"
+    summary "Second Calendar"
+  end
 end

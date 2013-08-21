@@ -114,16 +114,30 @@ describe SyncCalendars do
     end
     
     describe "sync calendar list" do
-      it "should call calendar list api and sync calendar info" do    
+      it "should call calendar list api and sync calendars' info and events" do    
         cal_list = {
           kind: 'calendar#calendarList',
           etag: 'hash',
           items: [{a: 1}, {b: 2}]
-        }      
+        }
+        
+        @cal_user.calendar = @cal
+        cal2 = build(:calendar2)
+        cal_user2 = build(:calendar_user2)
+        cal_user2.calendar = cal2
+        
         @user.google_api.should_receive(:calendar_list).and_return cal_list      
+        
         @sync.should_receive(:sync_calendar_user_info).once.ordered.with({a: 1})
-        @sync.should_receive(:sync_calendar_user_info).once.ordered.with({b: 2})      
-        @sync.sync_calendar_list
+          .and_return @cal_user
+        @sync.should_receive(:sync_events).once.ordered.with(@cal)          
+          
+          
+        @sync.should_receive(:sync_calendar_user_info).once.ordered.with({b: 2})
+          .and_return cal_user2               
+        @sync.should_receive(:sync_events).once.ordered.with(cal2)  
+              
+        @sync.sync_calendars
       end      
     end
   end
@@ -237,7 +251,7 @@ describe SyncCalendars do
     describe "sync event" do
       it "should create a new event for an item" do
         @cal.save        
-        event = @sync.sync_calendar_event @item, @cal
+        event = @sync.sync_event @item, @cal
         event.new_record?.should eq false
         event.calendar.should eq @cal
         event.attributes.slice(@event_attrs)
@@ -251,12 +265,48 @@ describe SyncCalendars do
         @event.calendar = @cal
         @event.save
         
-        event = @sync.sync_calendar_event @item_changed, @cal
+        event = @sync.sync_event @item_changed, @cal
         event.new_record?.should eq false
         event.calendar.should eq @cal
         event.attributes.slice(@event_attrs)
           .should eq @event_changed.attributes.slice(@event_attrs)  
       end     
+    end
+    
+    describe "sync events from google" do
+      it "should call google and sync each event" do
+        @cal.save
+        @user.google_api.should_receive(:calendar_events).with(@cal.gcal_id)
+          .and_return kind: "calendar#calendarList", etag: "hash",
+            next_page_token: 'token', items: [{a: 1}, {b: 2}]
+            
+        @sync.should_receive(:sync_event).with({a: 1}, @cal).ordered.once
+        @sync.should_receive(:sync_event).with({b: 2}, @cal).ordered.once
+        @sync.sync_events @cal
+      end
+      
+      it "should store last synced info and request with updatedMin" do
+        @cal.save
+        time_now = Time.now
+        Time.stub!(:now).and_return(time_now)
+        
+        @user.google_api.should_receive(:calendar_events).with(@cal.gcal_id)
+          .and_return items: []       
+        
+        @sync.sync_events @cal
+        @cal.last_synced.should eq time_now        
+        @cal.last_synced_user_email.should eq @user.email
+        
+        # Give a 30 second gap for possible clock skew between Google and 
+        # our server
+        updated_min_should_be = time_now - 30.seconds
+        
+        @user.google_api.should_receive(:calendar_events)
+          .with(@cal.gcal_id, updatedMin: updated_min_should_be)
+          .and_return items: []
+          
+        @sync.sync_events @cal        
+      end      
     end
   end
 end

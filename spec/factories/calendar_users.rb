@@ -15,4 +15,9 @@ FactoryGirl.define do
     primary true
     summary_override "Custom Cal 2 Summary"
   end
+  
+  factory :calendar_user2, class: CalendarUser do
+    access_role "owner"
+    hidden false
+  end  
 end
