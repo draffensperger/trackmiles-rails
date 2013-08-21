@@ -57,10 +57,10 @@ class GoogleApi
   end
   
   def client_id 
-    
+    ENV['OAUTH_CLIENT_ID']
   end
   
   def client_secret
-    
+    ENV['OAUTH_CLIENT_SECRET']
   end
 end
