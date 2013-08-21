@@ -1,9 +1,9 @@
 class Event < ActiveRecord::Base
   belongs_to :calendar
 
-  serialize :attendees, JSON
-  serialize :extended_properties, JSON
-  serialize :gadget, JSON
-  serialize :reminders, JSON
-  serialize :recurrence, JSON
+  serialize :attendees
+  serialize :extended_properties
+  serialize :gadget
+  serialize :reminders
+  serialize :recurrence
 end
