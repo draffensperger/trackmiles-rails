@@ -10,4 +10,6 @@ Miletracker::Application.configure do
   config.force_ssl = true
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
+  
+  Rails.logger = Logger.new(STDOUT)
 end

@@ -10,6 +10,9 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
+# Ignore database file as I am switching to postgres and will have local password in it
+/db/database.yml
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp

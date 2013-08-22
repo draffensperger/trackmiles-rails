@@ -23,39 +23,41 @@ ActiveRecord::Schema.define(version: 20130822192939) do
     t.boolean  "selected"
     t.string   "access_role"
     t.boolean  "primary"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "summary_override"
   end
 
-  add_index "calendar_users", ["calendar_id", "user_id"], name: "index_calendar_users_on_calendar_id_and_user_id", unique: true
+  add_index "calendar_users", ["calendar_id", "user_id"], name: "index_calendar_users_on_calendar_id_and_user_id", unique: true, using: :btree
+  add_index "calendar_users", ["calendar_id"], name: "index_calendar_users_on_calendar_id", using: :btree
+  add_index "calendar_users", ["user_id"], name: "index_calendar_users_on_user_id", using: :btree
 
   create_table "calendars", force: true do |t|
-    t.string   "etag",                               default: "", null: false
-    t.string   "gcal_id",                            default: "", null: false
-    t.string   "summary",                            default: "", null: false
-    t.text     "description",            limit: 255
+    t.string   "etag",                   default: "", null: false
+    t.string   "gcal_id",                default: "", null: false
+    t.string   "summary",                default: "", null: false
+    t.text     "description"
     t.string   "location"
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "time_zone"
     t.datetime "last_synced"
     t.string   "last_synced_user_email"
   end
 
-  add_index "calendars", ["gcal_id"], name: "index_calendars_on_gcal_id", unique: true
+  add_index "calendars", ["gcal_id"], name: "index_calendars_on_gcal_id", unique: true, using: :btree
 
   create_table "events", force: true do |t|
     t.integer  "calendar_id"
     t.string   "etag"
-    t.string   "gcal_event_id",                             default: "",                    null: false
-    t.string   "status",                                    default: "",                    null: false
-    t.string   "html_link",                                 default: "",                    null: false
-    t.datetime "created",                                   default: '2013-08-18 22:38:32', null: false
-    t.datetime "updated",                                   default: '2013-08-18 22:38:32', null: false
-    t.string   "summary",                                   default: "",                    null: false
-    t.text     "description",                   limit: 255
-    t.text     "location",                      limit: 255
+    t.string   "gcal_event_id",                 default: "",                    null: false
+    t.string   "status",                        default: "",                    null: false
+    t.string   "html_link",                     default: "",                    null: false
+    t.datetime "created",                       default: '2013-08-22 20:25:13', null: false
+    t.datetime "updated",                       default: '2013-08-22 20:25:13', null: false
+    t.string   "summary",                       default: "",                    null: false
+    t.text     "description"
+    t.text     "location"
     t.string   "creator_id"
     t.string   "creator_email"
     t.string   "creator_display_name"
@@ -70,7 +72,7 @@ ActiveRecord::Schema.define(version: 20130822192939) do
     t.date     "end_date"
     t.datetime "end_date_time"
     t.string   "end_time_zone"
-    t.text     "recurrence",                    limit: 255
+    t.text     "recurrence"
     t.string   "recurring_event_id"
     t.date     "original_start_time_date"
     t.datetime "original_start_time_date_time"
@@ -83,15 +85,15 @@ ActiveRecord::Schema.define(version: 20130822192939) do
     t.string   "hangout_link"
     t.datetime "start_datetime_utc"
     t.datetime "end_datetime_utc"
-    t.datetime "created_at",                                                                null: false
-    t.datetime "updated_at",                                                                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "private_copy"
     t.boolean  "locked"
     t.string   "source_url"
     t.string   "source_title"
-    t.text     "attendees",                     limit: 255
-    t.text     "extended_properties",           limit: 255
-    t.text     "gadget",                        limit: 255
+    t.text     "attendees"
+    t.text     "extended_properties"
+    t.text     "gadget"
     t.text     "reminders"
     t.boolean  "anyone_can_add_self"
     t.boolean  "guests_can_invite_others"
@@ -100,7 +102,8 @@ ActiveRecord::Schema.define(version: 20130822192939) do
     t.boolean  "attendees_omitted"
   end
 
-  add_index "events", ["calendar_id", "gcal_event_id"], name: "index_events_on_calendar_id_and_gcal_event_id", unique: true
+  add_index "events", ["calendar_id", "gcal_event_id"], name: "index_events_on_calendar_id_and_gcal_event_id", unique: true, using: :btree
+  add_index "events", ["calendar_id"], name: "index_events_on_calendar_id", using: :btree
 
   create_table "locations", force: true do |t|
     t.integer  "user_id"
@@ -112,13 +115,13 @@ ActiveRecord::Schema.define(version: 20130822192939) do
     t.decimal  "accuracy"
     t.decimal  "speed"
     t.decimal  "bearing"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "email",                     default: "", null: false
     t.string   "encrypted_password",        default: "", null: false
     t.string   "reset_password_token"
@@ -137,7 +140,7 @@ ActiveRecord::Schema.define(version: 20130822192939) do
     t.datetime "google_auth_expires_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

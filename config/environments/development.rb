@@ -10,5 +10,7 @@ Miletracker::Application.configure do
   config.assets.debug = true
   config.serve_static_assets = true
   config.assets.compress = true
-  config.assets.compile = true  
+  config.assets.compile = true
+  
+  Rails.logger = Logger.new(STDOUT)
 end

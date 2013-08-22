@@ -24,14 +24,13 @@ gem 'uglifier'
 
 gem 'rails_12factor'
 
-group :production do
-  gem 'pg'
+gem 'pg'
+
+group :production do  
   gem 'thin'  
 end
 
-group :development, :test do  
-  gem 'sqlite3'
-  
+group :development, :test do    
   gem 'execjs', :platforms => :ruby
   
   gem 'factory_girl_rails'
@@ -47,6 +46,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'sqlite3'
   gem 'webmock'
   gem 'autotest-rails'
   gem 'spork-rails', :git => 'git://github.com/sporkrb/spork-rails.git'

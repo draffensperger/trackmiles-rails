@@ -40,8 +40,12 @@ class SyncCalendars
     else
       obj = model.new attrs
       yield obj if block_given?
-      obj.save
-      obj
+      begin
+        obj.save
+        obj
+      rescue Exception
+        Rails.logger.error $!.backtrace
+      end      
     end
   end
   
