@@ -16,6 +16,8 @@ Miletracker::Application.routes.draw do
   
   resources :trips, only: :index
   
+  resources :sync, only: :index
+  
   root :to => 'home#index'
   get 'about' => 'home#about'
   get 'privacy' => 'home#privacy'
