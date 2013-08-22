@@ -117,7 +117,7 @@ describe GoogleApi do
       time_now = Time.now
       Time.stub!(:now).and_return(time_now)
       
-      stub = stub_request(:get, @refresh_url).with(query: @refresh_query)
+      stub = stub_request(:post, @refresh_url).with(body: @refresh_query)
         .to_return(body: response.to_json, status: 200)        
       
       @api.refresh_token.should eq true
@@ -129,7 +129,7 @@ describe GoogleApi do
     end
     
     it "should return false if receives http unauthorized" do
-      stub = stub_request(:get, @refresh_url).with(query: @refresh_query)
+      stub = stub_request(:post, @refresh_url).with(body: @refresh_query)
         .to_return(body: '{}', status: 401)
       
       @api.refresh_token.should eq false

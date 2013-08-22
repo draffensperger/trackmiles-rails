@@ -22,11 +22,11 @@ class GoogleApi
     
     params[:access_token] = @user.google_auth_token    
     begin
-      request_and_parse url, params
+      get_and_parse url, params
     rescue RestClient::Unauthorized
       if refresh_token
         begin
-          request_and_parse url, params
+          get_and_parse url, params
         rescue RestClient::Unauthorized
           return nil
         rescue Exception => e
@@ -40,13 +40,21 @@ class GoogleApi
     end   
   end
   
-  def request_and_parse(url, params)
-    underscore_keys_recursive JSON.parse(RestClient.get url, :params => params)
-  end  
+  def get_and_parse(url, params)
+    parse_result RestClient.get url, :params => params
+  end
+  
+  def post_and_parse(url, params)
+    parse_result RestClient.post url, params
+  end
+  
+  def parse_result(result)
+    underscore_keys_recursive JSON.parse result
+  end
   
   def refresh_token
     begin
-      response = request_and_parse REFRESH_TOKEN_URL, 
+      response = post_and_parse REFRESH_TOKEN_URL, 
         refresh_token: @user.google_auth_refresh_token, 
         client_id: client_id, client_secret: client_secret,
         grant_type: 'refresh_token'

@@ -9,7 +9,7 @@ development:
 
 test:
   adapter: postgresql
-  database: miletracker_development
+  database: miletracker_test
   username: miletracker
   password: a
   host: localhost
