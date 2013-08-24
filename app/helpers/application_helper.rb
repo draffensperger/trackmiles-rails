@@ -14,4 +14,11 @@ module ApplicationHelper
         flash_type.to_s
     end
   end
+  
+  def nav_link(link_text, link_path)
+    params = current_page?(link_path) ? {class: 'active'} : {}     
+    content_tag(:li, params) do
+      link_to link_text, link_path
+  end
+end
 end

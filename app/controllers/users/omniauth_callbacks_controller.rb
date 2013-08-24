@@ -6,6 +6,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	    @user.google_auth_token = credentials[:token]
 	    @user.google_auth_refresh_token = credentials[:refresh_token]
 	    @user.google_auth_expires_at = Time.at(credentials[:expires_at])
+	    @user.remember_me = true	    
 	    @user.save	   
 
 	    if @user.persisted?

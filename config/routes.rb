@@ -15,7 +15,7 @@ Miletracker::Application.routes.draw do
   end
   
   resources :trips, only: :index
-  
+  resources :settings, only: :index
   resources :sync, only: :index
   
   root :to => 'home#index'

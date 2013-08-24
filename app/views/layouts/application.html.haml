@@ -16,15 +16,13 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand{:href => "#"} Track Miles
+          %a.navbar-brand{:href => "/"} Track Miles
         .navbar-collapse.collapse
           %ul.nav.navbar-nav
-            %li.active
-              %a{:href => "/"} Home
-            %li
-              %a{:href => "about"} About
-            %li
-              %a{:href => "contact"} Apps            
+            - if current_user
+              = nav_link 'Trips', '/trips'
+              = nav_link 'Settings', '/settings'              
+              = nav_link 'Apps', '/apps'
           %form.navbar-text.navbar-right
             - if current_user
               #{current_user.email}              
@@ -40,9 +38,11 @@
       %footer
         %span &copy; Track Miles 2013
         %span.pull-right
+          %a{href: 'faq'} FAQ
+          |
           %a{:href => "terms"} Terms 
           |
-          %a{:href => "privacy"} Privacy Policy
+          %a{:href => "privacy"} Privacy
     / /container
     / %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"}
     / <script>window.jQuery || document.write('<script src="js/jquery-1.7.2.min.js"><\/script>')</script>        

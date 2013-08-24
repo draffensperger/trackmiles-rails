@@ -4,14 +4,13 @@
     .container
       %h1 Track and reimburse miles easier 
       %p 
-        Wasting time remembering where you drove for ministry? Skipping it altogether?
+        Wasting time remembering ministry driving? Skipping it altogether?
       %p
         What if we showed possible trips to reimburse using your calendar and smartphone?
       %p
-        That's the vision - we think it will help you better steward your time and ministry account.
-       
+        That's the vision - we think it will help you better steward your time and ministry account.       
       %p
-        %a.btn.btn-primary.btn-large{:href => "dashboard"} Get started »  
+        %a.btn.btn-primary.btn-large{href: user_omniauth_authorize_path(:google_oauth2)} Sign in with Google »  
 .row
   .col-lg-4
     %h2 How it works

@@ -2,6 +2,9 @@ class HomeController < ApplicationController
   skip_before_filter :ensure_login
   
 	def index
+	  if current_user
+	    redirect_to trips_path
+	  end
 	end
 	
 	def about
