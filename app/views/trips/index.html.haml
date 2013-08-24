@@ -1,10 +1,54 @@
-Home location:&nbsp;
-%input{type: 'text', placeholder:'1 Test St., Boston, MA'}
-%br 
+%h3 Unlabeled Trips
+%form.form-inline{class: 'trip-form'}   
+  .form-group
+    %a 5/17
+  .form-group
+    %label.sr-only{for: 'method'} Method
+    %select.form-control{id: 'method'}
+      %option{value: 'drive'} Drive
+      %option{value: 'walk'} Walk
+      %option{value: 'bike'} Bike
+      %option{value: 'lift'} Lift
+      %option{value: 'bus'} Bus
+      %option{value: 'plane'} Plane
+      %option{value: 'rental'} Rental
+  .form-group
+    %a
+      %span.glyphicon.glyphicon-map-marker
+    %label.sr-only{for: 'from'} From
+    %input.form-control{id: 'from', type: 'text'}
+  %span.glyphicon.glyphicon-arrow-right
+  .form-group
+    %a
+      %span.glyphicon.glyphicon-map-marker
+    %label.sr-only{for: 'to'} To
+    %input.form-control{id: 'to', type: 'text'}
+  %a
+    %span.glyphicon.glyphicon-road    
+  .form-group
+    %label.sr-only{for: 'miles'} Method
+    %label.sr-only{for: 'miles'} Miles
+    %input.form-control{id: 'miles', type: 'text'}
+    mi.      
+  .form-group
+    %label.sr-only{for: 'rate'} Rate
+    %select.form-control{id: 'rate'}
+      %option{value: 'personal'} Personal
+      %option{value: 'ministry'} Ministry
+      %option{value: 'medical'} Medical
+  .form-group
+    \:
+    %label.sr-only{for: 'purpose'} Business Purpose
+    %input.form-control{id: 'purpose', type: 'text'}
+  %span.glyphicon.glyphicon-phone
+  %span.glyphicon.glyphicon-calendar
+  %button.btn.btn-default Ministry
+  %button.btn.btn-default Medical
+  %br
+  %br
+  %button.btn.btn-default Archive the rest  
+%h3 Ministry Trips
+New trip
 %br
-Regular work locations:
 %br
-%textarea{type: 'text', placeholder: '415 South St, Waltham, MA 02453', rows: 5, cols: 80}
-%br 
-%br
-Then put mock table for look.
+%button.btn.btn-primary Reimburse

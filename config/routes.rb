@@ -14,6 +14,7 @@ Miletracker::Application.routes.draw do
     end
   end
   
+  resources :history, only: :index
   resources :trips, only: :index
   resources :settings, only: :index
   resources :sync, only: :index

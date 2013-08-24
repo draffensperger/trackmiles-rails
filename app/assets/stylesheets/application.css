@@ -13,4 +13,5 @@
  *= require bootstrap-theme
  *= require jumbotron 
  *= require home
+ *= require_tree .
  */

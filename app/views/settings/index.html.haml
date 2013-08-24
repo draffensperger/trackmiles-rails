@@ -1,1 +1,14 @@
-Settings under contstruction.
+%form
+  .form-group  
+    Home location:&nbsp;
+    %input.form-control{type: 'text', placeholder:'1 Test St., Boston, MA'}
+  .form-group
+    Regular work locations:
+    %textarea.form-control{type: 'text', placeholder: '415 South St, Waltham, MA 02453', rows: 5, cols: 80}
+  .form-group
+    Temporary work locations:
+    %textarea.form-control{type: 'text', placeholder: '415 South St, Waltham, MA 02453', rows: 5, cols: 80}
+  .form-group
+    Personal trip locations:
+    %textarea.form-control{type: 'text', placeholder: '415 South St, Waltham, MA 02453', rows: 5, cols: 80}
+  %button.btn.btn-default{:type => "submit"} Save
