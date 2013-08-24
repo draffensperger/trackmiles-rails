@@ -1,15 +1,17 @@
 / Main jumbotron for a primary marketing message or call to action
-.jumbotron
-  %h1 Track and reimburse miles easier 
-  %p 
-    Wasting time remembering where you drove for ministry? Skipping it altogether?
-  %p
-    What if we showed possible trips to reimburse using your calendar and smartphone?
-  %p
-    That's the vision - we think it will help you better steward your time and ministry account.
-   
-  %p
-    %a.btn.btn-primary.btn-large{:href => "dashboard"} Get started »
+- content_for :before_container do
+  .jumbotron
+    .container
+      %h1 Track and reimburse miles easier 
+      %p 
+        Wasting time remembering where you drove for ministry? Skipping it altogether?
+      %p
+        What if we showed possible trips to reimburse using your calendar and smartphone?
+      %p
+        That's the vision - we think it will help you better steward your time and ministry account.
+       
+      %p
+        %a.btn.btn-primary.btn-large{:href => "dashboard"} Get started »  
 .row
   .col-lg-4
     %h2 How it works

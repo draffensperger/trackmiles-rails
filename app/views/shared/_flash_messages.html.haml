@@ -1,0 +1,6 @@
+- if not flash.empty?
+  .container
+    - flash.each do |type, message|
+      %div{:class => "alert #{bootstrap_class_for(type)} fade in flash_alerts"}
+        %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+        = message

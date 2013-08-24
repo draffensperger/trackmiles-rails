@@ -11,34 +11,36 @@
   %body
     .navbar.navbar-inverse.navbar-fixed-top
       .container
-        %button.navbar-toggle{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-        %a.navbar-brand{:href => "#"} Track Miles        
-        %ul.nav.navbar-nav
-          %li.active
-            %a{:href => "/"} Home
-          %li
-            %a{:href => "about"} About
-          %li
-            %a{:href => "apps"} Apps        
-        .navbar-text.pull-right
-          - if current_user
-            #{current_user.email}              
-            = link_to "Sign out", destroy_user_session_path 
-          - else
-            = link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)
-        / /.nav-collapse
-    .container     
-      = render :partial => "shared/flash_messages", flash: flash 
-      .body-content        
-        = yield
+        .navbar-header
+          %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand{:href => "#"} Track Miles
+        .navbar-collapse.collapse
+          %ul.nav.navbar-nav
+            %li.active
+              %a{:href => "/"} Home
+            %li
+              %a{:href => "about"} About
+            %li
+              %a{:href => "contact"} Apps            
+          %form.navbar-text.navbar-right
+            - if current_user
+              #{current_user.email}              
+              = link_to "Sign out", destroy_user_session_path 
+            - else
+              = link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)
+        / /.navbar-collapse    
+    = render partial: 'shared/flash_messages', flash: flash
+    = yield :before_container
+    .container.body_content
+      = yield
       %hr/        
       %footer
         %span &copy; Track Miles 2013
-        %span.pull-right 
-          %a{:href => "terms"} Terms of Service 
+        %span.pull-right
+          %a{:href => "terms"} Terms 
           |
           %a{:href => "privacy"} Privacy Policy
     / /container

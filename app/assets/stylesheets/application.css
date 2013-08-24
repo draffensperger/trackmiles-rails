@@ -11,6 +11,6 @@
  *= require_self
  *= require bootstrap
  *= require bootstrap-theme
- *= require jumbotron
+ *= require jumbotron 
  *= require home
  */

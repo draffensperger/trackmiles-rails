@@ -103,7 +103,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  config.remember_for = 2.weeks
 
   # If true, extends the user's remember period when remembered via cookie.
   # config.extend_remember_period = false
@@ -212,7 +212,7 @@ Devise.setup do |config|
     ENV['OAUTH_CLIENT_SECRET'],
 		{ scope: "userinfo.email,userinfo.profile,calendar.readonly", 
 		  access_type: "offline", approval_prompt: "",
-		  prompt: 'select_account consent' }
+		  prompt: 'consent' }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
