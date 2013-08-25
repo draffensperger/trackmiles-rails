@@ -16,6 +16,7 @@ gem 'redcarpet'
 gem 'tzinfo'
 gem 'tzinfo-data'
 gem 'sidekiq'
+gem 'geocoder'
 
 gem 'sass-rails'
 gem 'coffee-rails'

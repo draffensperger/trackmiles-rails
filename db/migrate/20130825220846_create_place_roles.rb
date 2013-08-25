@@ -1,4 +1,4 @@
-class CreatePlaceRoles < ActiveRecord::Migration
+qclass CreatePlaceRoles < ActiveRecord::Migration
   def change
     create_table :place_roles do |t|
       t.references :user, index: true

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130822192939) do
+ActiveRecord::Schema.define(version: 20130825225937) do
 
   create_table "calendar_users", force: true do |t|
     t.integer  "user_id"
@@ -23,14 +23,12 @@ ActiveRecord::Schema.define(version: 20130822192939) do
     t.boolean  "selected"
     t.string   "access_role"
     t.boolean  "primary"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "summary_override"
   end
 
   add_index "calendar_users", ["calendar_id", "user_id"], name: "index_calendar_users_on_calendar_id_and_user_id", unique: true, using: :btree
-  add_index "calendar_users", ["calendar_id"], name: "index_calendar_users_on_calendar_id", using: :btree
-  add_index "calendar_users", ["user_id"], name: "index_calendar_users_on_user_id", using: :btree
 
   create_table "calendars", force: true do |t|
     t.string   "etag",                   default: "", null: false
@@ -38,8 +36,8 @@ ActiveRecord::Schema.define(version: 20130822192939) do
     t.string   "summary",                default: "", null: false
     t.text     "description"
     t.string   "location"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "time_zone"
     t.datetime "last_synced"
     t.string   "last_synced_user_email"
@@ -47,14 +45,20 @@ ActiveRecord::Schema.define(version: 20130822192939) do
 
   add_index "calendars", ["gcal_id"], name: "index_calendars_on_gcal_id", unique: true, using: :btree
 
+  create_table "countries", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", force: true do |t|
     t.integer  "calendar_id"
     t.string   "etag"
     t.string   "gcal_event_id",                 default: "",                    null: false
     t.string   "status",                        default: "",                    null: false
     t.string   "html_link",                     default: "",                    null: false
-    t.datetime "created",                       default: '2013-08-22 20:25:13', null: false
-    t.datetime "updated",                       default: '2013-08-22 20:25:13', null: false
+    t.datetime "created",                       default: '2013-08-18 23:14:35', null: false
+    t.datetime "updated",                       default: '2013-08-18 23:14:35', null: false
     t.string   "summary",                       default: "",                    null: false
     t.text     "description"
     t.text     "location"
@@ -85,8 +89,8 @@ ActiveRecord::Schema.define(version: 20130822192939) do
     t.string   "hangout_link"
     t.datetime "start_datetime_utc"
     t.datetime "end_datetime_utc"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
     t.boolean  "private_copy"
     t.boolean  "locked"
     t.string   "source_url"
@@ -103,7 +107,6 @@ ActiveRecord::Schema.define(version: 20130822192939) do
   end
 
   add_index "events", ["calendar_id", "gcal_event_id"], name: "index_events_on_calendar_id_and_gcal_event_id", unique: true, using: :btree
-  add_index "events", ["calendar_id"], name: "index_events_on_calendar_id", using: :btree
 
   create_table "locations", force: true do |t|
     t.integer  "user_id"
@@ -115,13 +118,74 @@ ActiveRecord::Schema.define(version: 20130822192939) do
     t.decimal  "accuracy"
     t.decimal  "speed"
     t.decimal  "bearing"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "prev_location_id"
+    t.decimal  "prev_distance"
+    t.decimal  "prev_elapsed"
+    t.decimal  "calced_speed"
+  end
+
+  create_table "place_roles", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "place_id"
+    t.string   "role",               default: "", null: false
+    t.string   "custom_summary"
+    t.string   "custom_description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  add_index "place_roles", ["place_id"], name: "index_place_roles_on_place_id", using: :btree
+  add_index "place_roles", ["user_id"], name: "index_place_roles_on_user_id", using: :btree
+
+  create_table "places", force: true do |t|
+    t.string   "summary",       default: "", null: false
+    t.text     "description"
+    t.string   "street"
+    t.string   "city"
+    t.string   "postal_code"
+    t.string   "county"
+    t.string   "state"
+    t.integer  "country_id"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.decimal  "accuracy"
+    t.string   "accuracy_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "states", force: true do |t|
+    t.string   "name"
+    t.integer  "country_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "trips", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "method"
+    t.integer  "start_place_id"
+    t.integer  "end_place_id"
+    t.decimal  "distance"
+    t.string   "type"
+    t.string   "purpose"
+    t.boolean  "from_phone"
+    t.boolean  "from_calendar"
+    t.boolean  "reimbursed"
+    t.boolean  "archived"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "trips", ["user_id"], name: "index_trips_on_user_id", using: :btree
+
+  create_table "users", force: true do |t|
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "email",                     default: "", null: false
     t.string   "encrypted_password",        default: "", null: false
     t.string   "reset_password_token"

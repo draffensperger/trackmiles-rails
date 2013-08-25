@@ -4,7 +4,7 @@ class CreateTrips < ActiveRecord::Migration
       t.references :user, index: true
       t.datetime :start_time
       t.datetime :end_time
-      t.string method
+      t.string :method
       t.integer :start_place_id, index: true
       t.integer :end_place_id, index: true
       t.decimal :distance
