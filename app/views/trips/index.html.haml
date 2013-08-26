@@ -1,13 +1,12 @@
-- @locations.each do |loc|
-  - time = l loc.recorded_time.in_time_zone("Eastern Time (US & Canada)"), format: :short
-  =time
-  ,
-  = loc.latitude.to_s
-  ,
-  = loc.longitude.to_s
-  ,
-  = loc.calced_speed.round(1) if loc.calced_speed 
-  %br
+%table
+  - @locations.each do |loc|
+    %tr
+      %td= l loc.recorded_time.in_time_zone("Eastern Time (US & Canada)"), format: '%m/%d/%y %I:%M:%S %p'
+      %td= loc.latitude.to_s
+      %td= loc.longitude.to_s
+      %td= loc.prev_distance
+      %td= loc.prev_elapsed
+      %td= loc.calced_speed.round(1) if loc.calced_speed
 
 %h3 Unlabeled Trips
 %form.form-inline{class: 'trip-form'}   

@@ -5,7 +5,7 @@ class TripsController < ApplicationController
     next_loc = nil
     @locations.each do |cur_loc|
       #if next_loc and not next_loc.prev_location_id
-      if next_loc
+      if next_loc      
         next_loc.prev_location_id = cur_loc.id
         next_loc.prev_distance = dist_between_locs cur_loc, next_loc
         next_loc.prev_elapsed = next_loc.recorded_time - cur_loc.recorded_time
