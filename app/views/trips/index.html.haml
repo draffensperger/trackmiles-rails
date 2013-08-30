@@ -1,4 +1,11 @@
 %table
+  - @regions.each do |r|
+    %tr
+      %td= l r.first_time.in_time_zone("Eastern Time (US & Canada)"), format: '%l:%M:%S%P %-m/%e'
+      %td= l r.last_time.in_time_zone("Eastern Time (US & Canada)"), format: '%l:%M:%S%P %-m/%e'
+      %td= r.center[0].round(10)
+      %td= r.center[1].round(10)   
+%table
   - @locations.reverse!
   - @locations.each do |loc|
     %tr
