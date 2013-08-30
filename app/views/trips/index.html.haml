@@ -1,12 +1,19 @@
 %table
+  - @locations.reverse!
   - @locations.each do |loc|
     %tr
-      %td= l loc.recorded_time.in_time_zone("Eastern Time (US & Canada)"), format: '%m/%d/%y %I:%M:%S %p'
+      %td= l loc.recorded_time.in_time_zone("Eastern Time (US & Canada)"), format: '%l:%M:%S%P %-m/%e'
       %td= loc.latitude.to_s
       %td= loc.longitude.to_s
-      %td= loc.prev_distance
-      %td= loc.prev_elapsed
-      %td= loc.calced_speed.round(1) if loc.calced_speed
+      %td= loc.prev1_speed.round(1) if loc.prev1_speed      
+      %td= loc.prev2_speed.round(1) if loc.prev2_speed            
+      %td= loc.prev3_speed.round(1) if loc.prev3_speed      
+      %td= loc.prev1_distance.round(0) if loc.prev1_distance
+      %td= loc.prev2_distance.round(0) if loc.prev2_distance
+      %td= loc.prev3_distance.round(0) if loc.prev3_distance      
+      %td= loc.prev1_elapsed
+      %td= loc.prev2_elapsed
+      %td= loc.prev3_elapsed            
 
 %h3 Unlabeled Trips
 %form.form-inline{class: 'trip-form'}   

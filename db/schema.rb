@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130825225937) do
+ActiveRecord::Schema.define(version: 20130826221117) do
 
   create_table "calendar_users", force: true do |t|
     t.integer  "user_id"
@@ -118,12 +118,20 @@ ActiveRecord::Schema.define(version: 20130825225937) do
     t.decimal  "accuracy"
     t.decimal  "speed"
     t.decimal  "bearing"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "prev_location_id"
-    t.decimal  "prev_distance"
-    t.decimal  "prev_elapsed"
-    t.decimal  "calced_speed"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "prev1_location_id"
+    t.decimal  "prev1_distance"
+    t.decimal  "prev1_elapsed"
+    t.decimal  "prev1_speed"
+    t.integer  "prev2_location_id"
+    t.decimal  "prev2_distance"
+    t.decimal  "prev2_elapsed"
+    t.decimal  "prev2_speed"
+    t.integer  "prev3_location_id"
+    t.decimal  "prev3_distance"
+    t.decimal  "prev3_elapsed"
+    t.decimal  "prev3_speed"
   end
 
   create_table "place_roles", force: true do |t|
