@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130826221117) do
+ActiveRecord::Schema.define(version: 20130830214021) do
 
   create_table "calendar_users", force: true do |t|
     t.integer  "user_id"
@@ -132,6 +132,9 @@ ActiveRecord::Schema.define(version: 20130826221117) do
     t.decimal  "prev3_distance"
     t.decimal  "prev3_elapsed"
     t.decimal  "prev3_speed"
+    t.decimal  "n_vector_x"
+    t.decimal  "n_vector_y"
+    t.decimal  "n_vector_z"
   end
 
   create_table "place_roles", force: true do |t|

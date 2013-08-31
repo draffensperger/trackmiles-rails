@@ -1,26 +1,44 @@
 %table
-  - @regions.each do |r|
+  - @trips.each do |t|
     %tr
-      %td= l r.first_time.in_time_zone("Eastern Time (US & Canada)"), format: '%l:%M:%S%P %-m/%e'
-      %td= l r.last_time.in_time_zone("Eastern Time (US & Canada)"), format: '%l:%M:%S%P %-m/%e'
-      %td= r.center[0].round(10)
-      %td= r.center[1].round(10)   
-%table
-  - @locations.reverse!
-  - @locations.each do |loc|
+      %td 
+        =l t.start_time.in_time_zone("Eastern Time (US & Canada)"), format: '%l:%M:%S%P %-m/%e'
+        \-
+        =l t.end_time.in_time_zone("Eastern Time (US & Canada)"), format: '%l:%M:%S%P %-m/%e'
+        ,
+        =t.start_place.summary
+        ,
+        =t.end_place.summary
+
+-#%table
+  - @anchor_areas.each do |a|
     %tr
-      %td= l loc.recorded_time.in_time_zone("Eastern Time (US & Canada)"), format: '%l:%M:%S%P %-m/%e'
-      %td= loc.latitude.to_s
-      %td= loc.longitude.to_s
-      %td= loc.prev1_speed.round(1) if loc.prev1_speed      
-      %td= loc.prev2_speed.round(1) if loc.prev2_speed            
-      %td= loc.prev3_speed.round(1) if loc.prev3_speed      
-      %td= loc.prev1_distance.round(0) if loc.prev1_distance
-      %td= loc.prev2_distance.round(0) if loc.prev2_distance
-      %td= loc.prev3_distance.round(0) if loc.prev3_distance      
-      %td= loc.prev1_elapsed
-      %td= loc.prev2_elapsed
-      %td= loc.prev3_elapsed            
+      %td 
+        =l a.first_time.in_time_zone("Eastern Time (US & Canada)"), format: '%l:%M:%S%P %-m/%e'
+        \-
+        =l a.last_time.in_time_zone("Eastern Time (US & Canada)"), format: '%l:%M:%S%P %-m/%e'
+        ,
+        =a.center.latitude.round(10)
+        ,
+        =a.center.longitude.round(10)   
+      
+-#
+  %table
+    - @locations.reverse!
+    - @locations.each do |loc|
+      %tr
+        %td= l loc.recorded_time.in_time_zone("Eastern Time (US & Canada)"), format: '%l:%M:%S%P %-m/%e'
+        %td= loc.latitude.to_s
+        %td= loc.longitude.to_s
+        %td= loc.prev1_speed.round(1) if loc.prev1_speed      
+        %td= loc.prev2_speed.round(1) if loc.prev2_speed            
+        %td= loc.prev3_speed.round(1) if loc.prev3_speed      
+        %td= loc.prev1_distance.round(0) if loc.prev1_distance
+        %td= loc.prev2_distance.round(0) if loc.prev2_distance
+        %td= loc.prev3_distance.round(0) if loc.prev3_distance      
+        %td= loc.prev1_elapsed
+        %td= loc.prev2_elapsed
+        %td= loc.prev3_elapsed            
 
 %h3 Unlabeled Trips
 %form.form-inline{class: 'trip-form'}   

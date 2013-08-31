@@ -17,6 +17,7 @@ gem 'tzinfo'
 gem 'tzinfo-data'
 gem 'sidekiq'
 gem 'geocoder'
+gem 'pqueue'
 
 gem 'sass-rails'
 gem 'coffee-rails'
