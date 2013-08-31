@@ -17,7 +17,7 @@ gem 'tzinfo'
 gem 'tzinfo-data'
 gem 'sidekiq'
 gem 'geocoder'
-gem 'pqueue'
+gem 'activerecord-import', '~>0.4.1'
 
 gem 'sass-rails'
 gem 'coffee-rails'
