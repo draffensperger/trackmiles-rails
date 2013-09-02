@@ -1,7 +1,5 @@
 class TripsController < ApplicationController
-  def index
-
-                
-    @trips = TripSeparator.new(@locations).get_trips    
+  def index                
+    @trips = TripSeparator.new(current_user).get_trips    
   end
 end

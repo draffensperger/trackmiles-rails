@@ -13,8 +13,6 @@ class CreateTripSeparatorAreas < ActiveRecord::Migration
       t.decimal :x
       t.decimal :y
       t.decimal :z
-      t.decimal :latitude
-      t.decimal :longitude
       
       t.timestamps
     end

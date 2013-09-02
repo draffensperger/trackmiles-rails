@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130830214021) do
+ActiveRecord::Schema.define(version: 20130901221947) do
 
   create_table "calendar_users", force: true do |t|
     t.integer  "user_id"
@@ -112,29 +112,17 @@ ActiveRecord::Schema.define(version: 20130830214021) do
     t.integer  "user_id"
     t.datetime "recorded_time"
     t.string   "provider"
-    t.decimal  "latitude"
-    t.decimal  "longitude"
-    t.decimal  "altitude"
-    t.decimal  "accuracy"
-    t.decimal  "speed"
-    t.decimal  "bearing"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "prev1_location_id"
-    t.decimal  "prev1_distance"
-    t.decimal  "prev1_elapsed"
-    t.decimal  "prev1_speed"
-    t.integer  "prev2_location_id"
-    t.decimal  "prev2_distance"
-    t.decimal  "prev2_elapsed"
-    t.decimal  "prev2_speed"
-    t.integer  "prev3_location_id"
-    t.decimal  "prev3_distance"
-    t.decimal  "prev3_elapsed"
-    t.decimal  "prev3_speed"
-    t.decimal  "n_vector_x"
-    t.decimal  "n_vector_y"
-    t.decimal  "n_vector_z"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.float    "altitude"
+    t.float    "accuracy"
+    t.float    "speed"
+    t.float    "bearing"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.float    "n_vector_x"
+    t.float    "n_vector_y"
+    t.float    "n_vector_z"
   end
 
   create_table "place_roles", force: true do |t|
@@ -174,6 +162,33 @@ ActiveRecord::Schema.define(version: 20130830214021) do
     t.datetime "updated_at"
   end
 
+  create_table "trip_separator_areas", force: true do |t|
+    t.integer  "trip_separator_region_id"
+    t.float    "total_x"
+    t.float    "total_y"
+    t.float    "total_z"
+    t.float    "num_locations"
+    t.datetime "first_time"
+    t.datetime "last_time"
+    t.float    "x"
+    t.float    "y"
+    t.float    "z"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "trip_separator_areas", ["trip_separator_region_id"], name: "index_trip_separator_areas_on_trip_separator_region_id", using: :btree
+
+  create_table "trip_separator_regions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "anchor_area_id"
+    t.datetime "last_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "trip_separator_regions", ["user_id"], name: "index_trip_separator_regions_on_user_id", using: :btree
+
   create_table "trips", force: true do |t|
     t.integer  "user_id"
     t.datetime "start_time"
@@ -181,7 +196,7 @@ ActiveRecord::Schema.define(version: 20130830214021) do
     t.string   "method"
     t.integer  "start_place_id"
     t.integer  "end_place_id"
-    t.decimal  "distance"
+    t.float    "distance"
     t.string   "type"
     t.string   "purpose"
     t.boolean  "from_phone"

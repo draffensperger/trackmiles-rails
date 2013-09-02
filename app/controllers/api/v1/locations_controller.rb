@@ -6,8 +6,12 @@ class Api::V1::LocationsController < Api::V1::BaseController
       num_created = 0
     else
       old_num_locs = current_user.locations.count
-      current_user.locations.build(locs)
-      current_user.save    
+      Location.import locs.map { |attrs|
+        l = Location.new attrs
+        l.calc_n_vector
+        l.user = current_user
+        l
+      }      
       num_created = current_user.locations.count - old_num_locs
     end
     

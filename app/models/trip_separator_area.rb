@@ -1,7 +1,9 @@
-class TripSeparator::Area < ActiveRecord::Base
+class TripSeparatorArea < ActiveRecord::Base
   include GeocodeUtil
   
-  def initialize(loc)          
+  attr_accessor :latitude, :longitude
+  
+  def set_first_location(loc)          
     self.first_time = loc.recorded_time
     self.last_time = loc.recorded_time
     self.x = loc.x
@@ -23,7 +25,7 @@ class TripSeparator::Area < ActiveRecord::Base
     self.total_x += loc.x
     self.total_y += loc.y
     self.total_z += loc.z
-    num_locs_f = @locs.num_locations.to_f
+    num_locs_f = self.num_locations.to_f
     self.x = self.total_x / num_locs_f
     self.y = self.total_y / num_locs_f
     self.z = self.total_z / num_locs_f  
