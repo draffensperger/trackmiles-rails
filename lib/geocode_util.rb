@@ -1,7 +1,7 @@
 module GeocodeUtil
   include Geocoder::Calculations
   include GeometryUtil
-  
+    
   R_EARTH_KM = 6371.0
   R_EARTH_M = R_EARTH_KM * 1000.0
     
@@ -27,7 +27,7 @@ module GeocodeUtil
     self.latitude, self.longitude = as_latitude_longitude self.x, self.y, self.z
   end
   
-  def calc_n_vector    
+  def calc_n_vector
     self.x, self.y, self.z = as_n_vector self.latitude, self.longitude      
   end
 end

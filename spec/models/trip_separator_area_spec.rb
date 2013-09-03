@@ -4,8 +4,7 @@ describe TripSeparatorArea do
   before do
     @loc = build(:loc_no_user1)
     @loc.calc_n_vector
-    @area = TripSeparatorArea.new    
-    @area.set_first_location @loc
+    @area = TripSeparatorArea.new_with_center @loc
   end
   
   it "should initialize with center" do    

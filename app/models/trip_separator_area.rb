@@ -3,6 +3,10 @@ class TripSeparatorArea < ActiveRecord::Base
   
   attr_accessor :latitude, :longitude
   
+  def self.new_with_center(loc)
+    self.new {|a| a.set_first_location(loc)}
+  end
+  
   def set_first_location(loc)          
     self.first_time = loc.recorded_time
     self.last_time = loc.recorded_time

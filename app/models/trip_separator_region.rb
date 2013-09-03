@@ -3,50 +3,65 @@ class TripSeparatorRegion < ActiveRecord::Base
   has_many :areas, class_name: "TripSeparatorArea", :dependent => :delete_all
   belongs_to :anchor_area, class_name: "TripSeparatorArea"
   alias_attribute :anchor, :anchor_area
+  
+  attr_accessor :loc_to_add
      
-  SAME_AREA_DIST_M = 160.0  
-  SAME_AREA_DIST_KM = SAME_AREA_DIST_M / 1000.0 
-  SAME_AREA_DIST_UNIT = SAME_AREA_DIST_M / R_EARTH_M
-  SAME_AREA_DIST_UNIT_SQ = SAME_AREA_DIST_UNIT * SAME_AREA_DIST_UNIT
+  def self.new_with_center(loc)
+    TripSeparatorRegion.new {|r|
+      r.anchor = TripSeparatorArea.new_with_center loc
+      r.areas = [r.anchor]
+    }    
+  end
+     
   ERROR_RANGE_DIST_M = 800.0
   ERROR_RANGE_DIST_UNIT = ERROR_RANGE_DIST_M / R_EARTH_M
   ERROR_RANGE_DIST_UNIT_SQ = ERROR_RANGE_DIST_UNIT * ERROR_RANGE_DIST_UNIT   
-    
-  def set_first_location(loc)      
-    self.anchor_area = TripSeparatorArea.new {|a| a.set_first_location loc}
-    self.areas = [self.anchor] 
+  def within_region_threshold?(dist_sq)
+    dist_sq <= ERROR_RANGE_DIST_UNIT_SQ
   end
   
-  def add_loc_if_within_region(loc)
-    anchor_dist_sq = dist_sq loc, self.anchor
-    if anchor_dist_sq > ERROR_RANGE_DIST_UNIT_SQ
-      return false
-    end
-          
-    if anchor_dist_sq < SAME_AREA_DIST_UNIT_SQ
-      self.anchor.add_location loc
+  SAME_AREA_DIST_M = 160.0
+  SAME_AREA_DIST_KM = SAME_AREA_DIST_M / 1000.0 
+  SAME_AREA_DIST_UNIT = SAME_AREA_DIST_M / R_EARTH_M
+  SAME_AREA_DIST_UNIT_SQ = SAME_AREA_DIST_UNIT * SAME_AREA_DIST_UNIT    
+  def within_area_threshold?(dist_sq)
+    dist_sq <= SAME_AREA_DIST_UNIT_SQ
+  end
+
+  def add_loc_if_within_region(loc)    
+    @loc_to_add = loc
+    within_region = within_region_threshold? anchor_dist
+    add_loc_to_region if within_region              
+    within_region
+  end
+  
+  def anchor_dist
+    @anchor_dist ||= dist_sq @loc_to_add, self.anchor    
+  end
+  
+  def add_loc_to_region
+    if within_area_threshold? anchor_dist
+      self.anchor.add_location @loc_to_add
     else
-      closest, dist = closest_area_and_dist_sq loc      
-      if dist < SAME_AREA_DIST_UNIT_SQ
-        closest.add_location loc
-        self.anchor = closest if closest.num_locations > self.anchor.num_locations       
-      else
-        areas.push TripSeparatorArea.new {|a| a.set_first_location loc}
-      end
-    end      
-    true
+      add_loc_to_closest_or_new_area 
+    end
   end
   
-  def closest_area_and_dist_sq(loc)
-    closest = nil
-    closest_dist = Float::MAX
-    self.areas.each do |area|
-      dist = dist_sq area, loc
-      if dist < closest_dist
-        closest = area
-        closest_dist = dist
-      end
+  def add_loc_to_closest_or_new_area
+    closest, dist = find_closest_and_dist_sq @loc_to_add, areas   
+    if within_area_threshold? dist
+      add_loc_to_existing_area closest       
+    else
+      add_loc_as_new_area
     end
-    [closest, closest_dist]
+  end
+  
+  def add_loc_to_existing_area(area)
+    area.add_location @loc_to_add
+    self.anchor = area if area.num_locations > self.anchor.num_locations
+  end
+  
+  def add_loc_as_new_area
+    areas.push TripSeparatorArea.new_with_center @loc_to_add
   end
 end
