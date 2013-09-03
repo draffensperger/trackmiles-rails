@@ -1,5 +1,6 @@
 class TripSeparatorRegion < ActiveRecord::Base
   include GeocodeUtil
+  belongs_to :user
   has_many :areas, class_name: "TripSeparatorArea", :dependent => :delete_all
   belongs_to :anchor_area, class_name: "TripSeparatorArea"
   alias_attribute :anchor, :anchor_area
