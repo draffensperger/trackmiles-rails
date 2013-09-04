@@ -53,13 +53,15 @@ class TripSeparator
   
   def visited_areas
     visited_regions.map {|r|
-      r.anchor.calc_latitude_longitude
-      r.anchor
+      anchor = r.anchor
+      anchor.calc_latitude_longitude
+      anchor
     }
   end
   
   def visited_regions
     @locs.each {|l| add_location l}
+    @visited_regions.push @region if @region
     @visited_regions
   end  
   

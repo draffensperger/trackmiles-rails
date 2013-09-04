@@ -1,6 +1,8 @@
 require File.expand_path("../../spec_helper", __FILE__)
 
 describe TripSeparatorRegion do
+  DELTA = 0.000000001
+  
   before do
     @anchor_loc = build(:loc_no_user1)
     @anchor_loc.calc_n_vector  
@@ -11,8 +13,7 @@ describe TripSeparatorRegion do
     @loc.y += 2.0
     @loc.z += 2.0
     
-    @r = TripSeparatorRegion.new_with_center @anchor_loc
-    DELTA = 0.000000001 
+    @r = TripSeparatorRegion.new_with_center @anchor_loc    
   end
   
   describe "anchor_dist" do

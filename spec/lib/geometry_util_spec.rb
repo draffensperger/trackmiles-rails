@@ -10,9 +10,7 @@ class MockPoint
 end
 
 describe GeometryUtil do
-  before do    
-    DELTA = 0.00000000001
-  end  
+  DELTA = 0.00000000001
   
   it "should calculate distance squared" do
     GeometryUtil.dist_sq(MockPoint.new(1.0, 2.0, 3.0), 
