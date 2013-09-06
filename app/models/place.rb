@@ -11,7 +11,7 @@ class Place < ActiveRecord::Base
   end
   
   def self.address_only(address, city)
-    city_start = address.index city
+    city_start = address.rindex city
     if city_start
       address.slice! city_start, address.length - 1
     end

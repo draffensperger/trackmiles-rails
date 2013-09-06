@@ -7,6 +7,8 @@ describe Place do
         .should eq  '1600 Pennsylvania Ave'
       Place.address_only('1600 Penn. Ave, Apt 8, Washington, DC', 'Washington')
         .should eq  '1600 Penn. Ave, Apt 8'
+      Place.address_only('11 Cambridge St, Cambridge, MA', 'Cambridge')
+        .should eq  '11 Cambridge St'
     end
   end
 end
