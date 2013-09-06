@@ -19,12 +19,24 @@ describe TripSeparatorRegion do
   describe "anchor_dist" do
     it "should calculate distance squared to anchor" do    
       @r.loc_to_add = @loc
-      @r.anchor_dist.should be_within(DELTA).of(12.0)
+      @r.calc_anchor_dist
+      @r.anchor_dist.should be_within(DELTA).of(12.0)            
+    end
+    
+    it "should recalculate distance squared to anchor for new locations" do
+      @r.loc_to_add = @loc
+      @r.calc_anchor_dist
+      @r.anchor_dist.should be_within(DELTA).of(12.0)  
+      
+      @loc.x += 1.0
+      @r.calc_anchor_dist
+      @r.anchor_dist.should be_within(DELTA).of(17.0)
     end
   end  
   
   describe "add_loc_if_within_region" do
     before do
+      @r.should_receive(:calc_anchor_dist)
       @r.should_receive(:anchor_dist).and_return 2.0
     end
     

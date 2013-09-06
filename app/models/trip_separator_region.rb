@@ -5,7 +5,7 @@ class TripSeparatorRegion < ActiveRecord::Base
   belongs_to :anchor_area, class_name: "TripSeparatorArea"
   alias_attribute :anchor, :anchor_area
   
-  attr_accessor :loc_to_add
+  attr_accessor :loc_to_add, :anchor_dist
      
   def self.new_with_center(loc)
     TripSeparatorRegion.new {|r|
@@ -31,13 +31,14 @@ class TripSeparatorRegion < ActiveRecord::Base
 
   def add_loc_if_within_region(loc)    
     @loc_to_add = loc
+    calc_anchor_dist
     within_region = within_region_threshold? anchor_dist
     add_loc_to_region if within_region              
     within_region
   end
   
-  def anchor_dist
-    @anchor_dist ||= dist_sq @loc_to_add, self.anchor    
+  def calc_anchor_dist
+    @anchor_dist = dist_sq @loc_to_add, self.anchor    
   end
   
   def add_loc_to_region

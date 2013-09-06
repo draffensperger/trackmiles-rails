@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          
   has_many :locations
   has_many :calendar_users
+  has_many :trips
   has_many :calendars, through: :calendar_users
   has_one :trip_separator_region
   

@@ -8,21 +8,21 @@ class TripSeparator
   def initialize(user)
     @user = user    
     @visited_regions = []
-    load_state
   end
   
-  def save_state 
+  def calc_and_save_trips
+    Trip.import get_trips 
     @user.trip_separator_region = @region 
     @user.save
   end
   
-  def load_state
+  def locations_for_user
     @region = @user.trip_separator_region
     if @region
-      @locs = @user.locations.where('recorded_time > ?', region.last_time)
+      @user.locations.where('recorded_time > ?', @region.last_time)
         .all(:order => 'recorded_time')
     else
-      @locs = @user.locations.all(:order => 'recorded_time')
+      @user.locations.all(:order => 'recorded_time')
     end                 
   end
   
@@ -32,7 +32,6 @@ class TripSeparator
     for i in 0..stops.length-2
       trips.push trip_from_origin_and_dest stops[i], stops[i+1]
     end
-    save_state
     trips
   end
   
@@ -44,7 +43,7 @@ class TripSeparator
   end
   
   def is_stop?(area)
-    a.last_time - a.first_time > STOP_TIME_THRESHOLD_S
+    area.last_time - area.first_time > STOP_TIME_THRESHOLD_S
   end
   
   def visited_stops
@@ -60,7 +59,8 @@ class TripSeparator
   end
   
   def visited_regions
-    @locs.each {|l| add_location l}
+    @visited_regions = []
+    locations_for_user.each {|l| add_location l}
     @visited_regions.push @region if @region
     @visited_regions
   end  
