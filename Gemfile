@@ -51,6 +51,6 @@ group :test do
   gem 'sqlite3'
   gem 'webmock'
   gem 'autotest-rails'
-  gem 'spork-rails'
+  gem 'spork-rails', :git => 'git://github.com/sporkrb/spork-rails.git'
   gem 'guard-spork' 
 end
