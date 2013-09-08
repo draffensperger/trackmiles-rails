@@ -29,7 +29,8 @@ gem 'rails_12factor'
 gem 'pg'
 
 group :production do  
-  gem 'thin'  
+  gem 'thin'
+  gem 'mysql2'
 end
 
 group :development, :test do    
