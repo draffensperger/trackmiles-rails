@@ -1,4 +1,4 @@
-qclass CreatePlaceRoles < ActiveRecord::Migration
+class CreatePlaceRoles < ActiveRecord::Migration
   def change
     create_table :place_roles do |t|
       t.references :user, index: true
@@ -8,6 +8,6 @@ qclass CreatePlaceRoles < ActiveRecord::Migration
       t.string :custom_description
 
       t.timestamps
-    end
+    end    
   end
 end
