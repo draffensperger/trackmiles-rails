@@ -40,9 +40,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'rspec-rails' 
   
-  gem 'test-unit'  
-  #gem 'spork-rails', :platforms => :ruby
-  #gem 'spork-testunit', :platforms => :ruby
+  gem 'test-unit'
   
   gem 'libv8', :platforms => :ruby  
   gem 'therubyracer', :platforms => :ruby 
