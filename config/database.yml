@@ -17,9 +17,9 @@ test:
   timeout: 5000
 production:
   adapter: postgresql
-  database: miletracker_test
-  username: miletracker
-  hot: localhost
+  database: <%= ENV['APP_DB_NAME'] %>
+  username: <%= ENV['APP_DB_USER'] %>
+  host: <%= ENV['APP_DB_HOST'] %>
   password: <%= ENV['APP_DB_PASSWORD'] %>
   pool: 5
   timeout: 5000
