@@ -28,7 +28,7 @@ gem 'uglifier'
 gem 'rails_12factor'
 
 group :production do  
-  gem 'thin'
+  #gem 'thin'
   gem 'puma'
   gem 'activerecord-jdbcpostgresql-adapter'
 end
