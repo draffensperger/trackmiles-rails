@@ -27,21 +27,13 @@ gem 'uglifier'
 
 gem 'rails_12factor'
 
-group :production do    
-  gem 'puma'
-  
-  platforms :jruby do
-    gem 'activerecord-jdbcpostgresql-adapter'
-  end
-  
-  platforms :ruby do
-    gem 'thin'
-    gem 'pg'
-  end
-end
+gem 'pg', :platforms => :ruby
+gem 'activerecord-jdbcpostgresql-adapter', :platforms => :jruby 
 
+gem 'puma'  
+gem 'thin', :platforms => :ruby
+  
 group :development, :test do
-  gem 'pg'    
   gem 'execjs', :platforms => :ruby
   
   gem 'factory_girl_rails'
@@ -55,7 +47,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'sqlite3'
   gem 'webmock'
   gem 'autotest-rails'
   gem 'spork-rails', :git => 'git://github.com/sporkrb/spork-rails.git'
