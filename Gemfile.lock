@@ -109,7 +109,6 @@ GEM
     json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
-    kgio (2.8.1)
     libv8 (3.16.14.3)
     listen (2.0.4)
       celluloid (>= 0.15.2)
@@ -146,6 +145,8 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    puma (2.6.0)
+      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -167,7 +168,6 @@ GEM
       activesupport (= 4.0.0)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    raindrops (0.12.0)
     rake (10.1.0)
     rb-fsevent (0.9.3)
     rb-inotify (0.9.2)
@@ -239,10 +239,6 @@ GEM
     uglifier (2.2.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    unicorn (4.6.3)
-      kgio (~> 2.6)
-      rack
-      raindrops (~> 0.7)
     versionist (1.2.1)
       rails (>= 3)
       yard (~> 0.7)
@@ -273,6 +269,7 @@ DEPENDENCIES
   libv8
   omniauth-google-oauth2
   pg
+  puma
   rails (~> 4.0.0)
   rails_12factor
   redcarpet
@@ -289,6 +286,5 @@ DEPENDENCIES
   tzinfo
   tzinfo-data
   uglifier
-  unicorn
   versionist
   webmock
