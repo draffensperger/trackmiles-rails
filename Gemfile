@@ -18,7 +18,7 @@ gem 'tzinfo-data'
 gem 'sidekiq'
 gem 'geocoder'
 gem 'activerecord-import', '~>0.4.1'
-gem 'unicorn'
+gem 'figaro'
 
 gem 'sass-rails'
 gem 'coffee-rails'
@@ -31,6 +31,7 @@ gem 'pg'
 
 group :production do  
   gem 'thin'
+  gem 'puma'
 end
 
 group :development, :test do    
