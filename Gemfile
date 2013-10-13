@@ -27,14 +27,14 @@ gem 'uglifier'
 
 gem 'rails_12factor'
 
-gem 'pg'
-
 group :production do  
   gem 'thin'
   gem 'puma'
+  gem 'activerecord-jdbcpostgresql-adapter'
 end
 
-group :development, :test do    
+group :development, :test do
+  gem 'pg'    
   gem 'execjs', :platforms => :ruby
   
   gem 'factory_girl_rails'
