@@ -27,8 +27,7 @@ gem 'uglifier'
 
 gem 'rails_12factor'
 
-group :production do  
-  gem 'thin'
+group :production do    
   gem 'puma'
   
   platforms :jruby do
@@ -36,6 +35,7 @@ group :production do
   end
   
   platforms :ruby do
+    gem 'thin'
     gem 'pg'
   end
 end
