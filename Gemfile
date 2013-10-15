@@ -27,11 +27,12 @@ gem 'uglifier'
 
 gem 'rails_12factor'
 
+# I like to be able to test and benchmark different servers and platforms. 
 gem 'pg', :platforms => :ruby
 gem 'activerecord-jdbcpostgresql-adapter', :platforms => :jruby 
-
 gem 'puma'  
 gem 'thin', :platforms => :ruby
+gem 'unicorn', :platforms => :ruby
   
 group :development, :test do
   gem 'execjs', :platforms => :ruby

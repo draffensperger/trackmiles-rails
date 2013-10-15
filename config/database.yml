@@ -2,20 +2,20 @@ development:
   adapter: postgresql
   database: miletracker_development
   username: miletracker
-  password: a
+  password: <%= ENV['DEV_TEST_DB_PASSWORD'] %>
   host: localhost
-  pool: 5
+  pool: 25
   timeout: 5000
 
 test:
   adapter: postgresql
   database: miletracker_test
   username: miletracker
-  password: a
+  password: <%= ENV['DEV_TEST_DB_PASSWORD'] %>
   host: localhost
   pool: 5
   timeout: 5000
-  
+
 production:
   adapter: postgresql
   database: <%= ENV['APP_DB_NAME'] %>
