@@ -6,7 +6,7 @@ class Api::V1::BaseController < ApplicationController
   def ensure_login
     google_token = params[:google_token]
     unless google_token
-      render json: {errors: ['Missing access token']}, status: :unauthorized
+      render_unauthorized 'Missing access token'
       return false
     end
     
@@ -14,9 +14,14 @@ class Api::V1::BaseController < ApplicationController
     if @current_user
       sign_in @current_user
     else
-      render json: {errors: ['Invalid access token']}, status: :unauthorized
+      render_unauthorized 'Invalid access token' 
       return false
     end    
+  end
+  
+  def render_unauthorized(reason)
+    headers["WWW-Authenticate"] = 'Bearer realm="https://www.google.com/accounts/AuthSubRequest'
+    render json: {errors: [reason]}, status: :unauthorized
   end
   
   def current_user
