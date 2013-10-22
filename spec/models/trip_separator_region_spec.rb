@@ -1,7 +1,7 @@
 require File.expand_path("../../spec_helper", __FILE__)
 
 describe TripSeparatorRegion do
-  DELTA = 0.000000001
+  delta = 0.000000001
   
   before do
     @anchor_loc = build(:loc_no_user1)
@@ -20,17 +20,17 @@ describe TripSeparatorRegion do
     it "should calculate distance squared to anchor" do    
       @r.loc_to_add = @loc
       @r.calc_anchor_dist
-      @r.anchor_dist.should be_within(DELTA).of(12.0)            
+      @r.anchor_dist.should be_within(delta).of(12.0)            
     end
     
     it "should recalculate distance squared to anchor for new locations" do
       @r.loc_to_add = @loc
       @r.calc_anchor_dist
-      @r.anchor_dist.should be_within(DELTA).of(12.0)  
+      @r.anchor_dist.should be_within(delta).of(12.0)  
       
       @loc.x += 1.0
       @r.calc_anchor_dist
-      @r.anchor_dist.should be_within(DELTA).of(17.0)
+      @r.anchor_dist.should be_within(delta).of(17.0)
     end
   end  
   

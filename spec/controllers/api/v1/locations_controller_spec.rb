@@ -1,6 +1,17 @@
 require File.expand_path("../../../../spec_helper", __FILE__)
 
-describe Api::V1::LocationsController, :type => :controller do   
+describe Api::V1::LocationsController, :type => :controller do
+  it "should handle a raw formatted date for recorded_time" do
+   date_str = "20131016153201"
+   attrs = attributes_for(:loc_no_user1)
+   attrs["recorded_time"] = date_str
+   post :bulk_create, google_token: stub_google_token, locations: [attrs]        
+   
+   response.should be_success
+   
+   subject.current_user.locations[0].recorded_time.should eq date_str.to_datetime
+  end
+  
   it "should create locations based on passed attributes" do
     post :bulk_create, google_token: stub_google_token,
       locations: [attributes_for(:loc_no_user1), attributes_for(:loc_no_user2)]        

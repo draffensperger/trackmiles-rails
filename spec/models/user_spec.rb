@@ -88,13 +88,7 @@ describe User do
   describe "get google userinfo for an auth token" do    
     before do
       @auth_host = "www.googleapis.com"
-      @auth_url = "https://" + @auth_host + "/oauth2/v1/userinfo"       
-      
-      WebMock.disable_net_connect!
-    end
-    
-    after do
-      WebMock.allow_net_connect!
+      @auth_url = "https://" + @auth_host + "/oauth2/v1/userinfo"             
     end
     
     def stub_auth_request(status, response_json_hash)    
@@ -116,10 +110,12 @@ describe User do
     end
     
     it "returns nil on timeout and exception" do
-      stub_request(:any, @auth_host).to_timeout      
+      stub_request(:get, @auth_url)
+        .with(:query => {"access_token" => @token}).to_timeout      
       User.get_userinfo_for_google_token(@token).should eq(nil)
       
-      stub_request(:any, @auth_host).to_raise(StandardError)      
+      stub_request(:get, @auth_url)
+        .with(:query => {"access_token" => @token}).to_raise(StandardError)
       User.get_userinfo_for_google_token(@token).should eq(nil)
     end
   end 
