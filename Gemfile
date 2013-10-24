@@ -33,6 +33,8 @@ gem 'activerecord-jdbcpostgresql-adapter', :platforms => :jruby
 gem 'puma'  
 gem 'thin', :platforms => :ruby
 gem 'unicorn', :platforms => :ruby
+
+gem 'newrelic_rpm'
   
 group :development, :test do
   gem 'execjs', :platforms => :ruby
