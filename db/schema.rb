@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130901221947) do
+ActiveRecord::Schema.define(version: 20131101195411) do
 
   create_table "calendar_users", force: true do |t|
     t.integer  "user_id"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20130901221947) do
     t.string   "etag"
     t.string   "gcal_event_id",                 default: "",                    null: false
     t.string   "status",                        default: "",                    null: false
-    t.string   "html_link",                     default: "",                    null: false
+    t.text     "html_link",                     default: "",                    null: false
     t.datetime "created",                       default: '2013-08-18 23:14:35', null: false
     t.datetime "updated",                       default: '2013-08-18 23:14:35', null: false
     t.string   "summary",                       default: "",                    null: false

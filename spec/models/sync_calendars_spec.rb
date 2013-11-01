@@ -285,7 +285,7 @@ describe SyncCalendars do
         @sync.sync_events @cal
       end
       
-      it "should store last synced info and request with updatedMin" do
+      it "should store last synced info and request with timeMin" do
         @cal.save
         time_now = Time.now
         Time.stub!(:now).and_return(time_now)
@@ -300,14 +300,20 @@ describe SyncCalendars do
         
         # Give a 30 second gap for possible clock skew between Google and 
         # our server
-        updated_min_should_be = (time_now - 30.seconds).to_datetime.rfc3339
+        time_min_should_be = (time_now - 30.seconds).to_datetime.rfc3339
         
         @user.google_api.should_receive(:calendar_events)
-          .with(@cal.gcal_id, updatedMin: updated_min_should_be)
+          .with(@cal.gcal_id, timeMin: time_min_should_be)
           .and_return items: []
           
         @sync.sync_events @cal        
-      end      
+      end
+      
+      it "should handle nil events list without throwing an exception" do
+        @user.google_api.should_receive(:calendar_events).with(@cal.gcal_id)
+          .and_return nil
+        @sync.sync_events @cal
+      end 
     end
   end
 end

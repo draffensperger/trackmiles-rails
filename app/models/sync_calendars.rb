@@ -13,21 +13,24 @@ class SyncCalendars
   
   def sync_events(cal)
     if cal.last_synced
-      # Request events last updated 30 seconds before the last synced time
+      # Request events with an end time 30 seconds before the last synced time
       # to account for possible clock skew 
       events = @api.calendar_events cal.gcal_id, 
-        updatedMin: (cal.last_synced - 30.seconds).to_datetime.rfc3339
+        timeMin: (cal.last_synced - 30.seconds).to_datetime.rfc3339
     else
       events = @api.calendar_events cal.gcal_id
     end
     
-    events[:items].each do |item|
-      sync_event item, cal
+    # It's possible that the API call will fail and return nil for events
+    if events
+      events[:items].each do |item|
+        sync_event item, cal
+      end
+      
+      cal.last_synced = Time.now
+      cal.last_synced_user_email = @user.email
+      cal.save! 
     end
-    
-    cal.last_synced = Time.now
-    cal.last_synced_user_email = @user.email
-    cal.save!
   end
   
   def sync_obj(model, attrs, where)
