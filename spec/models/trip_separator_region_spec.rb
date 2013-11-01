@@ -74,7 +74,11 @@ describe TripSeparatorRegion do
       @r.should_receive :add_loc_to_closest_or_new_area
       @r.anchor.should_not_receive :add_location
       @r.add_loc_to_region
-    end      
+    end
+    
+    after do
+      @r.last_time.should eq @loc.recorded_time
+    end
   end
   
   describe "add_loc_to_closest_or_new_area" do

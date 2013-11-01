@@ -47,6 +47,7 @@ class TripSeparatorRegion < ActiveRecord::Base
     else
       add_loc_to_closest_or_new_area 
     end
+    self.last_time = @loc_to_add.recorded_time
   end
   
   def add_loc_to_closest_or_new_area
