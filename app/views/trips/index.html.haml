@@ -9,6 +9,12 @@
         =t.start_place.summary
       %td
         =t.end_place.summary
+    %tr
+      %td
+      %td{colspan: 3}
+        - t.find_destination_events.each do |e|
+          =e.summary
+          ,        
 
 -#%table
   - @anchor_areas.each do |a|

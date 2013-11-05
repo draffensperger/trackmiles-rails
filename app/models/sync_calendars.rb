@@ -52,9 +52,23 @@ class SyncCalendars
     end
   end
   
+  def self.collapse_subhash!(hash, key)
+    if hash.key? key      
+      hash[key].each do |k, v|
+        hash[(key.to_s + '_' + k.to_s).to_sym] = v
+      end    
+      hash.delete key
+    end
+  end    
+  
   def sync_event(item, cal)
     item[:gcal_event_id] = item[:id]
     item.delete :id
+    
+    [:start, :end, :organizer, :creator, :source, :original_start_time]
+    .each do |k|
+      SyncCalendars.collapse_subhash! item, k
+    end
     
     where = {gcal_event_id: item[:gcal_event_id], calendar_id: cal.id}
     sync_obj Event, item, where do |new_event|

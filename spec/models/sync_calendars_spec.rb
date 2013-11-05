@@ -16,9 +16,9 @@ describe SyncCalendars do
       @cal_user = build(:calendar_user)
       @cal_user_changed = build(:calendar_user_changed)
       
-      @cal_attrs = [:etag, :gcal_id, :summary, :access_role, :hidden]
-      @cal_user_attrs = [:color_id, :background_color, :foreground_color, 
-        :hidden, :selected, :access_role, :primary, :summary_override]
+      @cal_attrs = ['etag', 'gcal_id', 'summary', 'access_role', 'hidden']
+      @cal_user_attrs = ['color_id', 'background_color', 'foreground_color', 
+        'hidden', 'selected', 'access_role', 'primary', 'summary_override']
       
       @item = {
         kind: 'calendar#calendarListEntry',
@@ -67,8 +67,8 @@ describe SyncCalendars do
       it "should create a new calendar from a list item" do
         cal = @sync.sync_calendar_info @item
         cal.new_record?.should eq false
-        cal.attributes.slice(@cal_attrs)
-          .should eq @cal.attributes.slice(@cal_attrs)
+        cal.attributes.slice(*@cal_attrs)
+          .should eq @cal.attributes.slice(*@cal_attrs)
       end
       
       it "should update a calendar if one already exists" do
@@ -77,8 +77,8 @@ describe SyncCalendars do
         cal.new_record?.should eq false
         cal.id.should eq @cal.id
         
-        cal.attributes.slice(@cal_attrs)
-          .should eq @cal.attributes.slice(@cal_attrs)
+        cal.attributes.slice(*@cal_attrs)
+          .should eq @cal_changed.attributes.slice(*@cal_attrs)
       end
     end
     
@@ -91,8 +91,8 @@ describe SyncCalendars do
         cal_user.new_record?.should eq false
         cal_user.user.should eq @user
         cal_user.calendar.should eq @cal
-        cal_user.attributes.slice(@cal_user_attrs)
-          .should eq @cal_user.attributes.slice(@cal_user_attrs)
+        cal_user.attributes.slice(*@cal_user_attrs)
+          .should eq @cal_user.attributes.slice(*@cal_user_attrs)
       end
       
       it "should update a calendar-user if one already exists" do
@@ -108,8 +108,8 @@ describe SyncCalendars do
         cal_user.new_record?.should eq false
         cal_user.user.should eq @user
         cal_user.calendar.should eq @cal
-        cal_user.attributes.slice(@cal_user_attrs)
-          .should eq @cal_user_changed.attributes.slice(@cal_user_attrs)      
+        cal_user.attributes.slice(*@cal_user_attrs)
+          .should eq @cal_user_changed.attributes.slice(*@cal_user_attrs)      
       end
     end
     
@@ -150,20 +150,31 @@ describe SyncCalendars do
       @sync = SyncCalendars.new(@user)      
       
       @event = build(:event)
+      @event_all_day = build(:event_all_day)
       @event_changed = build(:event_changed)
       
-      @event_attrs = [:etag, :gcal_event_id, :status, :html_link, :created, 
-        :updated, :summary, :description, :location, :creator_id, :creator_email,
-        :creator_display_name, :creator_self, :organizer_id, :organizer_email,
-        :organizer_display_name, :organizer_self, :start_date, :start_date_time, 
-        :start_time_zone, :end_date, :end_date_time, :end_time_zone, :recurrence, 
-        :recurring_event_id, :original_start_time_date, 
-        :original_start_time_date_time, :original_start_time_time_zone, 
-        :transparency, :visibility, :i_cal_uid, :sequence, :end_time_unspecified, 
-        :locked, :hangout_link, :private_copy, :source_url, :source_title,    
-        :attendees, :extended_properties, :gadget, :reminders, :anyone_can_add_self,
-        :guests_can_invite_others, :guests_can_modify, :guests_can_see_other_guests,
-        :attendees_omitted]
+      @event_attrs = Event.column_names
+      ['id', 'calendar_id', 'created_at', 'updated_at', 'start_datetime_utc', 
+        'end_datetime_utc'].each do |k|
+        @event_attrs.delete k
+      end                
+      
+      @item_all_day = {
+        kind: "calendar#event",
+        etag: @event_all_day.etag,
+        id: @event_all_day.gcal_event_id,
+        status: @event_all_day.status,
+        html_link: @event_all_day.html_link,
+        created: @event_all_day.created,
+        updated: @event_all_day.updated,
+        summary: @event_all_day.summary,
+        start: {
+          date: @event_all_day.start_date
+        },
+        end: {
+          date: @event_all_day.end_date 
+        }        
+      }
       
       @item = {
         kind: "calendar#event",
@@ -175,10 +186,12 @@ describe SyncCalendars do
         updated: @event.updated,
         summary: @event.summary,
         start: {
-          date: @event.start_date
+          date_time: @event.start_date_time,
+          time_zone: @event.start_time_zone
         },
         end: {
-          date: @event.end_date 
+          date_time: @event.end_date_time,
+          time_zone: @event.end_time_zone 
         }        
       }
       
@@ -246,7 +259,7 @@ describe SyncCalendars do
           title: @event_changed.source_title
         }
       }
-    end
+    end        
     
     describe "sync event" do
       it "should create a new event for an item" do
@@ -254,13 +267,20 @@ describe SyncCalendars do
         event = @sync.sync_event @item, @cal
         event.new_record?.should eq false
         event.calendar.should eq @cal
-        event.attributes.slice(@event_attrs)
-          .should eq @event.attributes.slice(@event_attrs)  
-        # need to check this
+        event.attributes.slice(*@event_attrs)
+          .should eq @event.attributes.slice(*@event_attrs)
+      end
+      
+      it "should create a new event for an item that's an all-day event" do
+        @cal.save        
+        event = @sync.sync_event @item_all_day, @cal
+        event.new_record?.should eq false
+        event.calendar.should eq @cal
+        event.attributes.slice(*@event_attrs)
+          .should eq @event_all_day.attributes.slice(*@event_attrs)
       end
       
       it "should update an existing event for an item" do
-        # need to put code in for this
         @cal.save
         @event.calendar = @cal
         @event.save
@@ -268,8 +288,16 @@ describe SyncCalendars do
         event = @sync.sync_event @item_changed, @cal
         event.new_record?.should eq false
         event.calendar.should eq @cal
-        event.attributes.slice(@event_attrs)
-          .should eq @event_changed.attributes.slice(@event_attrs)  
+        event.attributes.slice(*@event_attrs)
+          .should eq @event_changed.attributes.slice(*@event_attrs)
+    
+        # Check that the utc fields get set
+        event.start_datetime_utc.should eq (
+          TZInfo::Timezone.get(event.start_time_zone)
+          .local_to_utc event.start_date_time)
+        event.end_datetime_utc.should eq (
+          TZInfo::Timezone.get(event.end_time_zone)
+          .local_to_utc event.end_date_time)    
       end     
     end
     
@@ -314,6 +342,20 @@ describe SyncCalendars do
           .and_return nil
         @sync.sync_events @cal
       end 
+    end
+  end
+  
+  describe "collapse_subhash" do
+    it "should collapse sub" do
+      hash = {a: {b: 1, c: 2}}
+      SyncCalendars.collapse_subhash! hash, :a
+      hash.should eq({a_b: 1, a_c: 2})
+    end
+   
+    it "should handle key not there without exception" do
+      hash = {a: 1}
+      SyncCalendars.collapse_subhash! hash, :not_there
+      hash.should eq({a: 1})
     end
   end
 end

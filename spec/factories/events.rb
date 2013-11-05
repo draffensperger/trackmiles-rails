@@ -9,6 +9,20 @@ FactoryGirl.define do
     created Time.now
     updated Time.now
     summary "My Event"
+    start_date_time 6.hours.ago
+    start_time_zone 'America/New_York'    
+    end_date_time 2.hours.ago
+    end_time_zone 'America/Chicago'
+  end
+  
+  factory :event_all_day, class: Event do
+    etag 'hash'
+    gcal_event_id 'a1'
+    status 'confirmed'
+    html_link 'https://www.google.com/calendar/event?eid=C1b1'
+    created Time.now
+    updated Time.now
+    summary "My Event All Day Long"
     start_date 2.days.ago
     end_date 1.day.ago
   end
