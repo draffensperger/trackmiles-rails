@@ -17,9 +17,16 @@ class Event < ActiveRecord::Base
   end
   
   def calc_utc_start_and_end
-    self.start_datetime_utc = TZInfo::Timezone.get(self.start_time_zone)
-      .local_to_utc self.start_date_time if self.start_time_zone
-    self.end_datetime_utc = TZInfo::Timezone.get(self.end_time_zone)
-      .local_to_utc self.end_date_time if self.end_time_zone
+    start_tz = self.start_time_zone || (self.calendar && self.calendar.time_zone)
+    if start_tz
+      self.start_datetime_utc = 
+        TZInfo::Timezone.get(start_tz).local_to_utc self.start_date_time
+    end
+    
+    end_tz = self.end_time_zone || (self.calendar && self.calendar.time_zone)
+    if end_tz
+      self.end_datetime_utc = 
+        TZInfo::Timezone.get(end_tz).local_to_utc self.end_date_time      
+    end        
   end
 end

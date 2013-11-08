@@ -149,13 +149,16 @@ describe SyncCalendars do
       @cal_user = create(:calendar_user)
       @sync = SyncCalendars.new(@user)      
       
-      @event = build(:event)
+      @event = build(:event)      
       @event_all_day = build(:event_all_day)
       @event_changed = build(:event_changed)
       
+      @event_all_day.calc_utc_start_and_end
+      @event.calc_utc_start_and_end
+      @event_changed.calc_utc_start_and_end      
+      
       @event_attrs = Event.column_names
-      ['id', 'calendar_id', 'created_at', 'updated_at', 'start_datetime_utc', 
-        'end_datetime_utc'].each do |k|
+      ['id', 'calendar_id', 'created_at', 'updated_at'].each do |k|
         @event_attrs.delete k
       end                
       
@@ -289,15 +292,7 @@ describe SyncCalendars do
         event.new_record?.should eq false
         event.calendar.should eq @cal
         event.attributes.slice(*@event_attrs)
-          .should eq @event_changed.attributes.slice(*@event_attrs)
-    
-        # Check that the utc fields get set
-        event.start_datetime_utc.should eq (
-          TZInfo::Timezone.get(event.start_time_zone)
-          .local_to_utc event.start_date_time)
-        event.end_datetime_utc.should eq (
-          TZInfo::Timezone.get(event.end_time_zone)
-          .local_to_utc event.end_date_time)    
+          .should eq @event_changed.attributes.slice(*@event_attrs)              
       end     
     end
     
