@@ -54,11 +54,15 @@ Spork.prefork do
 end
 
 Spork.each_run do
+  ActiveSupport::Dependencies.clear
   # This code will be run each time you run your specs.
   FactoryGirl.reload
   #Dir[Rails.root.join("app/roles/**/*.rb")].each {|f| require f}
-  #Dir[Rails.root.join("../../lib/*.rb")].each {|f| require f}  
-end
+  #Dir[Rails.root.join("../../lib/*.rb")].each {|f| require f}    
+
+  load "#{Rails.root}/config/routes.rb"
+  Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }  
+end if Spork.using_spork?
 
 def stub_invalid_google_token
   stub_token_for_user "INVALID_GOOGLE_TOKEN", nil
