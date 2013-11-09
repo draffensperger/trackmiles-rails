@@ -14,8 +14,30 @@ class GoogleApi
   def calendar_events(gcal_id, params={})
     call_api CALENDAR_URL + 'calendars/' + gcal_id + '/events', params
   end
-   
+  
   def call_api(url, params={})
+    all_items = []
+    orig_params = params
+    page_token = nil
+    
+    begin
+      params = orig_params
+      params[:pageToken] = page_token if page_token
+
+      result = call_api_single_page url, params
+
+      if result
+        all_items.push *(result[:items]) if result.key? :items 
+        page_token = result[:next_page_token]
+      end
+    end while result && page_token
+    
+    result[:items] = all_items if result && result.key?(:items)     
+    
+    result
+  end
+  
+  def call_api_single_page(url, params={})
     if @user.google_auth_expires_at <= Time.now
       return unless refresh_token
     end
@@ -36,7 +58,7 @@ class GoogleApi
         return nil
       end
     rescue Exception => e
-      return nil
+     return nil
     end   
   end
   

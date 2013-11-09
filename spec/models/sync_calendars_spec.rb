@@ -300,8 +300,8 @@ describe SyncCalendars do
       it "should call google and sync each event" do
         @cal.save
         @user.google_api.should_receive(:calendar_events).with(@cal.gcal_id)
-          .and_return kind: "calendar#calendarList", etag: "hash",
-            next_page_token: 'token', items: [{a: 1}, {b: 2}]
+          .and_return kind: "calendar#calendarList", etag: "hash", 
+            items: [{a: 1}, {b: 2}]
             
         @sync.should_receive(:sync_event).with({a: 1}, @cal).ordered.once
         @sync.should_receive(:sync_event).with({b: 2}, @cal).ordered.once

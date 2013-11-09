@@ -15,7 +15,36 @@ describe GoogleApi do
     end
   end   
       
-  describe "call api" do
+  describe "call api paging" do
+    it "should call the next page until done and return an aggregate result" do      
+      response_p1 = {k1: 'v1', items: [{a:1},{b:2}], nextPageToken: 'p2'}
+      response_p2 = {k1: 'v1', items: [{c:3},{d:4}], nextPageToken: 'p3'}
+      response_p3 = {k1: 'v1', items: [{e:5}]}
+      
+      req1 = stub_request(:get, @mock_url)
+        .with(:query => {"access_token" => @user.google_auth_token, "x" => 1})
+        .to_return(:body => response_p1.to_json, :status => 200)
+      
+      req2 = stub_request(:get, @mock_url)
+        .with(:query => {"access_token" => @user.google_auth_token, 
+          "pageToken" => "p2", "x" => 1})
+        .to_return(:body => response_p2.to_json, :status => 200)
+        
+      req3 = stub_request(:get, @mock_url)
+        .with(:query => {"access_token" => @user.google_auth_token, 
+          "pageToken" => 'p3', "x" => 1})
+        .to_return(:body => response_p3.to_json, :status => 200)
+        
+      @api.call_api(@mock_url, {x:1})
+        .should eq k1: 'v1', items: [{a:1},{b:2},{c:3},{d:4},{e:5}]
+        
+      req1.should have_been_requested
+      req2.should have_been_requested
+      req3.should have_been_requested
+    end
+  end
+  
+  describe "call api single page" do
     it "should do an http request to for call api" do   
       response = {'changesCase' => 'value'}
       returned_val = {changes_case: 'value'}
@@ -24,7 +53,7 @@ describe GoogleApi do
         .with(:query => {"access_token" => @user.google_auth_token})
         .to_return(:body => response.to_json, :status => 200)           
       
-      @api.call_api(@mock_url).should eq(returned_val)
+      @api.call_api_single_page(@mock_url).should eq(returned_val)
       
       stub_req.should have_been_requested
     end
@@ -33,7 +62,7 @@ describe GoogleApi do
       stub_req = stub_request(:get, @mock_url)
         .with(:query => {"access_token" => @user.google_auth_token, "a" => 1})
         .to_return(:body => '{}', :status => 200)
-      @api.call_api(@mock_url, {a: 1})
+      @api.call_api_single_page(@mock_url, {a: 1})
       stub_req.should have_been_requested
     end
     
@@ -45,7 +74,7 @@ describe GoogleApi do
         .with(:query => {"access_token" => @user.google_auth_token})
         .to_return(:body => '{}', :status => 200)       
       
-      @api.call_api(@mock_url)
+      @api.call_api_single_page(@mock_url)
       stub.should have_been_requested                
     end
     
@@ -54,7 +83,7 @@ describe GoogleApi do
       @api.should_receive(:refresh_token).and_return false      
       
       # webmock will raise an exception if it requests the url
-      @api.call_api @mock_url         
+      @api.call_api_single_page @mock_url         
     end
     
     it "should request refresh token if receives unauthorized" do           
@@ -65,7 +94,7 @@ describe GoogleApi do
         
       @api.should_receive(:refresh_token).once.and_return true
               
-      @api.call_api(@mock_url).should eq({})
+      @api.call_api_single_page(@mock_url).should eq({})
       
       stub.should have_been_made.times(2)   
     end
@@ -77,7 +106,7 @@ describe GoogleApi do
       
       @api.should_receive(:refresh_token).once.and_return true              
       
-      @api.call_api(@mock_url).should eq nil 
+      @api.call_api_single_page(@mock_url).should eq nil 
       
       stub.should have_been_made.times(2)
     end
@@ -89,7 +118,7 @@ describe GoogleApi do
         .to_return(:body => '{}', :status => 401)       
       
       # webmock will fail if this does an unstubbed request 
-      @api.call_api(@mock_url).should eq nil
+      @api.call_api_single_page(@mock_url).should eq nil
     end
   end
   
