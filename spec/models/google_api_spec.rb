@@ -5,15 +5,7 @@ describe GoogleApi do
     @user = create(:user)
     @mock_url = 'https://www.googleapis.com/mock_api_url'
     @api = @user.google_api
-  end
-  
-  describe "underscore keys recursive" do
-    it "should underscore all keys recursively" do
-      h = {caseChanges: [{aB: []}, {testCASE: 11}], smallBig: "string"}
-      e = {case_changes: [{a_b: []}, {test_case: 11}], small_big: "string"}
-      @api.underscore_keys_recursive(h).should eq e
-    end
-  end   
+  end    
       
   describe "call api paging" do
     it "should call the next page until done and return an aggregate result" do      
