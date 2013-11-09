@@ -24,7 +24,7 @@ describe Event do
       e.end_datetime_utc.should eq DateTime.new(2013,2,3,  21,30)
     end
     
-    it "should calc based on the calendar when start/end not specified" do
+    it "should not calc when start/end time zone not specified" do
       cal = build(:calendar)
       e = build(:event)
       e.calendar = cal
@@ -36,8 +36,8 @@ describe Event do
       e.end_time_zone = nil
       e.calc_utc_start_and_end
       
-      e.start_datetime_utc.should eq DateTime.new(2013,2,3,  18,30)
-      e.end_datetime_utc.should eq DateTime.new(2013,2,3,  20,30)
+      e.start_datetime_utc.should eq DateTime.new(2013,2,3,  13,30)
+      e.end_datetime_utc.should eq DateTime.new(2013,2,3,  15,30)
     end
     
     it "should handle a nil calendar ok" do
