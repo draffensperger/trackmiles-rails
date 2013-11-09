@@ -17,16 +17,24 @@ class Event < ActiveRecord::Base
   end
   
   def calc_utc_start_and_end
-    start_tz = self.start_time_zone || (self.calendar && self.calendar.time_zone)
+    start_tz = self.start_time_zone
     if start_tz
       self.start_datetime_utc = 
         TZInfo::Timezone.get(start_tz).local_to_utc self.start_date_time
+    else
+      # The Google API will give a time zone offset with the date unless
+      # a time zone is directly specified
+      self.start_datetime_utc = self.start_date_time
     end
     
-    end_tz = self.end_time_zone || (self.calendar && self.calendar.time_zone)
+    end_tz = self.end_time_zone
     if end_tz
       self.end_datetime_utc = 
-        TZInfo::Timezone.get(end_tz).local_to_utc self.end_date_time      
+        TZInfo::Timezone.get(end_tz).local_to_utc self.end_date_time
+    else
+      # The Google API will give a time zone offset with the date unless
+      # a time zone is directly specified
+      self.end_datetime_utc = self.end_date_time      
     end        
   end
 end

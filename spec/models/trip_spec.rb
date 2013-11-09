@@ -13,8 +13,8 @@ describe Trip do
   end
   
   def event(start_min, end_min)
-    Event.create start_datetime_utc: start_min.minutes.from_now, 
-      end_datetime_utc: end_min.minutes.from_now, calendar: @cal,
+    Event.create start_date_time: start_min.minutes.from_now, 
+      end_date_time: end_min.minutes.from_now, calendar: @cal,
       gcal_event_id: "#{start_min}_#{end_min}"
   end
   
