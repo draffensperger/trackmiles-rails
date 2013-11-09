@@ -1,0 +1,7 @@
+= form_for @place, url: {action: "new"}} do |f|
+  = f.text_field :summary
+  = f.text_area :description, size: "60x12"
+  = f.text_field :street, size: "60x12"
+  = f.text_field :city, size: "60x12"
+  = f.text_field :postal_code, size: "60x12"
+  = f.submit "Create"

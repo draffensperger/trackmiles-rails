@@ -1,0 +1,12 @@
+= form_for @place, url: {action: "update"} do |f|
+  Summary:
+  = f.text_field :summary
+  Description:
+  = f.text_area :description, size: "60x12"
+  Street:
+  = f.text_field :street, size: "60x12"
+  City:
+  = f.text_field :city, size: "60x12"
+  Postal Code:
+  = f.text_field :postal_code, size: "60x12"
+  = f.submit "Updated"
