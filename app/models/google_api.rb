@@ -1,4 +1,6 @@
 class GoogleApi
+  include GoogleApiHelpers
+  
   BASE_URL = 'https://www.googleapis.com/'
   CALENDAR_URL = BASE_URL + 'calendar/v3/'
   REFRESH_TOKEN_URL = 'https://accounts.google.com/o/oauth2/token'
@@ -62,18 +64,6 @@ class GoogleApi
     end   
   end
   
-  def get_and_parse(url, params)
-    parse_result RestClient.get url, :params => params
-  end
-  
-  def post_and_parse(url, params)
-    parse_result RestClient.post url, params
-  end
-  
-  def parse_result(result)
-    underscore_keys_recursive JSON.parse result
-  end
-  
   def refresh_token
     begin
       response = post_and_parse REFRESH_TOKEN_URL, 
@@ -96,23 +86,5 @@ class GoogleApi
   
   def client_secret
     ENV['OAUTH_CLIENT_SECRET']
-  end
-  
-  def underscore_keys_recursive(obj)
-    if obj.is_a?(Hash)      
-      out = {}
-      obj.each do |k, v|
-        out[k.to_s.underscore.to_sym] = underscore_keys_recursive v
-      end
-      out
-    elsif obj.is_a?(Array)
-      out = []
-      obj.each do |v|
-        out.push underscore_keys_recursive v
-      end
-      out
-    else
-      obj
-    end
-  end 
+  end    
 end
