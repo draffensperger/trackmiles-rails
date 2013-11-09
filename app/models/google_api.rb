@@ -1,6 +1,6 @@
 class GoogleApi
   include GoogleApiHelpers
-  
+   
   BASE_URL = 'https://www.googleapis.com/'
   CALENDAR_URL = BASE_URL + 'calendar/v3/'
   REFRESH_TOKEN_URL = 'https://accounts.google.com/o/oauth2/token'

@@ -44,4 +44,16 @@ describe Trip do
     # Return a blank list for a trip without another trip after it (for now).
     t3__45_50.find_destination_events.should eq []
   end
+  
+  it "should calculate distance" do
+    t = Trip.new start_place: Place.new(latitude: 42.0, longitude: -71.0), 
+      end_place: Place.new(latitude: 43.0, longitude: -72.0)
+    
+    GoogleMapsApi.should_receive(:distance).with("42.0,-71.0","43.0,-72.0")
+      .and_return 10
+      
+    t.distance.should eq nil
+    t.calc_distance
+    t.distance.should eq 10
+  end
 end
