@@ -1,0 +1,14 @@
+%table
+  %tr
+    %td 
+      = @place.summary
+    %td
+      = @place.description
+    %td
+      = @place.street        
+      %br
+      = @place.city
+      = @place.state
+      = @place.postal_code
+    %td
+      = link_to "Edit", edit_place_path(p)
