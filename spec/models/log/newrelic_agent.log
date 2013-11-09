@@ -753,3 +753,315 @@
 [11/08/13 16:44:00 -0500 dave-asus-ubuntu (27119)] INFO : Installing Rails 4 Controller instrumentation
 [11/08/13 16:44:00 -0500 dave-asus-ubuntu (27119)] INFO : Finished instrumentation
 [11/08/13 16:46:13 -0500 dave-asus-ubuntu (27119)] INFO : Starting Agent shutdown
+[11/08/13 18:09:46 -0500 dave-asus-ubuntu (31420)] INFO : Starting the New Relic agent in "test" environment.
+[11/08/13 18:09:46 -0500 dave-asus-ubuntu (31420)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "test" section of your newrelic.yml.
+[11/08/13 18:09:46 -0500 dave-asus-ubuntu (31420)] INFO : Reading configuration from 
+[11/08/13 18:09:46 -0500 dave-asus-ubuntu (31420)] ERROR : Unable to read configuration file : Is a directory - /home/dave/Dropbox/Programming/aptw/miletracker/spec/models
+[11/08/13 18:09:46 -0500 dave-asus-ubuntu (31420)] INFO : Enabling the Request Sampler.
+[11/08/13 18:09:46 -0500 dave-asus-ubuntu (31420)] INFO : Enabling the Request Sampler.
+[11/08/13 18:09:46 -0500 dave-asus-ubuntu (31420)] INFO : Environment: test
+[11/08/13 18:09:46 -0500 dave-asus-ubuntu (31420)] INFO : Dispatcher: thin
+[11/08/13 18:09:46 -0500 dave-asus-ubuntu (31420)] INFO : Application: test
+[11/08/13 18:09:47 -0500 dave-asus-ubuntu (31420)] INFO : Installing Net instrumentation
+[11/08/13 18:09:47 -0500 dave-asus-ubuntu (31420)] INFO : Installing ActiveRecord 4 instrumentation
+[11/08/13 18:09:47 -0500 dave-asus-ubuntu (31420)] INFO : Installing Unicorn instrumentation
+[11/08/13 18:09:47 -0500 dave-asus-ubuntu (31420)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[11/08/13 18:09:47 -0500 dave-asus-ubuntu (31420)] INFO : Installing deferred Rack instrumentation
+[11/08/13 18:09:47 -0500 dave-asus-ubuntu (31420)] INFO : Installing Sidekiq instrumentation
+[11/08/13 18:09:47 -0500 dave-asus-ubuntu (31420)] INFO : Installing Rails4 Error instrumentation
+[11/08/13 18:09:47 -0500 dave-asus-ubuntu (31420)] INFO : Installing Rails 4 view instrumentation
+[11/08/13 18:09:47 -0500 dave-asus-ubuntu (31420)] INFO : Installing Rails 4 Controller instrumentation
+[11/08/13 18:09:47 -0500 dave-asus-ubuntu (31420)] INFO : Finished instrumentation
+[11/08/13 18:11:10 -0500 dave-asus-ubuntu (31547)] INFO : Starting the New Relic agent in "test" environment.
+[11/08/13 18:11:10 -0500 dave-asus-ubuntu (31547)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "test" section of your newrelic.yml.
+[11/08/13 18:11:10 -0500 dave-asus-ubuntu (31547)] INFO : Reading configuration from 
+[11/08/13 18:11:10 -0500 dave-asus-ubuntu (31547)] ERROR : Unable to read configuration file : Is a directory - /home/dave/Dropbox/Programming/aptw/miletracker/spec/models
+[11/08/13 18:11:10 -0500 dave-asus-ubuntu (31547)] INFO : Enabling the Request Sampler.
+[11/08/13 18:11:10 -0500 dave-asus-ubuntu (31547)] INFO : Enabling the Request Sampler.
+[11/08/13 18:11:10 -0500 dave-asus-ubuntu (31547)] INFO : Environment: test
+[11/08/13 18:11:10 -0500 dave-asus-ubuntu (31547)] INFO : Dispatcher: thin
+[11/08/13 18:11:10 -0500 dave-asus-ubuntu (31547)] INFO : Application: test
+[11/08/13 18:11:11 -0500 dave-asus-ubuntu (31547)] INFO : Installing Net instrumentation
+[11/08/13 18:11:11 -0500 dave-asus-ubuntu (31547)] INFO : Installing ActiveRecord 4 instrumentation
+[11/08/13 18:11:11 -0500 dave-asus-ubuntu (31547)] INFO : Installing Unicorn instrumentation
+[11/08/13 18:11:11 -0500 dave-asus-ubuntu (31547)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[11/08/13 18:11:11 -0500 dave-asus-ubuntu (31547)] INFO : Installing deferred Rack instrumentation
+[11/08/13 18:11:11 -0500 dave-asus-ubuntu (31547)] INFO : Installing Sidekiq instrumentation
+[11/08/13 18:11:11 -0500 dave-asus-ubuntu (31547)] INFO : Installing Rails4 Error instrumentation
+[11/08/13 18:11:11 -0500 dave-asus-ubuntu (31547)] INFO : Installing Rails 4 view instrumentation
+[11/08/13 18:11:11 -0500 dave-asus-ubuntu (31547)] INFO : Installing Rails 4 Controller instrumentation
+[11/08/13 18:11:11 -0500 dave-asus-ubuntu (31547)] INFO : Finished instrumentation
+[11/08/13 18:12:13 -0500 dave-asus-ubuntu (31653)] INFO : Starting the New Relic agent in "test" environment.
+[11/08/13 18:12:13 -0500 dave-asus-ubuntu (31653)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "test" section of your newrelic.yml.
+[11/08/13 18:12:13 -0500 dave-asus-ubuntu (31653)] INFO : Reading configuration from 
+[11/08/13 18:12:13 -0500 dave-asus-ubuntu (31653)] ERROR : Unable to read configuration file : Is a directory - /home/dave/Dropbox/Programming/aptw/miletracker/spec/models
+[11/08/13 18:12:13 -0500 dave-asus-ubuntu (31653)] INFO : Enabling the Request Sampler.
+[11/08/13 18:12:13 -0500 dave-asus-ubuntu (31653)] INFO : Enabling the Request Sampler.
+[11/08/13 18:12:13 -0500 dave-asus-ubuntu (31653)] INFO : Environment: test
+[11/08/13 18:12:13 -0500 dave-asus-ubuntu (31653)] INFO : Dispatcher: thin
+[11/08/13 18:12:13 -0500 dave-asus-ubuntu (31653)] INFO : Application: test
+[11/08/13 18:12:14 -0500 dave-asus-ubuntu (31653)] INFO : Installing Net instrumentation
+[11/08/13 18:12:14 -0500 dave-asus-ubuntu (31653)] INFO : Installing ActiveRecord 4 instrumentation
+[11/08/13 18:12:14 -0500 dave-asus-ubuntu (31653)] INFO : Installing Unicorn instrumentation
+[11/08/13 18:12:14 -0500 dave-asus-ubuntu (31653)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[11/08/13 18:12:14 -0500 dave-asus-ubuntu (31653)] INFO : Installing deferred Rack instrumentation
+[11/08/13 18:12:14 -0500 dave-asus-ubuntu (31653)] INFO : Installing Sidekiq instrumentation
+[11/08/13 18:12:14 -0500 dave-asus-ubuntu (31653)] INFO : Installing Rails4 Error instrumentation
+[11/08/13 18:12:14 -0500 dave-asus-ubuntu (31653)] INFO : Installing Rails 4 view instrumentation
+[11/08/13 18:12:14 -0500 dave-asus-ubuntu (31653)] INFO : Installing Rails 4 Controller instrumentation
+[11/08/13 18:12:14 -0500 dave-asus-ubuntu (31653)] INFO : Finished instrumentation
+[11/08/13 18:12:46 -0500 dave-asus-ubuntu (31653)] INFO : Starting Agent shutdown
+[11/08/13 18:13:55 -0500 dave-asus-ubuntu (31804)] INFO : Starting the New Relic agent in "test" environment.
+[11/08/13 18:13:55 -0500 dave-asus-ubuntu (31804)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "test" section of your newrelic.yml.
+[11/08/13 18:13:55 -0500 dave-asus-ubuntu (31804)] INFO : Reading configuration from 
+[11/08/13 18:13:55 -0500 dave-asus-ubuntu (31804)] ERROR : Unable to read configuration file : Is a directory - /home/dave/Dropbox/Programming/aptw/miletracker/spec/models
+[11/08/13 18:13:55 -0500 dave-asus-ubuntu (31804)] INFO : Enabling the Request Sampler.
+[11/08/13 18:13:55 -0500 dave-asus-ubuntu (31804)] INFO : Enabling the Request Sampler.
+[11/08/13 18:13:55 -0500 dave-asus-ubuntu (31804)] INFO : Environment: test
+[11/08/13 18:13:55 -0500 dave-asus-ubuntu (31804)] INFO : Dispatcher: thin
+[11/08/13 18:13:55 -0500 dave-asus-ubuntu (31804)] INFO : Application: test
+[11/08/13 18:13:55 -0500 dave-asus-ubuntu (31804)] INFO : Installing Net instrumentation
+[11/08/13 18:13:55 -0500 dave-asus-ubuntu (31804)] INFO : Installing ActiveRecord 4 instrumentation
+[11/08/13 18:13:55 -0500 dave-asus-ubuntu (31804)] INFO : Installing Unicorn instrumentation
+[11/08/13 18:13:55 -0500 dave-asus-ubuntu (31804)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[11/08/13 18:13:55 -0500 dave-asus-ubuntu (31804)] INFO : Installing deferred Rack instrumentation
+[11/08/13 18:13:55 -0500 dave-asus-ubuntu (31804)] INFO : Installing Sidekiq instrumentation
+[11/08/13 18:13:55 -0500 dave-asus-ubuntu (31804)] INFO : Installing Rails4 Error instrumentation
+[11/08/13 18:13:56 -0500 dave-asus-ubuntu (31804)] INFO : Installing Rails 4 view instrumentation
+[11/08/13 18:13:56 -0500 dave-asus-ubuntu (31804)] INFO : Installing Rails 4 Controller instrumentation
+[11/08/13 18:13:56 -0500 dave-asus-ubuntu (31804)] INFO : Finished instrumentation
+[11/08/13 18:16:11 -0500 dave-asus-ubuntu (31933)] INFO : Starting the New Relic agent in "test" environment.
+[11/08/13 18:16:11 -0500 dave-asus-ubuntu (31933)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "test" section of your newrelic.yml.
+[11/08/13 18:16:11 -0500 dave-asus-ubuntu (31933)] INFO : Reading configuration from 
+[11/08/13 18:16:11 -0500 dave-asus-ubuntu (31933)] ERROR : Unable to read configuration file : Is a directory - /home/dave/Dropbox/Programming/aptw/miletracker/spec/models
+[11/08/13 18:16:11 -0500 dave-asus-ubuntu (31933)] INFO : Enabling the Request Sampler.
+[11/08/13 18:16:11 -0500 dave-asus-ubuntu (31933)] INFO : Enabling the Request Sampler.
+[11/08/13 18:16:11 -0500 dave-asus-ubuntu (31933)] INFO : Environment: test
+[11/08/13 18:16:11 -0500 dave-asus-ubuntu (31933)] INFO : Dispatcher: thin
+[11/08/13 18:16:11 -0500 dave-asus-ubuntu (31933)] INFO : Application: test
+[11/08/13 18:16:12 -0500 dave-asus-ubuntu (31933)] INFO : Installing Net instrumentation
+[11/08/13 18:16:12 -0500 dave-asus-ubuntu (31933)] INFO : Installing ActiveRecord 4 instrumentation
+[11/08/13 18:16:12 -0500 dave-asus-ubuntu (31933)] INFO : Installing Unicorn instrumentation
+[11/08/13 18:16:12 -0500 dave-asus-ubuntu (31933)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[11/08/13 18:16:12 -0500 dave-asus-ubuntu (31933)] INFO : Installing deferred Rack instrumentation
+[11/08/13 18:16:12 -0500 dave-asus-ubuntu (31933)] INFO : Installing Sidekiq instrumentation
+[11/08/13 18:16:12 -0500 dave-asus-ubuntu (31933)] INFO : Installing Rails4 Error instrumentation
+[11/08/13 18:16:12 -0500 dave-asus-ubuntu (31933)] INFO : Installing Rails 4 view instrumentation
+[11/08/13 18:16:12 -0500 dave-asus-ubuntu (31933)] INFO : Installing Rails 4 Controller instrumentation
+[11/08/13 18:16:12 -0500 dave-asus-ubuntu (31933)] INFO : Finished instrumentation
+[11/08/13 18:16:49 -0500 dave-asus-ubuntu (31933)] INFO : Starting Agent shutdown
+[11/08/13 18:17:21 -0500 dave-asus-ubuntu (32087)] INFO : Starting the New Relic agent in "test" environment.
+[11/08/13 18:17:21 -0500 dave-asus-ubuntu (32087)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "test" section of your newrelic.yml.
+[11/08/13 18:17:21 -0500 dave-asus-ubuntu (32087)] INFO : Reading configuration from 
+[11/08/13 18:17:21 -0500 dave-asus-ubuntu (32087)] ERROR : Unable to read configuration file : Is a directory - /home/dave/Dropbox/Programming/aptw/miletracker/spec/models
+[11/08/13 18:17:21 -0500 dave-asus-ubuntu (32087)] INFO : Enabling the Request Sampler.
+[11/08/13 18:17:21 -0500 dave-asus-ubuntu (32087)] INFO : Enabling the Request Sampler.
+[11/08/13 18:17:21 -0500 dave-asus-ubuntu (32087)] INFO : Environment: test
+[11/08/13 18:17:21 -0500 dave-asus-ubuntu (32087)] INFO : Dispatcher: thin
+[11/08/13 18:17:21 -0500 dave-asus-ubuntu (32087)] INFO : Application: test
+[11/08/13 18:17:21 -0500 dave-asus-ubuntu (32087)] INFO : Installing Net instrumentation
+[11/08/13 18:17:21 -0500 dave-asus-ubuntu (32087)] INFO : Installing ActiveRecord 4 instrumentation
+[11/08/13 18:17:21 -0500 dave-asus-ubuntu (32087)] INFO : Installing Unicorn instrumentation
+[11/08/13 18:17:21 -0500 dave-asus-ubuntu (32087)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[11/08/13 18:17:21 -0500 dave-asus-ubuntu (32087)] INFO : Installing deferred Rack instrumentation
+[11/08/13 18:17:21 -0500 dave-asus-ubuntu (32087)] INFO : Installing Sidekiq instrumentation
+[11/08/13 18:17:21 -0500 dave-asus-ubuntu (32087)] INFO : Installing Rails4 Error instrumentation
+[11/08/13 18:17:22 -0500 dave-asus-ubuntu (32087)] INFO : Installing Rails 4 view instrumentation
+[11/08/13 18:17:22 -0500 dave-asus-ubuntu (32087)] INFO : Installing Rails 4 Controller instrumentation
+[11/08/13 18:17:22 -0500 dave-asus-ubuntu (32087)] INFO : Finished instrumentation
+[11/08/13 18:17:51 -0500 dave-asus-ubuntu (32087)] INFO : Starting Agent shutdown
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : Starting the New Relic agent in "test" environment.
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "test" section of your newrelic.yml.
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : Reading configuration from 
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] ERROR : Unable to read configuration file : Is a directory - /home/dave/Dropbox/Programming/aptw/miletracker/spec/models
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : Enabling the Request Sampler.
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : Enabling the Request Sampler.
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : Environment: test
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : Dispatcher: thin
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : Application: test
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : Installing Net instrumentation
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : Installing ActiveRecord 4 instrumentation
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : Installing Unicorn instrumentation
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : Installing deferred Rack instrumentation
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : Installing Sidekiq instrumentation
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : Installing Rails4 Error instrumentation
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : Installing Rails 4 view instrumentation
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : Installing Rails 4 Controller instrumentation
+[11/08/13 18:18:15 -0500 dave-asus-ubuntu (32245)] INFO : Finished instrumentation
+[11/08/13 18:18:35 -0500 dave-asus-ubuntu (32245)] INFO : Starting Agent shutdown
+[11/08/13 18:19:15 -0500 dave-asus-ubuntu (32478)] INFO : Starting the New Relic agent in "test" environment.
+[11/08/13 18:19:15 -0500 dave-asus-ubuntu (32478)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "test" section of your newrelic.yml.
+[11/08/13 18:19:15 -0500 dave-asus-ubuntu (32478)] INFO : Reading configuration from 
+[11/08/13 18:19:15 -0500 dave-asus-ubuntu (32478)] ERROR : Unable to read configuration file : Is a directory - /home/dave/Dropbox/Programming/aptw/miletracker/spec/models
+[11/08/13 18:19:15 -0500 dave-asus-ubuntu (32478)] INFO : Enabling the Request Sampler.
+[11/08/13 18:19:15 -0500 dave-asus-ubuntu (32478)] INFO : Enabling the Request Sampler.
+[11/08/13 18:19:15 -0500 dave-asus-ubuntu (32478)] INFO : Environment: test
+[11/08/13 18:19:15 -0500 dave-asus-ubuntu (32478)] INFO : Dispatcher: thin
+[11/08/13 18:19:15 -0500 dave-asus-ubuntu (32478)] INFO : Application: test
+[11/08/13 18:19:16 -0500 dave-asus-ubuntu (32478)] INFO : Installing Net instrumentation
+[11/08/13 18:19:16 -0500 dave-asus-ubuntu (32478)] INFO : Installing ActiveRecord 4 instrumentation
+[11/08/13 18:19:16 -0500 dave-asus-ubuntu (32478)] INFO : Installing Unicorn instrumentation
+[11/08/13 18:19:16 -0500 dave-asus-ubuntu (32478)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[11/08/13 18:19:16 -0500 dave-asus-ubuntu (32478)] INFO : Installing deferred Rack instrumentation
+[11/08/13 18:19:16 -0500 dave-asus-ubuntu (32478)] INFO : Installing Sidekiq instrumentation
+[11/08/13 18:19:16 -0500 dave-asus-ubuntu (32478)] INFO : Installing Rails4 Error instrumentation
+[11/08/13 18:19:16 -0500 dave-asus-ubuntu (32478)] INFO : Installing Rails 4 view instrumentation
+[11/08/13 18:19:16 -0500 dave-asus-ubuntu (32478)] INFO : Installing Rails 4 Controller instrumentation
+[11/08/13 18:19:16 -0500 dave-asus-ubuntu (32478)] INFO : Finished instrumentation
+[11/08/13 18:20:07 -0500 dave-asus-ubuntu (32478)] INFO : Starting Agent shutdown
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : Starting the New Relic agent in "test" environment.
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "test" section of your newrelic.yml.
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : Reading configuration from 
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] ERROR : Unable to read configuration file : Is a directory - /home/dave/Dropbox/Programming/aptw/miletracker/spec/models
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : Enabling the Request Sampler.
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : Enabling the Request Sampler.
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : Environment: test
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : Dispatcher: thin
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : Application: test
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : Installing Net instrumentation
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : Installing ActiveRecord 4 instrumentation
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : Installing Unicorn instrumentation
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : Installing deferred Rack instrumentation
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : Installing Sidekiq instrumentation
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : Installing Rails4 Error instrumentation
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : Installing Rails 4 view instrumentation
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : Installing Rails 4 Controller instrumentation
+[11/08/13 18:20:21 -0500 dave-asus-ubuntu (32601)] INFO : Finished instrumentation
+[11/08/13 18:21:26 -0500 dave-asus-ubuntu (32601)] INFO : Starting Agent shutdown
+[11/08/13 18:23:56 -0500 dave-asus-ubuntu (346)] INFO : Starting the New Relic agent in "test" environment.
+[11/08/13 18:23:56 -0500 dave-asus-ubuntu (346)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "test" section of your newrelic.yml.
+[11/08/13 18:23:56 -0500 dave-asus-ubuntu (346)] INFO : Reading configuration from 
+[11/08/13 18:23:56 -0500 dave-asus-ubuntu (346)] ERROR : Unable to read configuration file : Is a directory - /home/dave/Dropbox/Programming/aptw/miletracker/spec/models
+[11/08/13 18:23:56 -0500 dave-asus-ubuntu (346)] INFO : Enabling the Request Sampler.
+[11/08/13 18:23:56 -0500 dave-asus-ubuntu (346)] INFO : Enabling the Request Sampler.
+[11/08/13 18:23:56 -0500 dave-asus-ubuntu (346)] INFO : Environment: test
+[11/08/13 18:23:56 -0500 dave-asus-ubuntu (346)] INFO : Dispatcher: thin
+[11/08/13 18:23:56 -0500 dave-asus-ubuntu (346)] INFO : Application: test
+[11/08/13 18:23:56 -0500 dave-asus-ubuntu (346)] INFO : Installing Net instrumentation
+[11/08/13 18:23:57 -0500 dave-asus-ubuntu (346)] INFO : Installing ActiveRecord 4 instrumentation
+[11/08/13 18:23:57 -0500 dave-asus-ubuntu (346)] INFO : Installing Unicorn instrumentation
+[11/08/13 18:23:57 -0500 dave-asus-ubuntu (346)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[11/08/13 18:23:57 -0500 dave-asus-ubuntu (346)] INFO : Installing deferred Rack instrumentation
+[11/08/13 18:23:57 -0500 dave-asus-ubuntu (346)] INFO : Installing Sidekiq instrumentation
+[11/08/13 18:23:57 -0500 dave-asus-ubuntu (346)] INFO : Installing Rails4 Error instrumentation
+[11/08/13 18:23:57 -0500 dave-asus-ubuntu (346)] INFO : Installing Rails 4 view instrumentation
+[11/08/13 18:23:57 -0500 dave-asus-ubuntu (346)] INFO : Installing Rails 4 Controller instrumentation
+[11/08/13 18:23:57 -0500 dave-asus-ubuntu (346)] INFO : Finished instrumentation
+[11/08/13 18:24:51 -0500 dave-asus-ubuntu (388)] INFO : Starting the New Relic agent in "test" environment.
+[11/08/13 18:24:51 -0500 dave-asus-ubuntu (388)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "test" section of your newrelic.yml.
+[11/08/13 18:24:51 -0500 dave-asus-ubuntu (388)] INFO : Reading configuration from 
+[11/08/13 18:24:51 -0500 dave-asus-ubuntu (388)] ERROR : Unable to read configuration file : Is a directory - /home/dave/Dropbox/Programming/aptw/miletracker/spec/models
+[11/08/13 18:24:51 -0500 dave-asus-ubuntu (388)] INFO : Enabling the Request Sampler.
+[11/08/13 18:24:51 -0500 dave-asus-ubuntu (388)] INFO : Enabling the Request Sampler.
+[11/08/13 18:24:51 -0500 dave-asus-ubuntu (388)] INFO : Environment: test
+[11/08/13 18:24:51 -0500 dave-asus-ubuntu (388)] INFO : Dispatcher: thin
+[11/08/13 18:24:51 -0500 dave-asus-ubuntu (388)] INFO : Application: test
+[11/08/13 18:24:51 -0500 dave-asus-ubuntu (388)] INFO : Installing Net instrumentation
+[11/08/13 18:24:51 -0500 dave-asus-ubuntu (388)] INFO : Installing ActiveRecord 4 instrumentation
+[11/08/13 18:24:51 -0500 dave-asus-ubuntu (388)] INFO : Installing Unicorn instrumentation
+[11/08/13 18:24:51 -0500 dave-asus-ubuntu (388)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[11/08/13 18:24:51 -0500 dave-asus-ubuntu (388)] INFO : Installing deferred Rack instrumentation
+[11/08/13 18:24:51 -0500 dave-asus-ubuntu (388)] INFO : Installing Sidekiq instrumentation
+[11/08/13 18:24:51 -0500 dave-asus-ubuntu (388)] INFO : Installing Rails4 Error instrumentation
+[11/08/13 18:24:52 -0500 dave-asus-ubuntu (388)] INFO : Installing Rails 4 view instrumentation
+[11/08/13 18:24:52 -0500 dave-asus-ubuntu (388)] INFO : Installing Rails 4 Controller instrumentation
+[11/08/13 18:24:52 -0500 dave-asus-ubuntu (388)] INFO : Finished instrumentation
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : Starting the New Relic agent in "test" environment.
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "test" section of your newrelic.yml.
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : Reading configuration from 
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] ERROR : Unable to read configuration file : Is a directory - /home/dave/Dropbox/Programming/aptw/miletracker/spec/models
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : Enabling the Request Sampler.
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : Enabling the Request Sampler.
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : Environment: test
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : Dispatcher: thin
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : Application: test
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : Installing Net instrumentation
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : Installing ActiveRecord 4 instrumentation
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : Installing Unicorn instrumentation
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : Installing deferred Rack instrumentation
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : Installing Sidekiq instrumentation
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : Installing Rails4 Error instrumentation
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : Installing Rails 4 view instrumentation
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : Installing Rails 4 Controller instrumentation
+[11/08/13 18:31:43 -0500 dave-asus-ubuntu (818)] INFO : Finished instrumentation
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : Starting the New Relic agent in "test" environment.
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "test" section of your newrelic.yml.
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : Reading configuration from 
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] ERROR : Unable to read configuration file : Is a directory - /home/dave/Dropbox/Programming/aptw/miletracker/spec/models
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : Enabling the Request Sampler.
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : Enabling the Request Sampler.
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : Environment: test
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : Dispatcher: thin
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : Application: test
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : Installing Net instrumentation
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : Installing ActiveRecord 4 instrumentation
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : Installing Unicorn instrumentation
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : Installing deferred Rack instrumentation
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : Installing Sidekiq instrumentation
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : Installing Rails4 Error instrumentation
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : Installing Rails 4 view instrumentation
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : Installing Rails 4 Controller instrumentation
+[11/08/13 18:37:06 -0500 dave-asus-ubuntu (1150)] INFO : Finished instrumentation
+[11/08/13 18:47:30 -0500 dave-asus-ubuntu (1567)] INFO : Starting the New Relic agent in "test" environment.
+[11/08/13 18:47:30 -0500 dave-asus-ubuntu (1567)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "test" section of your newrelic.yml.
+[11/08/13 18:47:30 -0500 dave-asus-ubuntu (1567)] INFO : Reading configuration from 
+[11/08/13 18:47:30 -0500 dave-asus-ubuntu (1567)] ERROR : Unable to read configuration file : Is a directory - /home/dave/Dropbox/Programming/aptw/miletracker/spec/models
+[11/08/13 18:47:30 -0500 dave-asus-ubuntu (1567)] INFO : Enabling the Request Sampler.
+[11/08/13 18:47:30 -0500 dave-asus-ubuntu (1567)] INFO : Enabling the Request Sampler.
+[11/08/13 18:47:30 -0500 dave-asus-ubuntu (1567)] INFO : Environment: test
+[11/08/13 18:47:30 -0500 dave-asus-ubuntu (1567)] INFO : Dispatcher: thin
+[11/08/13 18:47:30 -0500 dave-asus-ubuntu (1567)] INFO : Application: test
+[11/08/13 18:47:30 -0500 dave-asus-ubuntu (1567)] INFO : Installing Net instrumentation
+[11/08/13 18:47:30 -0500 dave-asus-ubuntu (1567)] INFO : Installing ActiveRecord 4 instrumentation
+[11/08/13 18:47:30 -0500 dave-asus-ubuntu (1567)] INFO : Installing Unicorn instrumentation
+[11/08/13 18:47:30 -0500 dave-asus-ubuntu (1567)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[11/08/13 18:47:30 -0500 dave-asus-ubuntu (1567)] INFO : Installing deferred Rack instrumentation
+[11/08/13 18:47:30 -0500 dave-asus-ubuntu (1567)] INFO : Installing Sidekiq instrumentation
+[11/08/13 18:47:30 -0500 dave-asus-ubuntu (1567)] INFO : Installing Rails4 Error instrumentation
+[11/08/13 18:47:31 -0500 dave-asus-ubuntu (1567)] INFO : Installing Rails 4 view instrumentation
+[11/08/13 18:47:31 -0500 dave-asus-ubuntu (1567)] INFO : Installing Rails 4 Controller instrumentation
+[11/08/13 18:47:31 -0500 dave-asus-ubuntu (1567)] INFO : Finished instrumentation
+[11/08/13 23:53:35 -0500 dave-asus-ubuntu (1567)] INFO : Starting Agent shutdown
+[11/08/13 23:56:50 -0500 dave-asus-ubuntu (3478)] INFO : Starting the New Relic agent in "test" environment.
+[11/08/13 23:56:50 -0500 dave-asus-ubuntu (3478)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "test" section of your newrelic.yml.
+[11/08/13 23:56:50 -0500 dave-asus-ubuntu (3478)] INFO : Reading configuration from 
+[11/08/13 23:56:50 -0500 dave-asus-ubuntu (3478)] ERROR : Unable to read configuration file : Is a directory - /home/dave/Dropbox/Programming/aptw/miletracker/spec/models
+[11/08/13 23:56:50 -0500 dave-asus-ubuntu (3478)] INFO : Enabling the Request Sampler.
+[11/08/13 23:56:50 -0500 dave-asus-ubuntu (3478)] INFO : Enabling the Request Sampler.
+[11/08/13 23:56:50 -0500 dave-asus-ubuntu (3478)] INFO : Environment: test
+[11/08/13 23:56:50 -0500 dave-asus-ubuntu (3478)] INFO : Dispatcher: thin
+[11/08/13 23:56:50 -0500 dave-asus-ubuntu (3478)] INFO : Application: test
+[11/08/13 23:56:51 -0500 dave-asus-ubuntu (3478)] INFO : Installing Net instrumentation
+[11/08/13 23:56:51 -0500 dave-asus-ubuntu (3478)] INFO : Installing ActiveRecord 4 instrumentation
+[11/08/13 23:56:51 -0500 dave-asus-ubuntu (3478)] INFO : Installing Unicorn instrumentation
+[11/08/13 23:56:51 -0500 dave-asus-ubuntu (3478)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[11/08/13 23:56:51 -0500 dave-asus-ubuntu (3478)] INFO : Installing deferred Rack instrumentation
+[11/08/13 23:56:51 -0500 dave-asus-ubuntu (3478)] INFO : Installing Sidekiq instrumentation
+[11/08/13 23:56:51 -0500 dave-asus-ubuntu (3478)] INFO : Installing Rails4 Error instrumentation
+[11/08/13 23:56:51 -0500 dave-asus-ubuntu (3478)] INFO : Installing Rails 4 view instrumentation
+[11/08/13 23:56:51 -0500 dave-asus-ubuntu (3478)] INFO : Installing Rails 4 Controller instrumentation
+[11/08/13 23:56:51 -0500 dave-asus-ubuntu (3478)] INFO : Finished instrumentation
+[11/09/13 00:00:59 -0500 dave-asus-ubuntu (3965)] INFO : Starting the New Relic agent in "test" environment.
+[11/09/13 00:00:59 -0500 dave-asus-ubuntu (3965)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "test" section of your newrelic.yml.
+[11/09/13 00:00:59 -0500 dave-asus-ubuntu (3965)] INFO : Reading configuration from 
+[11/09/13 00:00:59 -0500 dave-asus-ubuntu (3965)] ERROR : Unable to read configuration file : Is a directory - /home/dave/Dropbox/Programming/aptw/miletracker/spec/models
+[11/09/13 00:00:59 -0500 dave-asus-ubuntu (3965)] INFO : Enabling the Request Sampler.
+[11/09/13 00:00:59 -0500 dave-asus-ubuntu (3965)] INFO : Enabling the Request Sampler.
+[11/09/13 00:00:59 -0500 dave-asus-ubuntu (3965)] INFO : Environment: test
+[11/09/13 00:00:59 -0500 dave-asus-ubuntu (3965)] INFO : Dispatcher: thin
+[11/09/13 00:00:59 -0500 dave-asus-ubuntu (3965)] INFO : Application: test
+[11/09/13 00:00:59 -0500 dave-asus-ubuntu (3965)] INFO : Installing Net instrumentation
+[11/09/13 00:00:59 -0500 dave-asus-ubuntu (3965)] INFO : Installing ActiveRecord 4 instrumentation
+[11/09/13 00:00:59 -0500 dave-asus-ubuntu (3965)] INFO : Installing Unicorn instrumentation
+[11/09/13 00:00:59 -0500 dave-asus-ubuntu (3965)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[11/09/13 00:00:59 -0500 dave-asus-ubuntu (3965)] INFO : Installing deferred Rack instrumentation
+[11/09/13 00:00:59 -0500 dave-asus-ubuntu (3965)] INFO : Installing Sidekiq instrumentation
+[11/09/13 00:00:59 -0500 dave-asus-ubuntu (3965)] INFO : Installing Rails4 Error instrumentation
+[11/09/13 00:01:00 -0500 dave-asus-ubuntu (3965)] INFO : Installing Rails 4 view instrumentation
+[11/09/13 00:01:00 -0500 dave-asus-ubuntu (3965)] INFO : Installing Rails 4 Controller instrumentation
+[11/09/13 00:01:00 -0500 dave-asus-ubuntu (3965)] INFO : Finished instrumentation
+[11/09/13 00:01:20 -0500 dave-asus-ubuntu (3965)] INFO : Starting Agent shutdown
