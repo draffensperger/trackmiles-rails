@@ -16,11 +16,11 @@ module GeocodeUtil
   
   def as_latitude_longitude(x, y, z)
     [as_degrees(atan2(z, sqrt(x*x + y*y))), as_degrees(atan2(y, x))]
-  end  
+  end
   
-  def dist_km(l1, l2)
-    Geocoder::Calculations::distance_between [l1.latitude,l2.longitude],
-      [l1.latitude,l2.longitude]
+  def dist_m(l1, l2)
+    Geocoder::Calculations::distance_between([l1.latitude,l1.longitude],
+      [l2.latitude,l2.longitude]) * 1000.0
   end
   
   def calc_latitude_longitude
