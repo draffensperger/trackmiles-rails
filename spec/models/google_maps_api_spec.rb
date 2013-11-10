@@ -13,7 +13,7 @@ describe GoogleMapsApi do
     req.should have_been_requested
   end
   
-  it "should retrieve correct distancet" do    
+  it "should retrieve correct distance" do    
     GoogleMapsApi.should_receive(:directions).with(
       {origin: "Chicago", destination: "Denver", sensor: false})
       .and_return routes: [
@@ -23,5 +23,13 @@ describe GoogleMapsApi do
       ]
           
     GoogleMapsApi.distance("Chicago", "Denver").should eq 1615982
+  end
+  
+  it "should handle bad distance response" do
+    GoogleMapsApi.should_receive(:directions).with(
+      {origin: "Chicago", destination: "Denver", sensor: false})
+      .and_return routes: [garbage: "bad response"]
+          
+    GoogleMapsApi.distance("Chicago", "Denver").should eq nil
   end
 end

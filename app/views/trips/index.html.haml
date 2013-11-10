@@ -4,17 +4,23 @@
       %td 
         =l t.start_time.in_time_zone("Eastern Time (US & Canada)"), format: '%-m/%e %l:%M%P'
       %td
+        = t.distance ? (t.distance / 1609.34).round(1) : "-"
+        miles
+      %td
         =l t.end_time.in_time_zone("Eastern Time (US & Canada)"), format: '%-m/%e %l:%M%P'
       %td        
         =t.start_place.summary
       %td
-        =t.end_place.summary
+        =t.end_place.summary      
     %tr
-      %td
+      -#%td
+        -#="#{t.start_place.latitude},#{t.start_place.longitude} => #{t.end_place.latitude},#{t.end_place.longitude}" 
       %td{colspan: 3}
         - t.find_destination_events.each do |e|
           =e.summary
-          ,        
+          ,
+      %td
+        = #{t.start_place.latitude},{}
 
 -#%table
   - @anchor_areas.each do |a|
