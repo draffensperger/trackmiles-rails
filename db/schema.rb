@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131103214252) do
+ActiveRecord::Schema.define(version: 20131110144352) do
 
   create_table "calendar_users", force: true do |t|
     t.integer  "user_id"
@@ -107,6 +107,8 @@ ActiveRecord::Schema.define(version: 20131103214252) do
   end
 
   add_index "events", ["calendar_id", "gcal_event_id"], name: "index_events_on_calendar_id_and_gcal_event_id", unique: true, using: :btree
+  add_index "events", ["end_datetime_utc"], name: "index_events_on_end_datetime_utc", using: :btree
+  add_index "events", ["start_datetime_utc"], name: "index_events_on_start_datetime_utc", using: :btree
 
   create_table "locations", force: true do |t|
     t.integer  "user_id"
