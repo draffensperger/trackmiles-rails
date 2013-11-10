@@ -1,6 +1,4 @@
-   
-
-%h3 Unlabeled Trips
+%h3 Trip Log
 %form.form-inline{class: 'trip-form'}
   %table
     - @trips.each_with_index do |t, i|
@@ -21,18 +19,18 @@
         -#  %option{value: 'bus'} Bus
         -#  %option{value: 'plane'} Plane
         -#  %option{value: 'rental'} Rental
-      .form-group
-        %a
-          %span.glyphicon.glyphicon-map-marker
+      .form-group#from
+        -#%a
+        -#  %span.glyphicon.glyphicon-map-marker
         %label.sr-only{for: 'from'} From
-        %input.form-control{id: 'from', type: 'text', 
-          value: "#{t.start_place.summary}"}
+        %input.form-control{id: 'from', type: 'text', disabled: 'disabled', 
+          value: "#{t.start_place.summary}"}      
       %span.glyphicon.glyphicon-arrow-right
       .form-group
-        %a
-          %span.glyphicon.glyphicon-map-marker
+        -#%a
+        -#  %span.glyphicon.glyphicon-map-marker
         %label.sr-only{for: 'to'} To
-        %input.form-control{id: 'to', type: 'text',
+        %input.form-control{id: 'to', type: 'text', disabled: 'disabled',
           value: "#{t.end_place.summary}"}
       %a
         %span.glyphicon.glyphicon-road    
@@ -55,9 +53,5 @@
           %option{value: 'medical'} Medical      
       %br
   %br
-  %button.btn.btn-default Archive the rest  
-%h3 Ministry Trips
-New trip
-%br
-%br
-%button.btn.btn-primary Reimburse
+  %br
+  %button.btn.btn-primary Reimburse
