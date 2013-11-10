@@ -41,7 +41,7 @@ describe TripSeparatorRegion do
       @s.should_receive(:visited_regions).and_return [region]
       @s.visited_areas.should eq [area]
     end   
-  end
+  end   
   
   describe "visited_regions" do    
     it "should handle the no locations case correctly" do

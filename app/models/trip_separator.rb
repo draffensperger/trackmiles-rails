@@ -36,7 +36,7 @@ class TripSeparator
   end
   
   def trip_from_origin_and_dest(origin, dest)
-    Trip.new user: @user, distance: dist_km(origin, dest), from_phone: true,
+    Trip.new user: @user, distance: dist_m(origin, dest), from_phone: true,
       start_time: origin.last_time, end_time: dest.first_time,
       start_place: Place.for_location(origin), 
       end_place: Place.for_location(dest)
