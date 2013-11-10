@@ -8,6 +8,10 @@ module GoogleMapsApi
   
   def self.distance(origin, destination)
     dir = directions origin: origin, destination: destination, sensor: false
-    dir[:routes][0][:legs][0][:distance][:value] if dir
+    begin
+      dir[:routes][0][:legs][0][:distance][:value]
+    rescue NoMethodError
+      nil
+    end
   end
 end

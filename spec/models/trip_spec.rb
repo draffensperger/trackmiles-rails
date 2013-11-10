@@ -46,10 +46,12 @@ describe Trip do
   end
   
   it "should calculate distance" do
-    t = Trip.new start_place: Place.new(latitude: 42.0, longitude: -71.0), 
+    t = Trip.new start_place: Place.new(
+      latitude: 42.3711579, longitude: -71.2391439),            
       end_place: Place.new(latitude: 43.0, longitude: -72.0)
     
-    GoogleMapsApi.should_receive(:distance).with("42.0,-71.0","43.0,-72.0")
+    GoogleMapsApi.should_receive(:distance)
+      .with("42.3711579,-71.2391439","43.0,-72.0")
       .and_return 10
       
     t.distance.should eq nil
