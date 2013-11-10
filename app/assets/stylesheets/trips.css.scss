@@ -1,10 +1,11 @@
 // Place all the styles related to the Trips controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#date {width: 3em}
-#from {width: 8em}
-#to {width: 8em}
+#trip-start-time {width: 3em; text-align: right}
+#trip-end-time {width: 3em; text-align: right; margin-right: 0.5em}
+#from {width: 15em}
+#to {width: 15em}
 #method {width: 6.5em}
-#miles {width: 4em}
-#purpose {width: 5em}
+#miles {width: 4em; text-align: right}
+#purpose {width: 16em}
 #rate {width: 8em}

@@ -1,104 +1,59 @@
-%table
-  - @trips.each do |t|
-    %tr
-      %td 
-        =l t.start_time.in_time_zone("Eastern Time (US & Canada)"), format: '%-m/%e %l:%M%P'
-      %td
-        = t.distance ? (t.distance / 1609.34).round(1) : "-"
-        miles
-      %td
-        =l t.end_time.in_time_zone("Eastern Time (US & Canada)"), format: '%-m/%e %l:%M%P'
-      %td        
-        =t.start_place.summary
-      %td
-        =t.end_place.summary      
-    %tr
-      -#%td
-        -#="#{t.start_place.latitude},#{t.start_place.longitude} => #{t.end_place.latitude},#{t.end_place.longitude}" 
-      %td{colspan: 3}
-        - t.find_destination_events.each do |e|
-          =e.summary
-          ,
-      %td
-        = #{t.start_place.latitude},{}
-
--#%table
-  - @anchor_areas.each do |a|
-    %tr
-      %td 
-        =l a.first_time.in_time_zone("Eastern Time (US & Canada)"), format: '%l:%M:%S%P %-m/%e'
-        \-
-        =l a.last_time.in_time_zone("Eastern Time (US & Canada)"), format: '%l:%M:%S%P %-m/%e'
-        ,
-        =a.center.latitude.round(10)
-        ,
-        =a.center.longitude.round(10)   
-      
--#
-  %table
-    - @locations.reverse!
-    - @locations.each do |loc|
-      %tr
-        %td= l loc.recorded_time.in_time_zone("Eastern Time (US & Canada)"), format: '%l:%M:%S%P %-m/%e'
-        %td= loc.latitude.to_s
-        %td= loc.longitude.to_s
-        %td= loc.prev1_speed.round(1) if loc.prev1_speed      
-        %td= loc.prev2_speed.round(1) if loc.prev2_speed            
-        %td= loc.prev3_speed.round(1) if loc.prev3_speed      
-        %td= loc.prev1_distance.round(0) if loc.prev1_distance
-        %td= loc.prev2_distance.round(0) if loc.prev2_distance
-        %td= loc.prev3_distance.round(0) if loc.prev3_distance      
-        %td= loc.prev1_elapsed
-        %td= loc.prev2_elapsed
-        %td= loc.prev3_elapsed            
+   
 
 %h3 Unlabeled Trips
-%form.form-inline{class: 'trip-form'}   
-  .form-group
-    %a 5/17
-  .form-group
-    %label.sr-only{for: 'method'} Method
-    %select.form-control{id: 'method'}
-      %option{value: 'drive'} Drive
-      %option{value: 'walk'} Walk
-      %option{value: 'bike'} Bike
-      %option{value: 'lift'} Lift
-      %option{value: 'bus'} Bus
-      %option{value: 'plane'} Plane
-      %option{value: 'rental'} Rental
-  .form-group
-    %a
-      %span.glyphicon.glyphicon-map-marker
-    %label.sr-only{for: 'from'} From
-    %input.form-control{id: 'from', type: 'text'}
-  %span.glyphicon.glyphicon-arrow-right
-  .form-group
-    %a
-      %span.glyphicon.glyphicon-map-marker
-    %label.sr-only{for: 'to'} To
-    %input.form-control{id: 'to', type: 'text'}
-  %a
-    %span.glyphicon.glyphicon-road    
-  .form-group
-    %label.sr-only{for: 'miles'} Method
-    %label.sr-only{for: 'miles'} Miles
-    %input.form-control{id: 'miles', type: 'text'}
-    mi.      
-  .form-group
-    %label.sr-only{for: 'rate'} Rate
-    %select.form-control{id: 'rate'}
-      %option{value: 'personal'} Personal
-      %option{value: 'ministry'} Ministry
-      %option{value: 'medical'} Medical
-  .form-group
-    \:
-    %label.sr-only{for: 'purpose'} Business Purpose
-    %input.form-control{id: 'purpose', type: 'text'}
-  %span.glyphicon.glyphicon-phone
-  %span.glyphicon.glyphicon-calendar
-  %button.btn.btn-default Ministry
-  %button.btn.btn-default Medical
-  %br
+%form.form-inline{class: 'trip-form'}
+  %table
+    - @trips.each_with_index do |t, i|
+      != trip_date_header t, @trips[i-1]              
+      .form-group#trip-start-time
+        = format_start_time t
+      .form-group
+        &nbsp;-
+      .form-group#trip-end-time        
+        = format_end_time t        
+      -#.form-group
+        -#%label.sr-only{for: 'method'} Method
+        -#%select.form-control{id: 'method'}
+        -#  %option{value: 'drive'} Drive
+        -#  %option{value: 'walk'} Walk
+        -#  %option{value: 'bike'} Bike
+        -#  %option{value: 'lift'} Lift
+        -#  %option{value: 'bus'} Bus
+        -#  %option{value: 'plane'} Plane
+        -#  %option{value: 'rental'} Rental
+      .form-group
+        %a
+          %span.glyphicon.glyphicon-map-marker
+        %label.sr-only{for: 'from'} From
+        %input.form-control{id: 'from', type: 'text', 
+          value: "#{t.start_place.summary}"}
+      %span.glyphicon.glyphicon-arrow-right
+      .form-group
+        %a
+          %span.glyphicon.glyphicon-map-marker
+        %label.sr-only{for: 'to'} To
+        %input.form-control{id: 'to', type: 'text',
+          value: "#{t.end_place.summary}"}
+      %a
+        %span.glyphicon.glyphicon-road    
+      .form-group
+        %label.sr-only{for: 'miles'} Method
+        %label.sr-only{for: 'miles'} Miles
+        %input.form-control{id: 'miles', type: 'text', 
+          value: (t.distance ? (t.distance / 1609.34).round(1) : "-")}
+        mi      
+      .form-group
+        \:
+        %label.sr-only{for: 'purpose'} Business Purpose
+        %input.form-control{id: 'purpose', type: 'text',
+          value: "#{default_trip_purpose(t)}"}
+      .form-group
+        %label.sr-only{for: 'rate'} Rate
+        %select.form-control{id: 'rate'}
+          %option{value: 'personal'} Personal
+          %option{value: 'ministry'} Ministry
+          %option{value: 'medical'} Medical      
+      %br
   %br
   %button.btn.btn-default Archive the rest  
 %h3 Ministry Trips

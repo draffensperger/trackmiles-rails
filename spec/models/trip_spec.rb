@@ -45,6 +45,13 @@ describe Trip do
     t3__45_50.find_destination_events.should eq []
   end
   
+  it "should not display events for hidden calendar" do
+    t1__5_10 = trip 5, 10
+        
+    e1_2 = event 9, 15    
+    e1_2.calendar.calendar_user.
+  end
+  
   it "should calculate distance" do
     t = Trip.new start_place: Place.new(
       latitude: 42.3711579, longitude: -71.2391439),            
