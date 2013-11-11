@@ -27,17 +27,6 @@ module TripsHelper
       meridian(t.end_time.in_time_zone(TIME_ZONE))
   end
   
-  def default_trip_purpose(t)
-    purpose = ""
-    t.find_destination_events.each_with_index do |e, i|
-      if i > 0
-        purpose += ", "
-      end
-      purpose += e.summary      
-    end
-    purpose
-  end
-  
   def meridian(time)
     l(time, format: '%P').slice 0, 1
     #l(time, format: '%P')

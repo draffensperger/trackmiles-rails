@@ -8,6 +8,23 @@ class TripsController < ApplicationController
         t.calc_distance
         t.save
       end
+      
+      unless t.purpose
+        t.purpose = t.default_trip_purpose
+        t.save
+      end
     end
+  end
+  
+  def reimburse
+    trips_attrs = []
+    prefix = 'reimburse_'
+    params.each do |k,v|
+      if k.starts_with? prefix
+        id = k.slice prefix.length, k.length
+        trips_attrs.push Trip.find(id).attributes
+      end
+    end
+    @trips_json = trips_attrs.to_json
   end
 end

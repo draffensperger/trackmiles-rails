@@ -1,5 +1,5 @@
 %h3 Trip Log
-%form.form-inline{class: 'trip-form'}
+%form.form-inline{class: 'trip-form', method: 'post'}
   %table
     - @trips.each_with_index do |t, i|
       != trip_date_header t, @trips[i-1]              
@@ -37,21 +37,24 @@
       .form-group
         %label.sr-only{for: 'miles'} Method
         %label.sr-only{for: 'miles'} Miles
-        %input.form-control{id: 'miles', type: 'text', 
+        %input.form-control{id: 'miles', type: 'text', disabled: 'disabled',
           value: (t.distance ? (t.distance / 1609.34).round(1) : "-")}
         mi      
       .form-group
         \:
         %label.sr-only{for: 'purpose'} Business Purpose
-        %input.form-control{id: 'purpose', type: 'text',
-          value: "#{default_trip_purpose(t)}"}
-      .form-group
-        %label.sr-only{for: 'rate'} Rate
-        %select.form-control{id: 'rate'}
-          %option{value: 'personal'} Personal
-          %option{value: 'ministry'} Ministry
-          %option{value: 'medical'} Medical      
+        %input.form-control{id: 'purpose', type: 'text', disabled: 'disabled',
+          value: "#{t.purpose}"}
+      -#%label.sr-only{for: 'rate'} Rate
+      .checkbox
+        %label      
+          %input{type: 'checkbox', name: "reimburse_#{t.id}"}
+          Reimburse?
+      -#%select.form-control{id: 'rate'}
+      -#  %option{value: 'personal'} Personal
+      -#  %option{value: 'ministry'} Ministry
+      -#  %option{value: 'medical'} Medical      
       %br
   %br
   %br
-  %button.btn.btn-primary Reimburse
+  %input.btn.btn-primary{type: 'submit', value: 'Prepare Reimbursement'}

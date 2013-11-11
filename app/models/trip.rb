@@ -18,6 +18,20 @@ class Trip < ActiveRecord::Base
     end
   end
   
+  def default_trip_purpose
+    purpose = ""
+    find_destination_events.each_with_index do |e, i|
+      if i > 0
+        purpose += ", "
+      end
+      purpose += e.summary      
+    end
+    if purpose == ""
+      purpose = "-"
+    end
+    purpose
+  end
+  
   def calc_distance
     self.distance = 
       GoogleMapsApi.distance "#{start_place.latitude},#{start_place.longitude}",

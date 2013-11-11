@@ -33,13 +33,16 @@ class TripSeparator
       trips.push trip_from_origin_and_dest stops[i], stops[i+1]
     end
     trips
-  end
+  end    
   
   def trip_from_origin_and_dest(origin, dest)
-    Trip.new user: @user, distance: dist_m(origin, dest), from_phone: true,
+    t = Trip.new user: @user, from_phone: true,
       start_time: origin.last_time, end_time: dest.first_time,
       start_place: Place.for_location(origin), 
       end_place: Place.for_location(dest)
+    t.distance = dist_m origin, dest
+    #t.calc_distance
+    t
   end
   
   def is_stop?(area)
