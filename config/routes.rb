@@ -14,10 +14,12 @@ Miletracker::Application.routes.draw do
     end
   end
   
-  resources :history, only: :index
-  resources :trips, only: :index
+  resources :history, only: :index  
   resources :settings, only: :index
   resources :sync, only: :index
+  
+  resources :trips, only: :index
+  post 'trips' => 'trips#reimburse'
   
   resources :places
   
