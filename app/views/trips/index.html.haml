@@ -49,11 +49,12 @@
       .checkbox
         %label      
           %input{type: 'checkbox', name: "reimburse_#{t.id}"}
-          Reimburse?
+          Reimburse?           
       -#%select.form-control{id: 'rate'}
       -#  %option{value: 'personal'} Personal
       -#  %option{value: 'ministry'} Ministry
       -#  %option{value: 'medical'} Medical      
+      %input{name:"authenticity_token",type:"hidden",value:"#{form_authenticity_token}"}    
       %br
   %br
   %br

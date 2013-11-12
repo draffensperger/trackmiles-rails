@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   def ensure_login
     # fill in later  
+    redirect_to root_path unless current_user
   end
   
   def after_sign_out_path_for(resource_or_scope)
