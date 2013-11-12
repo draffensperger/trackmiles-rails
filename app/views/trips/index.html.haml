@@ -38,7 +38,7 @@
         %label.sr-only{for: 'miles'} Method
         %label.sr-only{for: 'miles'} Miles
         %input.form-control{id: 'miles', type: 'text', disabled: 'disabled',
-          value: (t.distance ? (t.distance / 1609.34).round(1) : "-")}
+          value: format_miles(t.distance_in_miles)}
         mi      
       .form-group
         \:

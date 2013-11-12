@@ -32,6 +32,10 @@ class Trip < ActiveRecord::Base
     purpose
   end
   
+  def distance_in_miles
+    self.distance ? self.distance / 1609.34 : nil
+  end
+  
   def calc_distance
     self.distance = 
       GoogleMapsApi.distance "#{start_place.latitude},#{start_place.longitude}",

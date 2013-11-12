@@ -27,6 +27,14 @@ module TripsHelper
       meridian(t.end_time.in_time_zone(TIME_ZONE))
   end
   
+  def format_miles(miles)
+    if miles
+      miles.round(1)
+    else
+      "-"
+    end
+  end
+  
   def meridian(time)
     l(time, format: '%P').slice 0, 1
     #l(time, format: '%P')
