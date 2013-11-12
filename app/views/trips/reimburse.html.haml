@@ -1,1 +1,31 @@
-!= @trips_json
+#reimb-container
+  #reimb-info
+    %h4 Reimbursement Preparer
+    %p
+      %em
+        Log in with your relay credentials first then click "Make Draft Reimbursement."
+        It will not be submitted, only prepared for you to review/edit.
+    %p    
+      %button.btn.btn-primary#load-reimb Make Draft Reimbursement
+    %p
+      %a{href: "https://staffweb.cru.org/ss/servlet/ReimbServlet", target: "_blank"} View Cru Reimbursements
+    %p
+      %b Trips for reimbursement
+    %table    
+      - @trip_attrs.each do |t|
+        %tr
+          %td
+            = t[:start_place_summary]
+            \->
+            = t[:end_place_summary]
+          %td
+            = format_miles(t[:miles])
+            mi
+        %tr
+          %td
+            = t[:purpose]        
+        %tr
+          %td
+            &nbsp;              
+  #reimb-frame-container
+    %iframe#reimb-frame{frameborder: "0", src: "https://staffweb.ccci.org/ss/servlet/ReimbServlet?Action=CreateNewStandardReimb"}

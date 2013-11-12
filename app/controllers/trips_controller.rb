@@ -22,9 +22,20 @@ class TripsController < ApplicationController
     params.each do |k,v|
       if k.starts_with? prefix
         id = k.slice prefix.length, k.length
-        trips_attrs.push Trip.find(id).attributes
+        
+        trip = Trip.find(id)
+        attrs = {
+          start_time: trip.start_time,
+          start_place_summary: trip.start_place.summary,
+          end_place_summary: trip.end_place.summary,
+          purpose: trip.purpose,
+          miles: trip.distance_in_miles,       
+          type: trip.type   
+        }                
+        trips_attrs.push attrs
       end
     end
-    @trips_json = trips_attrs.to_json
+    @trip_attrs = trips_attrs 
+    gon.trips = @trip_attrs
   end
 end
