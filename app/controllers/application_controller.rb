@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   before_filter :ensure_login 
 
   def ensure_login
-    # fill in later  
     redirect_to root_path unless current_user
   end
   
