@@ -1065,3 +1065,23 @@
 [11/09/13 00:01:00 -0500 dave-asus-ubuntu (3965)] INFO : Installing Rails 4 Controller instrumentation
 [11/09/13 00:01:00 -0500 dave-asus-ubuntu (3965)] INFO : Finished instrumentation
 [11/09/13 00:01:20 -0500 dave-asus-ubuntu (3965)] INFO : Starting Agent shutdown
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : Starting the New Relic agent in "test" environment.
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : To prevent agent startup add a NEWRELIC_ENABLE=false environment variable or modify the "test" section of your newrelic.yml.
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : Reading configuration from 
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] ERROR : Unable to read configuration file : Is a directory - /home/dave/Dropbox/Programming/aptw/miletracker/spec/models
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : Enabling the Request Sampler.
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : Enabling the Request Sampler.
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : Environment: test
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : Dispatcher: thin
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : Application: test
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : Installing Net instrumentation
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : Installing ActiveRecord 4 instrumentation
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : Installing Unicorn instrumentation
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : Installing deferred Rack instrumentation
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : Installing Sidekiq instrumentation
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : Installing Rails4 Error instrumentation
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : Installing Rails 4 view instrumentation
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : Installing Rails 4 Controller instrumentation
+[11/13/13 12:16:25 -0500 dave-asus-ubuntu (10721)] INFO : Finished instrumentation
+[11/13/13 12:16:26 -0500 dave-asus-ubuntu (10721)] INFO : Starting Agent shutdown

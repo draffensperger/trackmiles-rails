@@ -21,6 +21,8 @@ Miletracker::Application.routes.draw do
   resources :trips, only: :index
   post 'trips' => 'trips#reimburse'
   
+  post 'email_android_link' => 'email_app_link#email_android_link'
+  
   resources :places
   
   root :to => 'home#index'

@@ -53,5 +53,18 @@ module Miletracker
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    config.action_mailer.delivery_method = :smtp  
+    config.action_mailer.perform_deliveries = true
+    
+    config.action_mailer.smtp_settings = {
+     :address => ENV['SMTP_SERVER'],
+     :port => ENV['SMTP_PORT'],
+     :authentication => ENV['SMTP_AUTH'],
+     :user_name => ENV['SMTP_USER'],
+     :password => ENV['SMTP_PASSWORD'],
+     :enable_starttls_auto => ENV['SMTP_STARTTLS_AUTO'],
+     :domain => ENV['SMTP_DOMAIN']
+    } 
   end
 end

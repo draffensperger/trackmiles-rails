@@ -1,0 +1,4 @@
+%div
+  %div{:class => "alert #{bootstrap_class_for(type)} fade in flash_alerts"}
+    %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+    = message
