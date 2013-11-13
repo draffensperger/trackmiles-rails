@@ -1,3 +1,34 @@
 
 Right now there is just an Android app to track your location which isn't released in the app store yet.
-We have plans to build an iOS app in time. 
+We have plans to build an iOS app in time.
+
+%ol
+  %li
+    %p Turn on <b>Allow Unknown Sources</b>. This can vary by device, but may be in either:
+    %p Settings -> Applications  
+    %p Settings -> Security -> Device Administration    
+
+  %li
+    %p
+      With your phone browser, download the TrackMiles app file: 
+      %a{href: '/media/ttrackmiles.apk'} trackmiles.apk.
+    %p
+      If it&apos;s more convenient, you can email yourself the link and then
+      click on it through your phone's email client.
+    %p
+      Email:
+      %input{id: 'android-link-email', type: 'text', value: "#{current_user.email}"}
+      %button.btn.btn-primary{id: 'send-android-link'} Send Android App Link  
+      #email-sent-msg-template
+        = render partial: 'shared/bootstrap_message', locals: {message: 'Email sent!', type: :success}
+      #email-sent-msg
+  %li 
+    %p 
+      After you click the link with your phone and it downloads you will 
+      likely be prompted to install the package.
+    %p
+      If you were not prompted to install, you may need to use a file
+      manager to locate the downloaded .apk file and install it.
+      One such file manager is
+      %a{href: 'https://play.google.com/store/apps/details?id=com.estrongs.android.pop'} ES File Exporer
+      \. Downloads are usually in a folder named &quot;Downloads&quot; on your SD card.
