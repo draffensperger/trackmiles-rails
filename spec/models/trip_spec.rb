@@ -1,5 +1,6 @@
 require 'spec_helper'
 
+
 describe Trip do
   before do
     @user = create :user    
@@ -49,7 +50,8 @@ describe Trip do
     t1__5_10 = trip 5, 10
         
     e1_2 = event 9, 15    
-    e1_2.calendar.calendar_user.
+    #e1_2.calendar.calendar_user
+    pending("left off implementing this")
   end
   
   it "should calculate distance" do

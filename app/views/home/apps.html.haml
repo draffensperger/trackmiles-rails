@@ -17,7 +17,7 @@ We have plans to build an iOS app in time.
       click on it through your phone's email client.
     %p
       Email:
-      %input{id: 'android-link-email', type: 'text', value: "#{current_user.email}"}
+      %input{id: 'android-link-email', type: 'text', value: "#{current_user ? current_user.email : ''}"}
       %button.btn.btn-primary{id: 'send-android-link'} Send Android App Link  
       #email-sent-msg-template
         = render partial: 'shared/bootstrap_message', locals: {message: 'Email sent!', type: :success}
