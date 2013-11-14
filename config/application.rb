@@ -57,6 +57,8 @@ module Miletracker
     config.action_mailer.delivery_method = :smtp  
     config.action_mailer.perform_deliveries = true
     
+    ActionMailer::Base.default from: ENV['SERVER_FROM_EMAIL']
+    
     config.action_mailer.smtp_settings = {
      :address => ENV['SMTP_SERVER'],
      :port => ENV['SMTP_PORT'],
