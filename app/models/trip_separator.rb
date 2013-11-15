@@ -40,8 +40,8 @@ class TripSeparator
       start_time: origin.last_time, end_time: dest.first_time,
       start_place: Place.for_location(origin), 
       end_place: Place.for_location(dest)
-    t.distance = dist_m origin, dest
-    #t.calc_distance
+    #t.distance = dist_m origin, dest
+    t.calc_distance
     t
   end
   
