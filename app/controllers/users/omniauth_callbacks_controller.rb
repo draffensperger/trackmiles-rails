@@ -2,9 +2,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_filter :ensure_login
   
 	def google_oauth2
-	    # You need to implement the method below in your model (e.g. app/models/user.rb)
 	    @user = User.find_or_build_for_google_userinfo(
-	     request.env["omniauth.auth"][:info])
+	    request.env["omniauth.auth"][:info])
 	    credentials = request.env["omniauth.auth"][:credentials]
 	    @user.google_auth_token = credentials[:token]
 	    @user.google_auth_refresh_token = credentials[:refresh_token]
@@ -12,7 +11,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	    @user.remember_me = true
 	    
 	    # I do the sign_in first as it seems to save the record anyway
-	    # which then makes the save not repeat a database query.
+	    # which 
 	    sign_in @user	    
 	    @user.save
 
