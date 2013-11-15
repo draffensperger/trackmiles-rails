@@ -2,6 +2,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_filter :ensure_login
   
 	def google_oauth2
+	    logger.debug "Starting google_oauth2"
 	    @user = User.find_or_build_for_google_userinfo(
 	    request.env["omniauth.auth"][:info])
 	    credentials = request.env["omniauth.auth"][:credentials]
@@ -17,6 +18,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
 	    if @user.persisted?
 	      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Google"
+	      logger.debug "Redirecting from google_oauth2"
 	      redirect_to after_sign_in_path_for(@user), :event => :authentication
 	    else
 	      session["devise.google_data"] = request.env["omniauth.auth"]
