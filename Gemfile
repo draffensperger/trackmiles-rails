@@ -20,6 +20,7 @@ gem 'geocoder'
 gem 'activerecord-import', '~>0.4.1'
 gem 'figaro'
 gem 'gon'
+gem 'http_logger'
 
 gem 'sass-rails'
 gem 'coffee-rails'
