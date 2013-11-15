@@ -40,47 +40,47 @@ describe User do
       User.should_receive(:get_userinfo_for_google_token)
         .with(@token).and_return(@userinfo_valid)
         
-      User.should_receive(:find_or_create_for_google_userinfo)
+      User.should_receive(:find_or_build_for_google_userinfo)
         .with(@userinfo_valid).and_return(@user)
       
-      User.find_or_create_for_google_token(@token).should eq(@user)
+      User.find_or_build_for_google_token(@token).should eq(@user)
     end
   end
   
   describe "finding or creating a user from google userinfo" do
-    def check_find_or_create_for_userinfo() 
-      @result = User.find_or_create_for_google_userinfo(@userinfo_valid)
+    def check_find_or_build_for_userinfo() 
+      @result = User.find_or_build_for_google_userinfo(@userinfo_valid)
       @result.provider.should eq(@user.provider)      
       @result.uid.should eq(@user.uid)
       @result.name.should eq(@user.name)
-      @result.email.should eq(@user.email)
-      @result.new_record?.should eq(false)
+      @result.email.should eq(@user.email)      
     end
             
-    it "creates a user if it doesn't exist yet" do
-      check_find_or_create_for_userinfo()
+    it "builds a user if it doesn't exist yet" do
+      check_find_or_build_for_userinfo()
       
       # A new user should from a Google auth token should have google as its
       # login provider.
       @result.provider.should eq('google')
+      @result.new_record?.should eq(true)
     end
     
     it "looks up the user if it does exist" do
       created_user = create(:user)
-      check_find_or_create_for_userinfo()
-      @result.id.should == created_user.id            
+      check_find_or_build_for_userinfo()
+      @result.id.should == created_user.id         
     end
     
     it "returns nil if the userinfo is nil" do
-      User.find_or_create_for_google_userinfo(nil).should eq(nil)
+      User.find_or_build_for_google_userinfo(nil).should eq(nil)
     end
     
     it "returns nil if the userinfo lacks an email" do
-      User.find_or_create_for_google_userinfo({name: 'name only'})
+      User.find_or_build_for_google_userinfo({name: 'name only'})
         .should eq(nil)
-      User.find_or_create_for_google_userinfo({name: 'n', email: nil})
+      User.find_or_build_for_google_userinfo({name: 'n', email: nil})
         .should eq(nil)
-      User.find_or_create_for_google_userinfo({name: 'n', email: ""})
+      User.find_or_build_for_google_userinfo({name: 'n', email: ""})
         .should eq(nil)
     end
   end

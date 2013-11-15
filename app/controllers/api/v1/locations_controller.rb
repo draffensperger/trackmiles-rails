@@ -19,6 +19,9 @@ class Api::V1::LocationsController < Api::V1::BaseController
       num_created = current_user.locations.count - old_num_locs
     end
     
+    # Calculate the new trips as new locations are uploaded
+    TripSeparator.new(current_user).calc_and_save_trips
+    
     render json: {num_created_locations: num_created}     
   end
 end

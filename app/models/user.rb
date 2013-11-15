@@ -10,14 +10,14 @@ class User < ActiveRecord::Base
   has_one :trip_separator_region
   
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
-    find_or_create_for_google_userinfo(access_token.info)
+    find_or_build_for_google_userinfo(access_token.info)
   end
   
-  def self.find_or_create_for_google_token(token)
-    find_or_create_for_google_userinfo(get_userinfo_for_google_token(token))
+  def self.find_or_build_for_google_token(token)
+    find_or_build_for_google_userinfo(get_userinfo_for_google_token(token))
   end
   
-  def self.find_or_create_for_google_userinfo(userinfo)
+  def self.find_or_build_for_google_userinfo(userinfo)
     if userinfo.nil? or not userinfo.has_key?("email") or 
       userinfo["email"].nil? or userinfo["email"] == "" 
       
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
     
     user = User.where(:email => userinfo["email"]).first
     unless user
-      user = User.create(
+      user = User.new(
         name: userinfo["name"], 
         email: userinfo["email"],
         provider: 'google',
