@@ -59,6 +59,8 @@ module Miletracker
     
     ActionMailer::Base.default from: ENV['SERVER_FROM_EMAIL']
     
+    HttpLogger.ignore = [/newrelic\.com/]
+    
     config.action_mailer.smtp_settings = {
      :address => ENV['SMTP_SERVER'],
      :port => ENV['SMTP_PORT'],
