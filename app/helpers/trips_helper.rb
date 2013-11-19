@@ -1,10 +1,11 @@
 module TripsHelper
   TIME_ZONE = "Eastern Time (US & Canada)"
   
-  def trip_date_header(trip, prev_trip)
-    if prev_trip.nil? || 
+  def trip_date_header(index, trips)
+    trip = trips[index]
+    if index == 0 ||
       trip.start_time.in_time_zone(TIME_ZONE).to_date !=
-      prev_trip.start_time.in_time_zone(TIME_ZONE).to_date
+      trips[index-1].start_time.in_time_zone(TIME_ZONE).to_date
       
       date = l trip.start_time.in_time_zone(TIME_ZONE)
         .to_date, format: "%A, %B %d, %Y"
