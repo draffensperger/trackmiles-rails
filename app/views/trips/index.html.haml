@@ -2,7 +2,7 @@
 %form.form-inline{class: 'trip-form', method: 'post'}
   %table
     - @trips.each_with_index do |t, i|
-      != trip_date_header t, @trips[i-1]              
+      != trip_date_header i, @trips              
       .form-group#trip-start-time
         = format_start_time t
       .form-group
