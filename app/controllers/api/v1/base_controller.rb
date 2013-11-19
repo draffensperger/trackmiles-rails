@@ -10,9 +10,10 @@ class Api::V1::BaseController < ApplicationController
       return false
     end
     
-    @current_user = User.find_or_create_for_google_token(google_token)
+    @current_user = User.find_or_build_for_google_token google_token
     if @current_user
       sign_in @current_user
+      @current_user.save
     else
       render_unauthorized 'Invalid access token' 
       return false
