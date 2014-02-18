@@ -1,6 +1,6 @@
 class TripsController < ApplicationController
-  def index 
-    TripSeparator.new(current_user).calc_and_save_trips
+  def index    
+    TripSeparatorWorker.perform_async(current_user.id)
     
     @trips = current_user.trips.where("start_place_id <> end_place_id")
       .order("start_time ASC")
