@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
   end
   
   def self.find_or_build_for_google_token(token)
-    find_or_build_for_google_userinfo(get_userinfo_for_google_token(token))
+    find_or_build_for_google_userinfo(
+      get_userinfo_for_google_token(token))
   end
   
   def self.find_or_build_for_google_userinfo(userinfo)

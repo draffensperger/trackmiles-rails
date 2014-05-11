@@ -1,13 +1,13 @@
 module TripsHelper
-  TIME_ZONE = "Eastern Time (US & Canada)"
-  
   def trip_date_header(index, trips)
+    default_tz = "Eastern Time (US & Canada)"
+    
     trip = trips[index]
     if index == 0 ||
-      trip.start_time.in_time_zone(TIME_ZONE).to_date !=
-      trips[index-1].start_time.in_time_zone(TIME_ZONE).to_date
+      trip.start_time.in_time_zone(default_tz).to_date !=
+      trips[index-1].start_time.in_time_zone(default_tz).to_date
       
-      date = l trip.start_time.in_time_zone(TIME_ZONE)
+      date = l trip.start_time.in_time_zone(default_tz)
         .to_date, format: "%A, %B %d, %Y"
       "<hr><b>#{date}</b><br><br>"
     end  

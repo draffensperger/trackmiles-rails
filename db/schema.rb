@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20131110144352) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "calendar_users", force: true do |t|
     t.integer  "user_id"
     t.integer  "calendar_id"
@@ -23,12 +26,14 @@ ActiveRecord::Schema.define(version: 20131110144352) do
     t.boolean  "selected"
     t.string   "access_role"
     t.boolean  "primary"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "summary_override"
   end
 
   add_index "calendar_users", ["calendar_id", "user_id"], name: "index_calendar_users_on_calendar_id_and_user_id", unique: true, using: :btree
+  add_index "calendar_users", ["calendar_id"], name: "index_calendar_users_on_calendar_id", using: :btree
+  add_index "calendar_users", ["user_id"], name: "index_calendar_users_on_user_id", using: :btree
 
   create_table "calendars", force: true do |t|
     t.string   "etag",                   default: "", null: false
@@ -36,8 +41,8 @@ ActiveRecord::Schema.define(version: 20131110144352) do
     t.string   "summary",                default: "", null: false
     t.text     "description"
     t.string   "location"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "time_zone"
     t.datetime "last_synced"
     t.string   "last_synced_user_email"
@@ -57,8 +62,8 @@ ActiveRecord::Schema.define(version: 20131110144352) do
     t.string   "gcal_event_id",                 default: "",                    null: false
     t.string   "status",                        default: "",                    null: false
     t.text     "html_link",                     default: "",                    null: false
-    t.datetime "created",                       default: '2013-08-18 23:14:35', null: false
-    t.datetime "updated",                       default: '2013-08-18 23:14:35', null: false
+    t.datetime "created",                       default: '2014-05-11 13:52:28', null: false
+    t.datetime "updated",                       default: '2014-05-11 13:52:28', null: false
     t.string   "summary",                       default: "",                    null: false
     t.text     "description"
     t.text     "location"
@@ -89,8 +94,8 @@ ActiveRecord::Schema.define(version: 20131110144352) do
     t.string   "hangout_link"
     t.datetime "start_datetime_utc"
     t.datetime "end_datetime_utc"
-    t.datetime "created_at",                                                    null: false
-    t.datetime "updated_at",                                                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "private_copy"
     t.boolean  "locked"
     t.string   "source_url"
@@ -107,6 +112,7 @@ ActiveRecord::Schema.define(version: 20131110144352) do
   end
 
   add_index "events", ["calendar_id", "gcal_event_id"], name: "index_events_on_calendar_id_and_gcal_event_id", unique: true, using: :btree
+  add_index "events", ["calendar_id"], name: "index_events_on_calendar_id", using: :btree
   add_index "events", ["end_datetime_utc"], name: "index_events_on_end_datetime_utc", using: :btree
   add_index "events", ["start_datetime_utc"], name: "index_events_on_start_datetime_utc", using: :btree
 
@@ -120,8 +126,8 @@ ActiveRecord::Schema.define(version: 20131110144352) do
     t.float    "accuracy"
     t.float    "speed"
     t.float    "bearing"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.float    "n_vector_x"
     t.float    "n_vector_y"
     t.float    "n_vector_z"
@@ -160,13 +166,6 @@ ActiveRecord::Schema.define(version: 20131110144352) do
   create_table "states", force: true do |t|
     t.string   "name"
     t.integer  "country_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "trip_events", force: true do |t|
-    t.integer  "trip_id"
-    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -219,8 +218,8 @@ ActiveRecord::Schema.define(version: 20131110144352) do
   add_index "trips", ["user_id"], name: "index_trips_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "email",                     default: "", null: false
     t.string   "encrypted_password",        default: "", null: false
     t.string   "reset_password_token"
