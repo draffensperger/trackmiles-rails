@@ -14,7 +14,6 @@ module TripsHelper
   end
   
   def format_start_time(t)
-<<<<<<< HEAD
     default_tz = "Eastern Time (US & Canada)"
 
     start_meridian = meridian t.start_time.in_time_zone(default_tz)
@@ -23,25 +22,12 @@ module TripsHelper
       start_meridian = ""
     end
     l(t.start_time.in_time_zone(default_tz), format: '%l:%M').strip +
-=======
-    start_meridian = meridian t.start_time.in_time_zone(TIME_ZONE)
-    end_meridian = meridian t.end_time.in_time_zone(TIME_ZONE)
-    if start_meridian == end_meridian
-      start_meridian = ""
-    end
-    l(t.start_time.in_time_zone(TIME_ZONE), format: '%l:%M').strip +
->>>>>>> c5971f9c0802f3c56c73255cf46a3eae800c26fd
       start_meridian
   end
   
   def format_end_time(t)
-<<<<<<< HEAD
     l(t.end_time.in_time_zone(default_tz), format: '%l:%M').strip +
       meridian(t.end_time.in_time_zone(default_tz))
-=======
-    l(t.end_time.in_time_zone(TIME_ZONE), format: '%l:%M').strip + 
-      meridian(t.end_time.in_time_zone(TIME_ZONE))
->>>>>>> c5971f9c0802f3c56c73255cf46a3eae800c26fd
   end
   
   def format_miles(miles)

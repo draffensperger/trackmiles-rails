@@ -58,7 +58,7 @@ describe Trip do
       latitude: 42.3711579, longitude: -71.2391439),            
       end_place: Place.new(latitude: 43.0, longitude: -72.0)
     
-    GoogleMapsApi.should_receive(:distance)
+    MapQuestApi.should_receive(:distance)
       .with("42.3711579,-71.2391439","43.0,-72.0")
       .and_return 10
       
