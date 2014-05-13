@@ -1,4 +1,4 @@
-module GoogleApiHelpers
+module ApiHelpers
   def get_and_parse(url, params)
     parse_result RestClient.get url, :params => params
   end

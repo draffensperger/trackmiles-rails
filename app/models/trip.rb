@@ -38,7 +38,7 @@ class Trip < ActiveRecord::Base
   
   def calc_distance
     self.distance = 
-      GoogleMapsApi.distance "#{start_place.latitude},#{start_place.longitude}",
+      MapQuestApi.distance "#{start_place.latitude},#{start_place.longitude}",
         "#{end_place.latitude},#{end_place.longitude}"
   end
 end
