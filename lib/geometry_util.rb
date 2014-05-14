@@ -8,7 +8,7 @@ module GeometryUtil
     dz = p1.z - p2.z
     dx*dx + dy*dy + dz*dz
   end
-  
+
   def as_radians(degrees)
     degrees / 180.0 * PI
   end
@@ -28,5 +28,15 @@ module GeometryUtil
       end
     end
     [closest, closest_dist]
+  end
+
+  def degrees_sq_dist(l1, l2)
+    d_lat = l1.latitude - l2.latitude
+    d_long = l1.longitude - l2.longitude
+    d_lat * d_lat + d_long * d_long
+  end
+
+  def closest_by_degrees_sq(query_loc, locations)
+    locations.min_by { |l| degrees_sq_dist(l, query_loc) }
   end
 end

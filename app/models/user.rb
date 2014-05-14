@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
   end
 
   def place_for_location(loc)
-    lookup_place_for_location(loc) or create_place_for_location(loc)
+    nearest_place_at(loc) or create_place_for_location(loc)
   end
 
   def create_place_for_location(loc)
@@ -68,19 +68,12 @@ class User < ActiveRecord::Base
     0.5
   end
 
-  def near_places(loc)
+  def places_at(loc)
     self.places.near [loc.latitude, loc.longitude], same_place_radius_km
   end
 
-  def lookup_place_for_location(loc)
-    return nil
-
-    if near_places.length > 0
-      # should get nearest but implement that later
-      near_places.first
-    else
-      nil
-    end
+  def nearest_place_at(loc)
+    GeometryUtil.closest_by_degrees_sq loc, places_at(loc)
   end
 
   def sync_calendars

@@ -124,7 +124,7 @@ describe User do
     it 'should not create place if find succeeds' do
       loc = double
       place = double
-      @user.should_receive(:lookup_place_for_location).with(loc).and_return(place)
+      @user.should_receive(:nearest_place_at).with(loc).and_return(place)
       @user.should_not_receive(:create_place_for_location)
       @user.place_for_location(loc).should eq place
     end
@@ -132,7 +132,7 @@ describe User do
     it 'should create place if find fails' do
       loc = double
       place = double
-      @user.should_receive(:lookup_place_for_location).with(loc).and_return(nil)
+      @user.should_receive(:nearest_place_at).with(loc).and_return(nil)
       @user.should_receive(:create_place_for_location).and_return(place)
       @user.place_for_location(loc).should eq place
     end
@@ -149,22 +149,39 @@ describe User do
       @user.create_place_for_location(loc).should eq place
     end
 
-    it 'should find near places but only for that user' do
-      user = create :user
-      home = create :home, user: user
-      home2 = create :home2, user: user
-      create :far_away, user: user
+  end
+
+  describe 'find places for user at location' do
+    before do
+      @user = create :user
+      @home = create :home, user: @user
+      @home2 = create :home2, user: @user
+      create :far_away, user: @user
       create :home, user: create(:user2)
 
-      user.should_receive(:same_place_radius_km).and_return 0.5
+      @loc = build(:trip_separator_area)
+      @loc.latitude = @home.latitude
+      @loc.longitude = @home.longitude
+    end
 
-      loc = double
-      loc.should_receive(:latitude).and_return home.latitude
-      loc.should_receive(:longitude).and_return home.longitude
-      near_places = user.near_places loc
+    it 'should find places but only for that user' do
+      @user.should_receive(:same_place_radius_km).and_return 0.5
+      near_places = @user.places_at @loc
       near_places.length.should eq 2
-      near_places.should include(home)
-      near_places.should include(home2)
+      near_places.should include(@home)
+      near_places.should include(@home2)
+    end
+
+    describe 'nearest place at' do
+      it 'should return nil if no near same places' do
+        @user.should_receive(:places_at).with(@loc).and_return([])
+        @user.nearest_place_at(@loc).should be_nil
+      end
+
+      it 'should find neareast place' do
+        @user.should_receive(:places_at).with(@loc).and_return([@home, @home2])
+        @user.nearest_place_at(@loc).should eq @home
+      end
     end
   end
 end
