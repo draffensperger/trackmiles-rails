@@ -1,22 +1,12 @@
 class TripsController < ApplicationController
   def index    
     TripSeparatorWorker.perform_async(current_user.id)
-    
-    @trips = current_user.trips.where("start_place_id <> end_place_id")
-      .order("start_time ASC")
-    @trips.each do |t|
-      unless t.distance
-        t.calc_distance
-        t.save
-      end
-      
-      unless t.purpose
-        t.purpose = t.default_trip_purpose
-        t.save
-      end
-    end
+
+    @trips = current_user.trips.includes(:start_place).includes(:end_place)
+      .where('start_place_id <> end_place_id').order('start_time DESC')
+      .limit(100)
   end
-  
+
   def reimburse
     trips_attrs = []
     prefix = 'reimburse_'
