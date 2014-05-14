@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131110144352) do
+ActiveRecord::Schema.define(version: 20140514180905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(version: 20131110144352) do
     t.string   "gcal_event_id",                 default: "",                    null: false
     t.string   "status",                        default: "",                    null: false
     t.text     "html_link",                     default: "",                    null: false
-    t.datetime "created",                       default: '2014-05-11 13:52:28', null: false
-    t.datetime "updated",                       default: '2014-05-11 13:52:28', null: false
+    t.datetime "created",                       default: '2013-11-15 14:49:26', null: false
+    t.datetime "updated",                       default: '2013-11-15 14:49:26', null: false
     t.string   "summary",                       default: "",                    null: false
     t.text     "description"
     t.text     "location"
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(version: 20131110144352) do
     t.string   "accuracy_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "states", force: true do |t|

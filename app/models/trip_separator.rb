@@ -34,15 +34,18 @@ class TripSeparator
     end
     trips
   end    
-  
+
+  def self.driving_distance(from,to)
+    MapQuestApi.distance("#{from.latitude},#{from.longitude}",
+                         "#{to.latitude},#{to.longitude}")
+  end
+
   def trip_from_origin_and_dest(origin, dest)
-    t = Trip.new user: @user, from_phone: true,
+    Trip.new user: @user, from_phone: true,
       start_time: origin.last_time, end_time: dest.first_time,
-      start_place: Place.for_location(origin), 
-      end_place: Place.for_location(dest)
-    #t.distance = dist_m origin, dest
-    t.calc_distance
-    t
+      start_place: @user.place_for_location(origin),
+      end_place: @user.place_for_location(dest),
+      distance: TripSeparator.driving_distance(origin, dest)
   end
   
   def is_stop?(area)

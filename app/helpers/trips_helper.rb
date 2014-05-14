@@ -26,6 +26,8 @@ module TripsHelper
   end
   
   def format_end_time(t)
+    default_tz = "Eastern Time (US & Canada)"
+
     l(t.end_time.in_time_zone(default_tz), format: '%l:%M').strip +
       meridian(t.end_time.in_time_zone(default_tz))
   end

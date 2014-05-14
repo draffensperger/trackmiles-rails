@@ -35,10 +35,4 @@ class Trip < ActiveRecord::Base
   def distance_in_miles
     self.distance ? self.distance / 1609.34 : nil
   end
-  
-  def calc_distance
-    self.distance =
-      MapQuestApi.distance "#{start_place.latitude},#{start_place.longitude}",
-        "#{end_place.latitude},#{end_place.longitude}"
-  end
 end
