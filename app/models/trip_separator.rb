@@ -11,12 +11,14 @@ class TripSeparator
   end
   
   def calc_and_save_trips
-    Trip.import get_trips 
-    @user.trip_separator_region = @region 
-    @user.save
+    ActiveRecord::Base.transaction do
+      Trip.import get_trips
+      @user.trip_separator_region = @region
+      @user.save
+    end
   end
   
-  def locations_for_user
+  def unprocessed_locations
     @region = @user.trip_separator_region
     if @region
       @user.locations.where('recorded_time > ?', @region.last_time)
@@ -66,7 +68,7 @@ class TripSeparator
   
   def visited_regions
     @visited_regions = []
-    locations_for_user.each {|l| add_location l}
+    unprocessed_locations.each {|l| add_location l}
     @visited_regions.push @region if @region
     @visited_regions
   end  

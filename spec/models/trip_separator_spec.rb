@@ -82,7 +82,7 @@ describe TripSeparatorRegion do
   
   describe 'visited_regions' do    
     it 'should handle the no locations case correctly' do
-      @s.should_receive(:locations_for_user).and_return []
+      @s.should_receive(:unprocessed_locations).and_return []
       @s.visited_regions.should eq []
     end    
     
@@ -100,7 +100,7 @@ describe TripSeparatorRegion do
       locs = 4.times.map {|i| 'loc'+i.to_s}
       regions = 2.times.map {|i| build_stubbed(:trip_separator_region)}
       
-      @s.should_receive(:locations_for_user).and_return locs
+      @s.should_receive(:unprocessed_locations).and_return locs
       
       expect_new_region regions[0], locs[0]
       expect_add_loc regions[0], locs[0], true

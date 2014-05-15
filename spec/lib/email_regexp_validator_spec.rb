@@ -1,5 +1,5 @@
 describe EmailRegexpValidator do 
-  include EmailRegexpValidator 
+  include EmailRegexpValidator
   it "should have valid_email?" do
     valid_email?("test@test.com").should eq true
     valid_email?("test\n@test.com").should eq false
