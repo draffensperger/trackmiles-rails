@@ -22,9 +22,9 @@ class TripSeparator
     @region = @user.trip_separator_region
     if @region
       @user.locations.where('recorded_time > ?', @region.last_time)
-        .all(:order => 'recorded_time')
+        .order(:recorded_time)
     else
-      @user.locations.all(:order => 'recorded_time')
+      @user.locations.order(:recorded_time)
     end                 
   end
   

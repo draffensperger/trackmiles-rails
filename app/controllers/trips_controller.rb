@@ -1,8 +1,7 @@
 class TripsController < ApplicationController
   def index
     @trips = current_user.trips.includes(:start_place).includes(:end_place)
-      .where('start_place_id <> end_place_id').order('start_time DESC')
-      .limit(100)
+      .where('start_place_id <> end_place_id').order('start_time ASC')
   end
 
   def reimburse

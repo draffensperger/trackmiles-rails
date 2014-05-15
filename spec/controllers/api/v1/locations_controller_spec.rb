@@ -15,30 +15,4 @@ describe Api::V1::LocationsController, :type => :controller do
     response.should be_success
     response.body.should == {num_created_locations: 1}.to_json
   end
-
-  describe 'post sample data and correctly separate trips' do
-    def post_locations_expect_trips(locs, trips)
-      Sidekiq::Testing.inline! do
-        post :bulk_create, google_token: stub_google_token, locations: locs
-      end
-      response.should be_success
-      response.body.should == {num_created_locations: locs.length}.to_json
-
-      user_for_stubbed_login.trips.length.should eq trips.length
-      trips.each do |t|
-        user_for_stubbed_login.trips.should.include? t
-      end
-    end
-
-    def post_locations_expect_trips_csv(dataset)
-      dir = 'spec/data/trip_separation/' + dataset + '/'
-      post_locations_expect_trips(
-          CSVActiveRecordBuilder::build('Location', dir + 'locations.csv'),
-          CSVActiveRecordBuilder::build('Trip', dir + 'trips.csv'))
-    end
-
-    it 'should correctly separate trips for sample data' do
-      post_locations_expect_trips_csv 'day1'
-    end
-  end
 end

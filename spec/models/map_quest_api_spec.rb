@@ -5,6 +5,7 @@ describe MapQuestApi do
     @url = 'http://open.mapquestapi.com/directions/v2/route'
     @query = {'key' => ENV['MAPQUEST_API_KEY'],
              'unit' => 'k',
+             'routeType' => 'shortest',
              'from' => '38.8941,-77.07556',
              'to' => '38.84458,-77.07823'}
   end

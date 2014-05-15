@@ -53,7 +53,7 @@ end
 
 group :test do
   gem 'webmock'
-  gem 'autotest-rails'
+  gem 'rspec-autotest'
   gem 'spork-rails', :git => 'git://github.com/sporkrb/spork-rails.git'
   gem 'guard-spork' 
 end

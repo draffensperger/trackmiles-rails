@@ -33,6 +33,6 @@ class Trip < ActiveRecord::Base
   end
   
   def distance_in_miles
-    self.distance ? self.distance / 1609.34 : nil
+    self.distance ? self.distance / 1.60934 : nil
   end
 end
