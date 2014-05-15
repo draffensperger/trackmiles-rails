@@ -75,5 +75,16 @@ describe Location do
       Location.bulk_create(@user, []).should eq(0)
       Location.bulk_create(@user, nil).should eq(0)
     end
+
+    describe 'bulk create and process' do
+      it 'should initiate trip separator worker' do
+        attrs = attributes_for(:loc_no_user1)
+        Location.should_receive(:bulk_create).with(@user, [attrs]).and_return(1)
+        expect {
+          TripSeparatorWorker.perform_async(@user.id)
+        }.to change(TripSeparatorWorker.jobs, :size).by(1)
+        Location.bulk_create_and_process(@user, [attrs]).should eq(1)
+      end
+    end
   end
 end

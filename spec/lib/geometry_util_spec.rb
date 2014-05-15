@@ -32,28 +32,23 @@ describe GeometryUtil do
 
   it 'should find degrees squared between items' do
     l1 = double
-    l1.should_receive(:latitude).and_return 26.0
-    l1.should_receive(:longitude).and_return -82.0
+    l1.stub latitude: 26.0, longitude: -82.0
 
     l2 = double
-    l2.should_receive(:latitude).and_return 24.0
-    l2.should_receive(:longitude).and_return -79.0
+    l2.stub latitude: 24.0, longitude: -79.0
 
     GeometryUtil.degrees_sq_dist(l1, l2).should be_within(delta).of(13.0)
   end
 
   it 'should find closest point by degrees squared' do
     l1 = double
-    l1.should_receive(:latitude).any_number_of_times.and_return 26.0
-    l1.should_receive(:longitude).any_number_of_times.and_return -82.0
+    l1.stub latitude: 26.0, longitude: -82.0
 
     l2 = double
-    l2.should_receive(:latitude).any_number_of_times.and_return 24.0
-    l2.should_receive(:longitude).any_number_of_times.and_return -79.0
+    l2.stub latitude: 24.0, longitude: -79.0
 
     l = double
-    l.should_receive(:latitude).any_number_of_times.and_return 24.2
-    l.should_receive(:longitude).any_number_of_times.and_return -80
+    l.stub latitude: 24.2, longitude: -80.0
 
     GeometryUtil.closest_by_degrees_sq(l, [l1, l2]).should eq l2
   end

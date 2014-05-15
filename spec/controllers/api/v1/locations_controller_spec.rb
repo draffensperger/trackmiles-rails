@@ -9,7 +9,7 @@ describe Api::V1::LocationsController, :type => :controller do
     attrs.each {|k,v| attrs[k] = v.to_s}
 
     token = stub_google_token
-    Location.should_receive(:bulk_create)
+    Location.should_receive(:bulk_create_and_process)
       .with(user_for_stubbed_login, [attrs]).and_return(1)
     post :bulk_create, google_token: token, locations: [attrs]
     response.should be_success

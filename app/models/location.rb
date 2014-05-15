@@ -12,6 +12,12 @@ class Location < ActiveRecord::Base
     calc_n_vector if n_vector_x.nil?
   end
 
+  def self.bulk_create_and_process(user, locations_attrs)
+    num_created = bulk_create(user, locations_attrs)
+    TripSeparatorWorker.perform_async(user.id)
+    num_created
+  end
+
   def self.bulk_create(user, locations_attrs)
     if locations_attrs.nil? or locations_attrs.length == 0
       num_created = 0
