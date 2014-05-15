@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :trips
   has_many :places
   has_many :calendars, through: :calendar_users
-  has_one :trip_separator_region
+  has_one :trip_separator_region, autosave: true
   
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     find_or_build_for_google_userinfo(access_token.info)

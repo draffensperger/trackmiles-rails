@@ -1,8 +1,9 @@
 class TripSeparatorRegion < ActiveRecord::Base
   include GeocodeUtil
   belongs_to :user
-  has_many :areas, class_name: "TripSeparatorArea", :dependent => :delete_all
-  belongs_to :anchor_area, class_name: "TripSeparatorArea"
+  has_many :areas, class_name: 'TripSeparatorArea', :dependent => :delete_all,
+           autosave: true
+  belongs_to :anchor_area, class_name: 'TripSeparatorArea', autosave: true
   alias_attribute :anchor, :anchor_area
   
   attr_accessor :loc_to_add, :anchor_dist
