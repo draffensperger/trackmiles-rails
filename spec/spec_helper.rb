@@ -9,15 +9,15 @@ end
 
 Spork.prefork do
   # This file is copied to spec/ when you run 'rails generate rspec:install'
-  ENV["RAILS_ENV"] ||= 'test'
-  require File.expand_path("../../config/environment", __FILE__)
+  ENV['RAILS_ENV'] ||= 'test'
+  require File.expand_path('../../config/environment', __FILE__)
   require 'rspec/rails'
   require 'rspec/autorun'
   require 'webmock/rspec'  
   
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
-  Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
   
   RSpec.configure do |config|  
     config.include FactoryGirl::Syntax::Methods
@@ -49,7 +49,7 @@ Spork.prefork do
     # order dependency and want to debug it, you can fix the order by providing
     # the seed, which is printed after each run.
     #     --seed 1234
-    config.order = "random"
+    config.order = 'random'
   end
 end
 
@@ -57,19 +57,19 @@ Spork.each_run do
   ActiveSupport::Dependencies.clear
   # This code will be run each time you run your specs.
   FactoryGirl.reload
-  #Dir[Rails.root.join("app/roles/**/*.rb")].each {|f| require f}
-  #Dir[Rails.root.join("../../lib/*.rb")].each {|f| require f}    
+  #Dir[Rails.root.join('app/roles/**/*.rb')].each {|f| require f}
+  #Dir[Rails.root.join('../../lib/*.rb')].each {|f| require f}    
 
   load "#{Rails.root}/config/routes.rb"
-  Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }  
+  Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }
 end if Spork.using_spork?
 
 def stub_invalid_google_token
-  stub_token_for_user "INVALID_GOOGLE_TOKEN", nil
+  stub_token_for_user 'INVALID_GOOGLE_TOKEN', nil
 end
 
 def stub_google_token(user = nil)
-  stub_token_for_user "GOOGLE_TOKEN", user || create(:user)
+  stub_token_for_user 'GOOGLE_TOKEN', user || create(:user)
 end
 
 def stub_token_for_user(token, user)

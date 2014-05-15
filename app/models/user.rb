@@ -20,17 +20,17 @@ class User < ActiveRecord::Base
   end
   
   def self.find_or_build_for_google_userinfo(userinfo)
-    if userinfo.nil? or not userinfo.has_key?("email") or 
-      userinfo["email"].nil? or userinfo["email"] == "" 
+    if userinfo.nil? or not userinfo.has_key?('email') or 
+      userinfo['email'].nil? or userinfo['email'] == '' 
       
       return nil
     end
     
-    user = User.where(:email => userinfo["email"]).first
+    user = User.where(:email => userinfo['email']).first
     unless user
       user = User.new(
-        name: userinfo["name"], 
-        email: userinfo["email"],
+        name: userinfo['name'], 
+        email: userinfo['email'],
         provider: 'google',
         password: Devise.friendly_token[0,20]
         )
@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   end
   
   def self.get_userinfo_for_google_token(token)  
-    url = "https://www.googleapis.com/oauth2/v1/userinfo"
+    url = 'https://www.googleapis.com/oauth2/v1/userinfo'
     
     begin
       JSON.parse RestClient.get url, :params => {:access_token => token}      
