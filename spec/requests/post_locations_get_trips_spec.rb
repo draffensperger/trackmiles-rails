@@ -24,16 +24,17 @@ describe 'post sample data and correctly separate trips' do
     end
   end
 
-  def post_locations_expect_trips(dataset, batch_size, sidekiq_run_on_nth)
+  def post_locations_expect_trips(dataset, batch_size, worker_run_on_nth)
     data_dir = "spec/data/trip_separation/#{dataset}/"
+    trip_attrs = CSVUtil.load_as_hashes(data_dir + 'trips.csv')
     all_locs = CSVUtil.load_as_hashes(data_dir + 'locations.csv')
 
-    batches = all_locs.each_slice(batch_size).with_index do |(*locs), i|
+    all_locs.each_slice(batch_size).with_index do |(*locs), i|
       post '/api/v1/locations/bulk_create',google_token: @token,locations: locs
       response.should be_success
       response.body.should == {num_created_locations: locs.length}.to_json
 
-      if sidekiq_run_on_nth and (i + 1) % sidekiq_run_on_nth == 0
+      if worker_run_on_nth and (i + 1) % worker_run_on_nth == 0
         TripSeparatorWorker.drain
       end
     end
@@ -42,14 +43,14 @@ describe 'post sample data and correctly separate trips' do
     get trips_path
     response.should be_success
 
-    check_trips assigns(:trips), CSVUtil.load_as_hashes(data_dir + 'trips.csv')
+    check_trips assigns(:trips), trip_attrs
   end
 
-  it 'should separate trips for day 1 data loaded at once' do
+  it 'separates day 1 trips, locations loaded at once' do
     post_locations_expect_trips 'day1', 1000000, nil
   end
 
-  it 'should separate day 1, batches of 32 locs, sidekiq every 4 batches' do
+  it 'separates day 1 trips, locations in batches, worker every 4 batches' do
     post_locations_expect_trips 'day1', 32, 4
   end
 end

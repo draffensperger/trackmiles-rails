@@ -8,7 +8,13 @@ class User < ActiveRecord::Base
   has_many :trips
   has_many :places
   has_many :calendars, through: :calendar_users
+
+  #has_many :trip_separator_regions, autosave: true
   has_one :trip_separator_region, autosave: true
+  belongs_to :last_stop_region, :class_name => 'TripSeparatorRegion',
+             :foreign_key => 'last_stop_region_id'
+  belongs_to :current_region, :class_name => 'TripSeparatorRegion',
+             :foreign_key => 'current_region_id'
   
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     find_or_build_for_google_userinfo(access_token.info)
