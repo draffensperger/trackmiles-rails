@@ -83,7 +83,8 @@ Devise.setup do |config|
 
   puts 'showing file in Devise config'
   puts File
-  #config.secret_key = ENV['DEVISE_SECRET_KEY']
+
+  config.secret_key = ENV['DEVISE_SECRET_KEY'] || 'allows rake assets:precompile task without ENV'
 
   # Setup a pepper to generate the encrypted password.
   # config.pepper = "aa88ebc27f21766eadd74779689e59516b980663c00c09fe26ccd681043fc91bef0b72950e74396a44f5ed71a3aec71d59f725a6a6b1c9ccc9f9e0eaab346a93"
