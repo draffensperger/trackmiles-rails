@@ -1,11 +1,8 @@
 source 'https://rubygems.org'
 
-#ruby '2.0.0'
-#ruby '1.9.3'
-
 gem 'rails'
 gem 'devise'
-gem 'omniauth-google-oauth2', git: 'git://github.com/zquestz/omniauth-google-oauth2.git'
+gem 'omniauth-google-oauth2'
 gem 'jquery-rails'
 gem 'haml'
 gem 'haml-rails'

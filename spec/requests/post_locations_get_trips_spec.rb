@@ -36,13 +36,13 @@ describe 'post sample data and correctly separate trips' do
 
       if worker_run_on_nth and (i + 1) % worker_run_on_nth == 0
         TripSeparatorWorker.drain
+        #Process.wait
       end
     end
     TripSeparatorWorker.drain
 
     get trips_path
     response.should be_success
-
     check_trips assigns(:trips), trip_attrs
   end
 
