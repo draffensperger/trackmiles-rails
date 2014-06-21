@@ -1,4 +1,2 @@
 ---
-:concurrency: 2
-:queues:
-  - default
+:concurrency: 1
