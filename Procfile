@@ -1,2 +1,2 @@
-web: bundle exec passenger start -p 5000
-worker: bundle exec sidekiq -c 10
+web: bundle exec unicorn_rails -l 5000
+worker: bundle exec sidekiq -c 4
