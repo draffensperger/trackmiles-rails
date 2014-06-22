@@ -1,1 +1,1 @@
-web: bundle exec puma -p 5000 -w 1 -t 0:4
+web: bundle exec unicorn_rails -l 5000
