@@ -62,6 +62,7 @@ GEM
     connection_pool (2.0.0)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
+    daemon_controller (1.2.0)
     daemons (1.1.9)
     devise (3.2.4)
       bcrypt (~> 3.0)
@@ -157,6 +158,10 @@ GEM
       oauth2 (~> 0.9.3)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
+    passenger (4.0.45)
+      daemon_controller (>= 1.2.0)
+      rack
+      rake (>= 0.8.1)
     pg (0.17.1)
     polyglot (0.3.4)
     pry (0.9.12.6)
@@ -314,6 +319,7 @@ DEPENDENCIES
   libv8
   newrelic_rpm
   omniauth-google-oauth2
+  passenger
   pg
   puma
   rails

@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.1.2'
 
 gem 'rails'
 gem 'devise'
@@ -32,6 +33,7 @@ gem 'activerecord-jdbcpostgresql-adapter', :platforms => :jruby
 gem 'puma'  
 gem 'thin', :platforms => :ruby
 gem 'unicorn', :platforms => :ruby
+gem 'passenger'
 
 gem 'newrelic_rpm'
   
