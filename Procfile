@@ -1,1 +1,1 @@
-web: bundle exec thin start -p $PORT --threaded --threadpool-size 10
+web: bundle exec thin start -p $PORT
