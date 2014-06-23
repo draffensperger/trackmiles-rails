@@ -1,1 +1,1 @@
-web: bundle exec puma -p $PORT -w 1 -t 4:4
+web: bundle exec thin -p $PORT
