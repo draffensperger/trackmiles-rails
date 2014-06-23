@@ -1,1 +1,1 @@
-web: bundle exec puma -p $PORT -t 8:8
+web: bundle exec thin start -p $PORT --threaded --threadpool-size 10
