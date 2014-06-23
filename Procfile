@@ -1,1 +1,1 @@
-web: bundle exec puma -p 5000 -w 1 -t 4:4
+web: $WEB_PROCESS
