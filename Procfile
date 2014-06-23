@@ -1,1 +1,1 @@
-web: bundle exec thin
+web: bundle exec thin start -p 5000
