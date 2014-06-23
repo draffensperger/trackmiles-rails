@@ -1,1 +1,1 @@
-web: $WEB_PROCESS
+web: bundle exec unicorn_rails -l 5000
