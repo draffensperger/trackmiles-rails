@@ -1,6 +1,11 @@
-worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
-timeout 15
+# Adapted from: https://raw.githubusercontent.com/gitlabhq/gitlabhq/master/config/unicorn.rb.example
+worker_processes Integer(ENV["WEB_CONCURRENCY"] || 2)
+timeout 30
 preload_app true
+GC.respond_to?(:copy_on_write_friendly=) and
+    GC.copy_on_write_friendly = true
+
+listen "0.0.0.0:5000"
 
 before_fork do |server, worker|
   Signal.trap 'TERM' do
