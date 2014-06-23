@@ -1,4 +1,4 @@
-class TripSeparatorArea < ActiveRecord::Base
+  class TripSeparatorArea < ActiveRecord::Base
   include GeocodeUtil
   
   attr_accessor :latitude, :longitude

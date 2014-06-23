@@ -1,1 +1,1 @@
-web: bundle exec passenger start -p 5000
+web: bundle exec puma -p 5000 -w 1 -t 4:4
