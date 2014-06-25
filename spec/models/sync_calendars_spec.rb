@@ -311,7 +311,7 @@ describe SyncCalendars do
       it "should store last synced info and request with timeMin" do
         @cal.save
         time_now = Time.now
-        Time.stub!(:now).and_return(time_now)
+        allow(Time).to receive(:now) { time_now }
         
         @user.google_api.should_receive(:calendar_events).with(@cal.gcal_id)
           .and_return items: []       

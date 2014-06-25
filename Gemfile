@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+
+# This is useful for the Dokku deployment, but centralizes the Ruby version
+ruby File.new('.ruby-version').read.chomp
 
 gem 'rails'
 gem 'devise'
@@ -33,7 +35,6 @@ gem 'activerecord-jdbcpostgresql-adapter', :platforms => :jruby
 gem 'puma'  
 gem 'thin', :platforms => :ruby
 gem 'unicorn', :platforms => :ruby
-gem 'passenger'
 
 gem 'newrelic_rpm'
   
@@ -47,12 +48,19 @@ group :development, :test do
   gem 'test-unit'
   
   gem 'libv8', :platforms => :ruby  
-  gem 'therubyracer', :platforms => :ruby 
+  gem 'therubyracer', :platforms => :ruby
+
+  gem 'ZenTest'
+
+  gem 'spring'
+  gem 'guard-spring'
 end
 
 group :test do
   gem 'webmock'
   gem 'rspec-autotest'
-  gem 'spork-rails', :git => 'git://github.com/sporkrb/spork-rails.git'
-  gem 'guard-spork' 
+  #gem 'spork', git: 'git://github.com/codecarson/spork'
+  #gem 'spork-rails', git: 'git://github.com/sporkrb/spork-rails.git'
+  #gem 'spork-rails'
+  #gem 'guard-spork'
 end

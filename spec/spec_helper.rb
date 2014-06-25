@@ -1,11 +1,32 @@
-require 'spork'
-
 # Not sure why this is necessary to work with spork, but it seems to be.
 # It raises an error if I run it in the debugger though.
 begin
   require 'hash_ext'
 rescue LoadError
 end
+
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../../config/environment', __FILE__)
+require 'rspec/rails'
+require 'rspec/autorun'
+require 'webmock/rspec'
+require 'sidekiq/testing'
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
+RSpec.configure do |config|
+  config.include FactoryGirl::Syntax::Methods
+  config.include Devise::TestHelpers, :type => :controller
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.use_transactional_fixtures = true
+  config.infer_base_class_for_anonymous_controllers = false
+  config.order = 'random'
+end
+
+load "#{Rails.root}/config/routes.rb"
+Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }
+
+=begin
+require 'spork'
 
 Spork.prefork do
   # This file is copied to spec/ when you run 'rails generate rspec:install'
@@ -64,6 +85,7 @@ Spork.each_run do
   load "#{Rails.root}/config/routes.rb"
   Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }
 end if Spork.using_spork?
+=end
 
 def stub_invalid_google_token
   stub_token_for_user 'INVALID_GOOGLE_TOKEN', nil

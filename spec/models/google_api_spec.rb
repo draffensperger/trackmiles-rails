@@ -136,7 +136,7 @@ describe GoogleApi do
       }
       
       time_now = Time.now
-      Time.stub!(:now).and_return(time_now)
+      allow(Time).to receive(:now) { time_now }
       
       stub = stub_request(:post, @refresh_url).with(body: @refresh_query)
         .to_return(body: response.to_json, status: 200)        
