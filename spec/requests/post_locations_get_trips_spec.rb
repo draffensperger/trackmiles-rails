@@ -1,11 +1,14 @@
 require File.expand_path('../../spec_helper', __FILE__)
 
 describe 'post sample data and correctly separate trips', type: :request do
+  self.use_transactional_fixtures = false
+
   before do
-    @token = stub_google_token
     WebMock.disable!
+    @token = stub_google_token
   end
   after do
+    ActiveRecord::Base.subclasses.each(&:delete_all)
     WebMock.enable!
   end
 
@@ -31,15 +34,14 @@ describe 'post sample data and correctly separate trips', type: :request do
 
     all_locs.each_slice(batch_size).with_index do |(*locs), i|
       post '/api/v1/locations/bulk_create', google_token: @token, locations: locs
-      #response.should be_success
-      #response.body.should == {num_created_locations: locs.length}.to_json
+      expect(response).to be_success
+      expect(response.body).to eq({num_created_locations: locs.length}.to_json)
 
       if worker_run_on_nth and (i + 1) % worker_run_on_nth == 0
-        TripSeparatorWorker.drain
-        #Process.wait
+        Async.wait_for_all_jobs
       end
     end
-    TripSeparatorWorker.drain
+    Async.wait_for_all_jobs
 
     get trips_path
     response.should be_success

@@ -1,4 +1,4 @@
-require File.expand_path("../../spec_helper", __FILE__)
+require File.expand_path('../../spec_helper', __FILE__)
 
 describe TripSeparatorArea do
   before do
@@ -7,7 +7,7 @@ describe TripSeparatorArea do
     @area = TripSeparatorArea.new_with_center @loc
   end
   
-  it "should initialize with center" do    
+  it 'should initialize with center' do    
     @area.first_time.should eq @loc.recorded_time
     @area.last_time.should eq @loc.recorded_time
     @area.x.should eq @loc.x
@@ -16,7 +16,7 @@ describe TripSeparatorArea do
     @area.num_locations.should eq 1
   end
   
-  it "should average new points" do
+  it 'should average new points' do
     loc2 = build(:loc_no_user2)
     loc2.calc_n_vector
     @area.add_location loc2

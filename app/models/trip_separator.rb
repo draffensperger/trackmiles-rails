@@ -11,8 +11,11 @@ class TripSeparator
   end
 
   def calc_and_save_trips
-    unprocessed_locations.each {|l| add_location l}
-    @user.save
+    until (locs = unprocessed_locations).empty?
+      Rails.logger.debug "Separating trips based on locations #{locs.inspect}"
+      locs.each {|l| add_location l}
+      @user.save
+    end
   end
 
   def unprocessed_locations

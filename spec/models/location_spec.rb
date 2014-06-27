@@ -80,9 +80,7 @@ describe Location do
       it 'should initiate trip separator worker' do
         attrs = attributes_for(:loc_no_user1)
         Location.should_receive(:bulk_create).with(@user, [attrs]).and_return(1)
-        expect {
-          TripSeparatorWorker.perform_async(@user.id)
-        }.to change(TripSeparatorWorker.jobs, :size).by(1)
+        expect(@user).to receive(:calc_and_save_trips_async)
         Location.bulk_create_and_process(@user, [attrs]).should eq(1)
       end
     end

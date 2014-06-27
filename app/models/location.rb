@@ -14,7 +14,7 @@ class Location < ActiveRecord::Base
 
   def self.bulk_create_and_process(user, locations_attrs)
     num_created = bulk_create(user, locations_attrs)
-    TripSeparatorWorker.perform_async(user.id)
+    user.calc_and_save_trips_async
     num_created
   end
 

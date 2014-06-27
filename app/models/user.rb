@@ -1,4 +1,6 @@
-class User < ActiveRecord::Base  
+class User < ActiveRecord::Base
+  include Async
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:google_oauth2]
@@ -89,5 +91,17 @@ class User < ActiveRecord::Base
 
   def google_api
     @google_api ||= GoogleApi.new(self)
+  end
+
+  def calc_and_save_trips_async
+    Rails.logger.debug "User.calc_and_save_trips_async"
+    async(:calc_and_save_trips)
+    #Thread.new do
+    #  calc_and_save_trips
+    #end
+  end
+  def calc_and_save_trips
+    Rails.logger.debug "User.calc_and_save_trips"
+    TripSeparator.new(self).calc_and_save_trips
   end
 end
