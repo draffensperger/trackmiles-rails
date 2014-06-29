@@ -1,6 +1,8 @@
 # TrackMiles
 Project to for Automating Cru Mileage Reimbursements
 
+[![Build Status](https://travis-ci.org/draffensperger/miletracker.svg?branch=master)](https://travis-ci.org/draffensperger/miletracker)
+
 ## Summary
 I’ve created a prototype Android app and website to prepare mileage reimbursements for Cru staff based on their Google Calendar and phone locations. A screencast that current state of the project is here: http://www.youtube.com/watch?v=wh_xTOfBhaY
 
