@@ -18,5 +18,11 @@
 config/application.yml
 /config/application.yml
 
+# Ignore RubyMine file
 .idea
+
+# Ignore log files
 *.log
+
+# Ignore scratch file
+scratch.txt
