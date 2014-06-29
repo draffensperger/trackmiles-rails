@@ -40,6 +40,10 @@ group :production do
   gem 'thin', :platforms => :ruby
   gem 'newrelic_rpm'
 end
+
+group :development do
+  gem 'quiet_assets'
+end
   
 group :development, :test do
   gem 'execjs', :platforms => :ruby
