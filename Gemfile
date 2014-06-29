@@ -67,6 +67,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'rake'
   gem 'webmock'
   gem 'rspec-autotest'
   #gem 'spork', git: 'git://github.com/codecarson/spork'
