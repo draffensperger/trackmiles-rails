@@ -1,5 +1,5 @@
 class GoogleApi
-  include ApiHelpers
+  include ApiUtil
    
   BASE_URL = 'https://www.googleapis.com/'
   CALENDAR_URL = BASE_URL + 'calendar/v3/'

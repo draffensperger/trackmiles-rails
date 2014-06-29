@@ -2,7 +2,7 @@ module GoogleMapsApi
   API_BASE = "http://maps.googleapis.com/maps/api/"
   
   def self.directions(params)
-    ApiHelpers.get_and_parse API_BASE + "directions/json", params
+    ApiUtil.get_and_parse API_BASE + "directions/json", params
     #directions/json?origin=Chicago,IL&destination=Los+Angeles,CA&sensor=false
   end
   

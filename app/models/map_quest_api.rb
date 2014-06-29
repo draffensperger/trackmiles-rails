@@ -3,7 +3,7 @@ module MapQuestApi
 
   def self.api_call(url, params)
     params[:key] = ENV['MAPQUEST_API_KEY']
-    ApiHelpers.get_and_parse API_BASE + url, params
+    ApiUtil.get_and_parse API_BASE + url, params
   end
 
   def self.distance(from, to)

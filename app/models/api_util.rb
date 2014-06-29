@@ -1,4 +1,4 @@
-module ApiHelpers
+module ApiUtil
   def get_and_parse(url, params)
     parse_result RestClient.get url, :params => params
   end
@@ -8,6 +8,11 @@ module ApiHelpers
     parse_result RestClient.post url, params
   end
   module_function :post_and_parse
+
+  def post_json(url, params)
+    parse_result RestClient.post url, params.to_json, content_type: :json
+  end
+  module_function :post_json
   
   def parse_result(result)
     underscore_keys_recursive JSON.parse result
