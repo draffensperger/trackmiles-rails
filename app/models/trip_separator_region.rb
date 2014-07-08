@@ -12,6 +12,7 @@ class TripSeparatorRegion < ActiveRecord::Base
     TripSeparatorRegion.new {|r|
       r.anchor = TripSeparatorArea.new_with_center loc
       r.areas = [r.anchor]
+      r.last_time = loc.recorded_time
     }    
   end
      

@@ -15,7 +15,13 @@ describe TripSeparatorRegion do
     
     @r = TripSeparatorRegion.new_with_center @anchor_loc    
   end
-  
+
+  describe "last_time at start" do
+    it "should be set to location of center" do
+      expect(@r.last_time).to eq (@loc.recorded_time)
+    end
+  end
+
   describe "anchor_dist" do
     it "should calculate distance squared to anchor" do    
       @r.loc_to_add = @loc
