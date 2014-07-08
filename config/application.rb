@@ -58,8 +58,9 @@ module Miletracker
     config.action_mailer.perform_deliveries = true
     
     ActionMailer::Base.default from: ENV['SERVER_FROM_EMAIL']
-    
-    HttpLogger.ignore = [/newrelic\.com/]
+
+    # We only use HttpLogger in development and test
+    HttpLogger.ignore = [/newrelic\.com/] if defined? HttpLogger
     
     config.action_mailer.smtp_settings = {
      :address => ENV['SMTP_SERVER'],
