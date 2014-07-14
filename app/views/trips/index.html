@@ -1,12 +1,10 @@
 <div ng-controller="TripsController">
-    Write some text in textbox:
-    <input type="text" ng-model="sometext" />
-
-    <h1>Hello {{ sometext }}</h1>
-
-    <table>
-        <tr><th>row number</th></tr>
-        <tr ng-repeat="t in trips"><td>{{t}}</td></tr>
-        <tr ng-repeat="t in trips"><td>{{t.start_time}}</td></tr>
-    </table>
+    <div ng-repeat="trip_date in trip_dates">
+        <hr>
+        <b>{{trip_date}}</b>
+        <br><br>
+        <p ng-repeat="t in trips_by_date[trip_date]">
+            {{t.start_time | date : 'shortTime'}} - {{t.end_time | date : 'shortTime'}}
+        </p>
+    </div>
 </div>
