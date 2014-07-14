@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140516181453) do
+ActiveRecord::Schema.define(version: 20140714212037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -216,6 +216,8 @@ ActiveRecord::Schema.define(version: 20140516181453) do
     t.datetime "updated_at"
   end
 
+  add_index "trips", ["end_place_id"], name: "index_trips_on_end_place_id", using: :btree
+  add_index "trips", ["start_place_id"], name: "index_trips_on_start_place_id", using: :btree
   add_index "trips", ["user_id"], name: "index_trips_on_user_id", using: :btree
 
   create_table "users", force: true do |t|

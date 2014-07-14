@@ -1,7 +1,20 @@
 class TripsController < ApplicationController
   def index
-    @trips = current_user.trips.includes(:start_place).includes(:end_place)
+    respond_to do |format|
+      format.html
+      format.json { render json: trips_data }
+    end
+  end
+
+  def trips_data
+    trips = current_user.trips
       .where('start_place_id <> end_place_id').order('start_time ASC')
+    places = current_user.places.joins(
+        'INNER JOIN trips ON trips.start_place_id = places.id
+         OR trips.end_place_id = places.id')
+      .where('trips.user_id = ? AND trips.start_place_id <> trips.end_place_id',
+             current_user.id).distinct
+    {trips: trips, places: places}
   end
 
   def reimburse
