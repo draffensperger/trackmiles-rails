@@ -9,6 +9,8 @@
     %title TrackMiles
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
+    %link{href: "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css", rel: "stylesheet"}/
+    %script{src: "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"}
     = render partial: 'shared/google_analytics'    
     = include_gon    
     = favicon_link_tag 'mile_tracker_ldpi.png'

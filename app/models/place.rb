@@ -8,7 +8,7 @@ class Place < ActiveRecord::Base
       place.state = geo.state_code
       place.postal_code = geo.postal_code
       #place.country = geo.country_code
-      place.summary = geo.address + ', ' + geo.city + ', ' + geo.state_code      
+      place.summary = place.address + ', ' + place.city + ', ' + place.state
     end
   end
   

@@ -1,10 +1,45 @@
 <div ng-controller="TripsController">
-    <div ng-repeat="trip_date in trip_dates">
-        <hr>
-        <b>{{trip_date}}</b>
-        <br><br>
-        <p ng-repeat="t in trips_by_date[trip_date]">
-            {{t.start_time | date : 'shortTime'}} - {{t.end_time | date : 'shortTime'}}
-        </p>
+    <div class="container" id="trips-info-contianer">
+        <div class="row">
+            <div class="col-md-7" id="trips-list">
+                <form class='form-inline trip-form' method='post'>
+                    <div ng-repeat="trip_date in trip_dates" id="trip-container">
+                        <b>{{trip_date}}</b>
+                        <div ng-repeat="t in trips_by_date[trip_date]">
+                            <div class='form-group' id='trip-start-time' data-trip-id="{{t.id}}">
+                                {{t.start_time | date :'h:mma' | lowercase | cutright:'1'}}
+                            </div>
+                            -
+                            <div class='form-group' id='trip-end-time'>
+                                {{t.end_time | date :'h:mma' | lowercase | cutright:'1'}}
+                            </div>
+
+                            <input class='form-control' id='from' ng-focus="showMapStart(t)" type='text' value='{{places_by_id[t.start_place_id].summary}}'>
+                            <span class='glyphicon glyphicon-arrow-right'></span>
+                            <input class='form-control' id='to' ng-focus="showMapEnd(t)" type='text' value='{{places_by_id[t.end_place_id].summary}}'>
+                            :
+                            <div class='form-group'>
+                                <label class='sr-only' for='purpose'>Business Purpose</label>
+                                <input class='form-control' ng-focus="showMapEnd(t)" id='purpose' type='text' value=''>
+                            </div>
+
+                            <!--
+                            <input class='form-control' id='miles' type='text' value="{{t.distance / 1.60934 | number : '1'}}">
+                                               <div class='checkbox'>
+                                <label>
+                                    <input name='reimburse' type='checkbox'>
+                                    Reimburse?
+                                </label>
+                            </div>
+                            -->
+                            {{t.distance / 1.60934 | number : '1'}}mi
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-5">
+                <div id="map"></div>
+            </div>
+        </div>
     </div>
 </div>
