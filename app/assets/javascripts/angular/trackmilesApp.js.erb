@@ -1,6 +1,8 @@
 var app = angular.module('trackmilesApp', ['trackmilesFilters']);
 
 app.controller('TripsController', ['$scope', '$http', '$filter', function($scope, $http, $filter) {
+    var ctrl = this;
+
     $http.get('/trips.json').success(function (data) {
         trips = data.trips;
         var trips_by_date = {};
@@ -60,10 +62,21 @@ app.controller('TripsController', ['$scope', '$http', '$filter', function($scope
         $scope.startMarker.addTo($scope.map);
         */
 
+        var markerIcon = L.icon({
+            iconUrl: '<%= asset_path('marker-icon.png') %>',
+            iconRetinaUrl: '<%= asset_path('marker-icon-2x.png') %>',
+            shadowUrl: '<%= asset_path('marker-shadow.png') %>',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
         if ($scope.endMarker) {
             $scope.map.removeLayer($scope.endMarker);
         }
-        $scope.endMarker = L.marker([end.latitude, end.longitude], {title: end.summary});
+        $scope.endMarker = L.marker([end.latitude, end.longitude],
+                {icon: markerIcon, title: end.summary});
         $scope.endMarker.addTo($scope.map);
 
         if ($scope.line) {
