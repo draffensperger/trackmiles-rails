@@ -15,4 +15,17 @@ module MapQuestApi
       nil
     end
   end
+
+  def self.distance_and_shape(from, to,
+      map_width, map_height, map_zoom, map_lat, map_lng)
+    begin
+      data = api_call 'directions/v2/route', from: from, to: to, unit: 'k',
+                     routeType: 'shortest',
+                     mapWidth: map_width, mapHeight: map_height,
+                     mapZoom: map_zoom, mapLat: map_lat, mapLng: map_lng
+      [data[:route][:distance], data[:route][:shape][:shape_points]]
+    rescue
+      nil
+    end
+  end
 end

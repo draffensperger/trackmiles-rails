@@ -1,4 +1,6 @@
 class TripsController < ApplicationController
+  include GeocodeUtil
+
   def index
     respond_to do |format|
       format.html
@@ -21,10 +23,30 @@ class TripsController < ApplicationController
     # Do this by trip separtor areas
     trip_id = trip_id_param
     trip = Trip.where('id = ? AND user_id = ?', trip_id, current_user.id).take
-    locs = Location.where('user_id = ? AND recorded_time >= ? AND recorded_time <= ?',
-      current_user.id, trip.start_time, trip.end_time)
-      .select(:latitude, :longitude)
-    waypoints = locs.map {|l| [l.latitude, l.longitude]}
+    if trip
+      dist, shape = MapQuestApi.distance_and_shape(
+          trip.start_place.latitude.to_s + ',' + trip.start_place.longitude.to_s,
+          trip.end_place.latitude.to_s + ',' + trip.end_place.longitude.to_s,
+          *map_params)
+
+      waypoints = []
+      (0..shape.length-2).step(2) do |i|
+        waypoints.push([shape[i], shape[i + 1]])
+      end
+    end
+
+=begin
+    #locs = Location.where('user_id = ? AND recorded_time >= ? AND recorded_time <= ?',
+    #  current_user.id, trip.start_time, trip.end_time)
+    #  .select(:latitude, :longitude)
+    points = TripSeparatorRegion.joins(:anchor_area)
+              .where('user_id = ? AND
+                      trip_separator_regions.last_time >= ? AND
+                      trip_separator_regions.last_time <= ?',
+                     current_user.id, trip.start_time, trip.end_time)
+              .select(:x, :y, :z)
+    waypoints = points.map {|p| as_latitude_longitude p.x, p.y, p.z }
+=end
 
     respond_to do |format|
       format.json { render json: waypoints }
@@ -33,6 +55,11 @@ class TripsController < ApplicationController
 
   def trip_id_param
     params.permit(:trip_id)[:trip_id]
+  end
+
+  def map_params
+    param_syms = [:map_width, :map_height, :map_zoom, :map_lat, :map_lng]
+    params.permit(*param_syms).values_at(*param_syms)
   end
 
   def reimburse

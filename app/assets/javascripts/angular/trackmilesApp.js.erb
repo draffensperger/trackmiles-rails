@@ -1,7 +1,10 @@
+var globalTripMap;
+
 var app = angular.module('trackmilesApp', ['trackmilesFilters']);
 
 app.controller('TripLogController', ['$scope', '$http', '$filter', function($scope, $http, $filter) {
     var tripLog = this;
+    globalTripLog = this;
 
     $scope.tripDates = [];
     $scope.tripsByDate = {};
@@ -12,18 +15,19 @@ app.controller('TripLogController', ['$scope', '$http', '$filter', function($sco
     this.map = new L.Map('map');
     var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-    var osm = new L.TileLayer(osmUrl, {minZoom: 4, maxZoom: 16, attribution: osmAttrib});
-    this.map.setView(new L.LatLng(51.3, 0.7),9);
+    var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 16, attribution: osmAttrib});
+    this.map.setView(new L.LatLng(39.833333, -98.583333), 3s);
     this.map.addLayer(osm);
     this.tripLayers = [];
 
+    this.popupOffset = new L.Point(1,-34);
     this.markerIcon = L.icon({
         iconUrl: '<%= asset_path('marker-icon.png') %>',
         iconRetinaUrl: '<%= asset_path('marker-icon-2x.png') %>',
         shadowUrl: '<%= asset_path('marker-shadow.png') %>',
         iconSize: [25, 41],
         iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
+        popupAnchor: [this.popupOffset.x, this.popupOffset.y],
         shadowSize: [41, 41]
     });
 
@@ -79,23 +83,60 @@ app.controller('TripLogController', ['$scope', '$http', '$filter', function($sco
 
         this.clearTripLayers();
 
+        var startMarker = L.marker([start.latitude, start.longitude],
+                {icon: this.markerIcon, title: start.summary})
+                .setPopupContent(start.summary);
+        this.addTripLayer(startMarker);
+
+        var startPopup = L.popup({closeButton: false, offset: this.popupOffset})
+            .setContent('<b>From</b> ' + start.summary.replace(',','<br>'))
+            .setLatLng(new L.LatLng(start.latitude, start.longitude))
+        this.addTripLayer(startPopup);
+
         var endMarker = L.marker([end.latitude, end.longitude],
                 {icon: this.markerIcon, title: end.summary});
         this.addTripLayer(endMarker);
 
-        this.showWaypoints(trip);
+        var endPopup = L.popup({closeButton: false, offset: this.popupOffset})
+                .setContent('<b>To</b> ' + end.summary.replace(',','<br>'))
+                .setLatLng(new L.LatLng(end.latitude, end.longitude))
+        this.addTripLayer(endPopup);
 
-        this.map.fitBounds([[start.latitude, start.longitude],
-            [end.latitude, end.longitude]]);
+        this.map.fitBounds(
+            [[start.latitude, start.longitude],[end.latitude, end.longitude]],
+            {paddingTopLeft: new L.Point(20, 120),
+             paddingBottomRight: new L.Point(5,30)});
+
+        this.showWaypoints(trip);
     };
 
     this.showWaypoints = function(trip) {
-        $http.get('/waypoints.json', {params: {trip_id: trip.id}}).success(function (data) {
+        var start = $scope.placesById[trip.start_place_id];
+        var end = $scope.placesById[trip.end_place_id];
+
+        params = {
+            trip_id: trip.id,
+            map_width: this.map.getSize().x,
+            map_height: this.map.getSize().y,
+            map_zoom: this.map.getZoom(),
+            map_lat: this.map.getCenter().lat,
+            map_lng: this.map.getCenter().lng
+        };
+        console.log(params);
+
+        $http.get('/waypoints.json', {params: params}).success(function (data) {
             console.log(data);
             var points = [];
+
+            points.push(new L.LatLng(start.latitude, start.longitude))
+
             for (var i = 0; i < data.length; i++) {
                 points.push(new L.LatLng(data[i][0], data[i][1]));
             }
+            points.push(new L.LatLng(end.latitude, end.longitude))
+
+            // Add the start and end points to the list
+
             var line = L.polyline(points);
             tripLog.addTripLayer(line);
         });
