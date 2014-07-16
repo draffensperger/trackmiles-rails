@@ -17,6 +17,24 @@ class TripsController < ApplicationController
     {trips: trips, places: places}
   end
 
+  def waypoints
+    # Do this by trip separtor areas
+    trip_id = trip_id_param
+    trip = Trip.where('id = ? AND user_id = ?', trip_id, current_user.id).take
+    locs = Location.where('user_id = ? AND recorded_time >= ? AND recorded_time <= ?',
+      current_user.id, trip.start_time, trip.end_time)
+      .select(:latitude, :longitude)
+    waypoints = locs.map {|l| [l.latitude, l.longitude]}
+
+    respond_to do |format|
+      format.json { render json: waypoints }
+    end
+  end
+
+  def trip_id_param
+    params.permit(:trip_id)[:trip_id]
+  end
+
   def reimburse
     trips_attrs = []
     prefix = 'reimburse_'

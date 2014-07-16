@@ -83,12 +83,22 @@ app.controller('TripLogController', ['$scope', '$http', '$filter', function($sco
                 {icon: this.markerIcon, title: end.summary});
         this.addTripLayer(endMarker);
 
-        var line = L.polyline([new L.LatLng(start.latitude, start.longitude),
-             new L.LatLng(end.latitude, end.longitude)]);
-        this.addTripLayer(line);
+        this.showWaypoints(trip);
 
         this.map.fitBounds([[start.latitude, start.longitude],
             [end.latitude, end.longitude]]);
+    };
+
+    this.showWaypoints = function(trip) {
+        $http.get('/waypoints.json', {params: {trip_id: trip.id}}).success(function (data) {
+            console.log(data);
+            var points = [];
+            for (var i = 0; i < data.length; i++) {
+                points.push(new L.LatLng(data[i][0], data[i][1]));
+            }
+            var line = L.polyline(points);
+            tripLog.addTripLayer(line);
+        });
     };
 }]);
 

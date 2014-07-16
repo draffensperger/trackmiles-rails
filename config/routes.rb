@@ -19,6 +19,8 @@ Miletracker::Application.routes.draw do
   resources :sync, only: :index
   
   resources :trips, only: :index
+  get 'waypoints' => 'trips#waypoints'
+
   post 'trips' => 'trips#reimburse'
   
   post 'email_android_link' => 'email_app_link#email_android_link'
