@@ -5,6 +5,9 @@
                 <form class='form-inline trip-form' method='post'>
                     <div ng-repeat="tripDate in tripDates" id="trip-container">
                         <b>{{tripDate}}</b>
+                        &nbsp;&nbsp;Started:
+                        <input class='form-control' id='from' ng-focus="tripLog.showMapStart(tripsByDate[tripDate][0])" type='text'
+                               value='{{placesById[tripsByDate[tripDate][0].start_place_id].summary}}'>
                         <div ng-repeat="trip in tripsByDate[tripDate]">
                             <div class='form-group' id='trip-start-time' data-trip-id="{{t.id}}">
                                 {{trip.start_time | date :'h:mma' | lowercase | cutright:'1'}}
@@ -13,9 +16,6 @@
                             <div class='form-group' id='trip-end-time'>
                                 {{trip.end_time | date :'h:mma' | lowercase | cutright:'1'}}
                             </div>
-
-                            <input class='form-control' id='from' ng-focus="tripLog.showMapStart(trip)" type='text'
-                                   value='{{placesById[trip.start_place_id].summary}}'>
                             <span class='glyphicon glyphicon-arrow-right'></span>
                             <input class='form-control' id='to' ng-focus="tripLog.showMapEnd(trip)" type='text'
                                    value='{{placesById[trip.end_place_id].summary}}'>
@@ -24,8 +24,9 @@
                                 <label class='sr-only' for='purpose'>Business Purpose</label>
                                 <input class='form-control' ng-focus="tripLog.showMapEnd(trip)" id='purpose' type='text' value=''>
                             </div>
-
-                            {{trip.distance / 1.60934 | number : '1'}}mi
+                            <div class='form-group' id='distance'>
+                                {{trip.distance / 1.60934 | number : '1'}}mi
+                            </div>
                         </div>
                     </div>
                 </form>

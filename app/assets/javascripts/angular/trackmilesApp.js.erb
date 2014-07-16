@@ -16,7 +16,7 @@ app.controller('TripLogController', ['$scope', '$http', '$filter', function($sco
     var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
     var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 16, attribution: osmAttrib});
-    this.map.setView(new L.LatLng(39.833333, -98.583333), 3s);
+    this.map.setView(new L.LatLng(39.833333, -98.583333), 3);
     this.map.addLayer(osm);
     this.tripLayers = [];
 
@@ -122,10 +122,8 @@ app.controller('TripLogController', ['$scope', '$http', '$filter', function($sco
             map_lat: this.map.getCenter().lat,
             map_lng: this.map.getCenter().lng
         };
-        console.log(params);
 
         $http.get('/waypoints.json', {params: params}).success(function (data) {
-            console.log(data);
             var points = [];
 
             points.push(new L.LatLng(start.latitude, start.longitude))
