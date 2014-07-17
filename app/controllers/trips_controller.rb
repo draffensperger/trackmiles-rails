@@ -5,7 +5,7 @@ class TripsController < ApplicationController
     assign_trips_data
     respond_to do |format|
       format.html
-      format.json { render json: {trips: @trips, places: places} }
+      format.json { render json: {trips: @trips, places: @places} }
     end
   end
 
