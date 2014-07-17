@@ -13,8 +13,8 @@ app.controller('TripLogController', ['$scope', '$http', '$filter', function($sco
     $scope.activeEnd = {};
 
     this.map = new L.Map('map');
-    var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+    var osmUrl='http://otile2.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg';
+    var osmAttrib='Tiles by <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>';
     var osm = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 16, attribution: osmAttrib});
     this.map.setView(new L.LatLng(39.833333, -98.583333), 3);
     this.map.addLayer(osm);
@@ -36,7 +36,7 @@ app.controller('TripLogController', ['$scope', '$http', '$filter', function($sco
         var tripsByDate = {};
         var tripDates = [];
         for (var i = 0; i < trips.length; i++) {
-            var date = $filter('date')(trips[i]['start_time'], 'fullDate');
+            var date = $filter('date')(trips[i]['start_time'], 'EEE M/d/yy');
             if (date in tripsByDate) {
                 tripsByDate[date].push(trips[i]);
             } else {
@@ -108,6 +108,26 @@ app.controller('TripLogController', ['$scope', '$http', '$filter', function($sco
              paddingBottomRight: new L.Point(5,30)});
 
         this.showWaypoints(trip);
+    };
+
+    this.placePartialAddress = function(place, prevPlace) {
+        var addr = place.street;
+        if (place.state != prevPlace.state) {
+            addr += ', ' + place.city + ', ' + place.state;
+        } else if (place.city != prevPlace.city) {
+            addr += ', ' + place.city
+        }
+        return addr;
+    };
+
+    this.formatDistance = function(km) {
+        var miles = km / 1.60934;
+        if (miles < 10.0) {
+            miles = $filter('number')(miles, 1);
+        } else {
+            miles = $filter('number')(miles, 0);
+        }
+        return miles + 'mi';
     };
 
     this.showWaypoints = function(trip) {
