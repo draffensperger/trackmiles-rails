@@ -1,30 +1,20 @@
-/*
-TODO:
-- Center the text on every line
-- Improve the map
-- Add map route disclaimer
-- Make it mobile friendly
-- Maybe later (make it so that it guesses whether you took shortest or fastest MapQuest route most closely)
-- Would be great to display scheduled events from Google Calendar too
-- Cache results for faster loading of route shapes (and remember current trip and don't redisplay it)
-- Make it use the full browser height when available
-*/
-
 // Place all the styles related to the Trips controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-
 .trips-and-map-row {}
 
-.trips-list {overflow-y: scroll; height: 500px}
+.trips-list {overflow-y: scroll; height: 500px; max-height: 500px}
 
-.trip-start-time {width: 3em; text-align: right; margin-right: 0.5em}
-.trip-end-time {width: 3em; text-align: right; }
-.trip-place-name {display: inline; float: left; width: 8em;}
+.travel-info {width: 10em}
+
+.trip-time {width: 8em; margin-right: 0.5em}
+.trip-distance {width: 6em; text-align: right; margin-right: 0.5em; font-weight: bold}
+
+.trip-place-name {display: inline; width: 12em;}
 .trip-address {width: 10em; margin-left: 0.2em; margin-right: 0.2em}
-.trip-purpose {display: inline; width: 13em}
+.trip-purpose {display: inline; width: 21em}
 .trip-distance {margin-left: 0.3em; margin-top: auto; margin-bottom: auto}
 
 .trip-date-separator {margin-top: 0.5em; margin-bottom: 0.5em}

@@ -1,50 +1,67 @@
+<!--
+
+Future features:
+- Bind data with ministry purpose of trip
+- Bind data with label of place
+
+- Align elements
+- Recognize to and from combinations
+- Allow you to check a box for "personal stop"
+- Mobile friendly
+- Sync with Google Calendar, display your agenda
+-
+
+-->
+
 <div ng-controller="TripLogController as tripLog">
     <div class="container">
         <div class="row trips-and-map-row">
             <div class="col-md-7">
-                <div ng-repeat="tripDate in tripDates">
-                    <table>
-                        <tr>
-                            <td colspan="3"><b>{{tripDate}}</b></td>
-                            <td>
-                                <input class="form-control trip-place-name" ng-focus="tripLog.showMapStart(tripsByDate[tripDate][0])" type='text'
-                                       value='{{placesById[tripsByDate[tripDate][0].start_place_id].summary}}'
-                                       placeholder='Name/Place'>
-                            </td>
-                            <td colspan="3">
-                                {{placesById[tripsByDate[tripDate][0].start_place_id].street}},
-                                {{placesById[tripsByDate[tripDate][0].start_place_id].city}},
-                                {{placesById[tripsByDate[tripDate][0].start_place_id].state}}
-                            </td>
-                        </tr>
-                        <tr ng-repeat="trip in tripsByDate[tripDate]">
-                            <td class="trip-start-time">{{trip.start_time | date :'h:mma' | lowercase | cutright:'1'}}</td>
-                            <td><span class='glyphicon glyphicon-arrow-right'></span></td>
-                            <td class="trip-end-time">{{trip.end_time | date :'h:mma' | lowercase | cutright:'1'}}</td>
-                            <td>
+                <div class="trip-list">
+                    <i>
+                        Enter &quot;Ministry purpose&quot; for reimbursable trips, leave
+                        blank for personal trips.
+                        You may label a place for easy reference by typing in the &quot;Place Name&quot; field.
+                        Locations and addresses are approximate.
+                    </i>
+                    <div ng-repeat="tripDate in tripDates">
+                        <b>{{tripDate}}</b>
+                        <div class="clearfix">
+                            <input class="form-control trip-place-name" ng-focus="tripLog.showMapStart(tripsByDate[tripDate][0])" type='text'
+                                   value='{{placesById[tripsByDate[tripDate][0].start_place_id].summary}}'
+                                   placeholder="Place Name">,
+                            {{placesById[tripsByDate[tripDate][0].start_place_id].street}},
+                            {{placesById[tripsByDate[tripDate][0].start_place_id].city}},
+                            {{placesById[tripsByDate[tripDate][0].start_place_id].state}}
+                        </div>
+                        <div ng-repeat="trip in tripsByDate[tripDate]" class="clearfix">
+                            <div class="trip-travel">
+                                <span class="glyphicon glyphicon-arrow-down"></span>
+                            <span class="trip-time">
+                            {{trip.start_time | date :'shortTime' | lowercase}}
+                            -
+                            {{trip.end_time | date : 'shortTime' | lowercase}}
+                            </span>
+                            <span class="trip-distance">
+                                {{tripLog.formatDistance(trip.distance)}}
+                            </span>
+                                <input class="form-control trip-purpose" ng-focus="tripLog.showMapEnd(trip)"
+                                       type="text" value="" placeholder="Ministry purpose (leave blank if personal)">
+                            </div>
+                            <div class="trip-travel">
                                 <input class="form-control trip-place-name" ng-focus="tripLog.showMapEnd(trip)" type="text"
                                        value="{{placesById[trip.end_place_id].summary}}"
-                                       placeholder="Name/Place">
-                            </td>
-                            <td class="trip-address">
+                                       placeholder="Place Name">,
                                 {{tripLog.placePartialAddress(placesById[trip.end_place_id], placesById[trip.start_place_id])}}
-                            </td>
-                            <td>
-                                <input class="form-control trip-purpose" ng-focus="tripLog.showMapEnd(trip)"
-                                       type="text" value="" placeholder="Ministry purpose (if any)">
-                            </td>
-                            <td>
-                                {{tripLog.formatDistance(trip.distance)}}
-                            </td>
-                        </tr>
-                    </table>
-                    <hr class="trip-date-separator">
+                            </div>
+                        </div>
+                        <hr class="trip-date-separator">
+                    </div>
                 </div>
             </div>
             <div class="col-md-5">
                 <div id="map"></div>
                 <div class="disclaimer">
-                Location and addresses are approximate.
                 Displayed trip route and distance are based on MapQuest Open directions
                 and may not reflect the actual route you used.
                 </div>
