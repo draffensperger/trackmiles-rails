@@ -1,58 +1,53 @@
 <div ng-controller="TripLogController as tripLog">
-    <div class="container" id="trips-info-contianer">
-        <div class="row">
-            <div class="col-md-7" id="trips-list">
-                <form class='form-inline trip-form' method='post'>
-                    <div ng-repeat="tripDate in tripDates" id="trip-container">
-                        <div class="trip-row clearfix trip-date-start">
-                            <div class="trip-time">
-                                <b>{{tripDate}}</b>&nbsp;Start:
-                            </div>
-                            <div>
-                                <input class='form-control' id='from' ng-focus="tripLog.showMapStart(tripsByDate[tripDate][0])" type='text'
+    <div class="container">
+        <div class="row trips-and-map-row">
+            <div class="col-md-7">
+                <div ng-repeat="tripDate in tripDates">
+                    <table>
+                        <tr>
+                            <td colspan="3"><b>{{tripDate}}</b></td>
+                            <td>
+                                <input class="form-control trip-place-name" ng-focus="tripLog.showMapStart(tripsByDate[tripDate][0])" type='text'
                                        value='{{placesById[tripsByDate[tripDate][0].start_place_id].summary}}'
-                                       placeholder='Name/Place'>,
-                            </div>
-                            <div class="trip-address-start">
+                                       placeholder='Name/Place'>
+                            </td>
+                            <td colspan="3">
                                 {{placesById[tripsByDate[tripDate][0].start_place_id].street}},
                                 {{placesById[tripsByDate[tripDate][0].start_place_id].city}},
                                 {{placesById[tripsByDate[tripDate][0].start_place_id].state}}
-                            </div>
-                        </div>
-                        <div ng-repeat="trip in tripsByDate[tripDate]">
-                            <div class="trip-row clearfix">
-                                <div class="trip-time float-left-children">
-                                    <div class="trip-start-time" data-trip-id="{{t.id}}">
-                                        {{trip.start_time | date :'h:mma' | lowercase | cutright:'0'}}
-                                    </div>
-                                    <div class='glyphicon glyphicon-arrow-right'></div>
-                                    <div class="trip-end-time">
-                                        {{trip.end_time | date :'h:mma' | lowercase | cutright:'1'}}
-                                    </div>
-                                </div>
-                                <div>
-                                    <input class='form-control' id='to' ng-focus="tripLog.showMapEnd(trip)" type='text'
-                                           value='{{placesById[trip.end_place_id].summary}}'
-                                           placeholder='Name/Place'>,
-                                </div>
-                                <div class="trip-address">
-                                    {{tripLog.placePartialAddress(placesById[trip.end_place_id], placesById[trip.start_place_id])}}
-                                </div>
-                                <div>
-                                    <label class='sr-only' for='purpose'>Business Purpose</label>
-                                    <input class='form-control' ng-focus="tripLog.showMapEnd(trip)"
-                                           id='purpose' type='text' value='' placeholder="Ministry purpose (if any)">
-                                </div>
-                                <div id='distance'>
-                                    {{tripLog.formatDistance(trip.distance)}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="trip in tripsByDate[tripDate]">
+                            <td class="trip-start-time">{{trip.start_time | date :'h:mma' | lowercase | cutright:'1'}}</td>
+                            <td><span class='glyphicon glyphicon-arrow-right'></span></td>
+                            <td class="trip-end-time">{{trip.end_time | date :'h:mma' | lowercase | cutright:'1'}}</td>
+                            <td>
+                                <input class="form-control trip-place-name" ng-focus="tripLog.showMapEnd(trip)" type="text"
+                                       value="{{placesById[trip.end_place_id].summary}}"
+                                       placeholder="Name/Place">
+                            </td>
+                            <td class="trip-address">
+                                {{tripLog.placePartialAddress(placesById[trip.end_place_id], placesById[trip.start_place_id])}}
+                            </td>
+                            <td>
+                                <input class="form-control trip-purpose" ng-focus="tripLog.showMapEnd(trip)"
+                                       type="text" value="" placeholder="Ministry purpose (if any)">
+                            </td>
+                            <td>
+                                {{tripLog.formatDistance(trip.distance)}}
+                            </td>
+                        </tr>
+                    </table>
+                    <hr class="trip-date-separator">
+                </div>
             </div>
             <div class="col-md-5">
                 <div id="map"></div>
+                <div class="disclaimer">
+                Location and addresses are approximate.
+                Displayed trip route and distance are based on MapQuest Open directions
+                and may not reflect the actual route you used.
+                </div>
             </div>
         </div>
     </div>

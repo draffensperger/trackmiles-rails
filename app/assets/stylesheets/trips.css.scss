@@ -13,24 +13,28 @@ TODO:
 // Place all the styles related to the Trips controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#map { height: 500px; }
-.trip-date {width: 100%}
-.trip-date-start {margin-bottom: 0.3em}
-.trip-row * {float: left; vertical-align: center}
-.trip-row {margin-bottom: 0.3em}
-.trip-time {width: 9em;}
-.trip-address-start {margin-left: 0.2em;}
+
+
+
+.trips-and-map-row {}
+
+.trips-list {overflow-y: scroll; height: 500px}
+
+.trip-start-time {width: 3em; text-align: right; margin-right: 0.5em}
+.trip-end-time {width: 3em; text-align: right; }
+.trip-place-name {display: inline; float: left; width: 8em;}
 .trip-address {width: 10em; margin-left: 0.2em; margin-right: 0.2em}
-#trip-container {margin-bottom: 1.5em}
-#trips-list {overflow-y: scroll; height: 500px}
-.trip-start-time {width: 3.5em; text-align: right; margin-right: 0.5em}
-.trip-end-time {width: 3.5em; text-align: right}
-#from {width: 8em}
+.trip-purpose {display: inline; width: 13em}
+.trip-distance {margin-left: 0.3em; margin-top: auto; margin-bottom: auto}
+
+.trip-date-separator {margin-top: 0.5em; margin-bottom: 0.5em}
+
+#map { height: 450px; width: 100% }
+.disclaimer { font-size: smaller; }
+
 #to {width: 8em}
-#distance {margin-left: 0.3em}
 #method {width: 6.5em}
 #miles {width: 4em; text-align: right}
-#purpose {width: 13em}
 #rate {width: 8em}
 
 #reimb-container{height: 1000px}
