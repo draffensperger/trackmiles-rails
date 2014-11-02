@@ -1,8 +1,5 @@
 source 'https://rubygems.org'
 
-# This is useful for the Dokku deployment, but centralizes the Ruby version
-ruby File.new('.ruby-version').read.chomp
-
 gem 'activerecord-import'
 gem 'devise'
 gem 'geocoder'
