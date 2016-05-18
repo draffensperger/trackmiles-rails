@@ -25,7 +25,7 @@ describe MapQuestApi do
 
   it 'should handle error response from server' do
     req = stub_request(:get, @url).with(:query => @query)
-      .to_return(:body => {}, :status => 500)
+      .to_return(:body => '{}', :status => 500)
 
     MapQuestApi.distance('38.8941,-77.07556', '38.84458,-77.07823')
       .should be_nil

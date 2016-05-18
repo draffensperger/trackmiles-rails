@@ -16,6 +16,7 @@
 
 # Ignore application configuration
 config/application.yml
+config/secrets.yml
 /config/application.yml
 
 # Ignore RubyMine file
@@ -26,3 +27,4 @@ config/application.yml
 
 # Ignore scratch file
 scratch.txt
+.env.*

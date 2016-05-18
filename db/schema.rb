@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(version: 20140714212037) do
     t.string   "gcal_event_id",                 default: "",                    null: false
     t.string   "status",                        default: "",                    null: false
     t.text     "html_link",                     default: "",                    null: false
-    t.datetime "created",                       default: '2013-11-15 14:49:26', null: false
-    t.datetime "updated",                       default: '2013-11-15 14:49:26', null: false
+    t.datetime "created",                       default: '2016-05-18 00:04:26', null: false
+    t.datetime "updated",                       default: '2016-05-18 00:04:26', null: false
     t.string   "summary",                       default: "",                    null: false
     t.text     "description"
     t.text     "location"

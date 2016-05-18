@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   database: miletracker_development
-  username: miletracker
+  username:
   password: <%= ENV['DEV_TEST_DB_PASSWORD'] %>
   host: localhost
   pool: 25
@@ -10,7 +10,7 @@ development:
 test:
   adapter: postgresql
   database: miletracker_test
-  username: miletracker
+  username:
   password: <%= ENV['DEV_TEST_DB_PASSWORD'] %>
   host: localhost
   pool: 25

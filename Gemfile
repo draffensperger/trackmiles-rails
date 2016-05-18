@@ -1,3 +1,5 @@
+ruby '2.3.1'
+
 source 'https://rubygems.org'
 
 gem 'activerecord-import'
@@ -26,7 +28,7 @@ gem 'rails_12factor'
 gem 'sidekiq'
 gem 'sidekiq-unique-jobs'
 
-# I like to be able to test and benchmark different servers and platforms. 
+# I like to be able to test and benchmark different servers and platforms.
 gem 'pg', :platforms => :ruby
 
 group :production do
@@ -40,23 +42,21 @@ end
 
 group :development do
   gem 'quiet_assets'
+  gem 'rubocop', '0.40'
 end
-  
+
 group :development, :test do
   gem 'execjs', :platforms => :ruby
 
-  gem 'figaro'
+  gem 'dotenv-rails'
 
   gem 'factory_girl_rails'
   gem 'simplecov'
-  gem 'rspec-rails' 
-  
+  gem 'rspec-rails'
+
   gem 'test-unit'
 
   gem 'http_logger'
-  
-  gem 'libv8', :platforms => :ruby  
-  gem 'therubyracer', :platforms => :ruby
 
   gem 'ZenTest'
 
